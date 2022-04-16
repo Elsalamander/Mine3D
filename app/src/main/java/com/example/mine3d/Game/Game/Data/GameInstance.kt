@@ -32,6 +32,7 @@ import java.io.FileReader
  ****************************************************************/
 class GameInstance(var context: Game, var sett : GameSett) {
 
+
     var settings : JSONManager = JSONManager(context)   //settings
     var grid : Griglia = Griglia(sett.n)                //griglia di gioco
     var render : MyGLSurfaceView = MyGLSurfaceView(context, this)   //Renderer del gioco
