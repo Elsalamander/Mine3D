@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ControlSettingsFragment">
+
+    <LinearLayout
+        android:id="@+id/settings_control_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent">
+
+        <TextView
+            android:id="@+id/settings_control_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_contro_title"
+            android:textSize="40sp"
+        />
+
+        <TextView
+            android:id="@+id/settings_control_preset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_contro_preset"
+            android:textSize="25sp"
+        />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settings_control_frame_default_buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/settings_controll_default_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/settings_Controll_Default_Normal"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/settings_controll_default_inverted"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/settings_controll_default_inverted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/settings_Controll_Default_Inverted"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settings_controll_default_normal"
+                 />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/settings_control_reveal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_contro_reveal_title"
+            android:textSize="25sp"
+        />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settings_control_frame_reveal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/settings_controll_selecter_reveal_sx"
+                android:layout_width="48dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="80dp"
+                android:text="@string/settings_Controll_selecter_sx"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/settings_control_selecter_reveal_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/settings_control_selecter_reveal_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_contro_selecter_reveal_deafult"
+                android:textSize="25sp"
+                app:layout_constraintLeft_toRightOf="@+id/settings_controll_selecter_reveal_sx"
+                app:layout_constraintRight_toLeftOf="@+id/settings_controll_selecter_reveal_dx"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+            <Button
+                android:id="@+id/settings_controll_selecter_reveal_dx"
+                android:layout_width="48dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="80dp"
+                android:text="@string/settings_Controll_selecter_dx"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settings_control_selecter_reveal_text"
+                 />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/settings_control_flag_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_contro_flag_title"
+            android:textSize="25sp"
+        />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settings_control_frame_flag"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/settings_controll_selecter_flag_sx"
+                android:layout_width="48dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="80dp"
+                android:text="@string/settings_Controll_selecter_sx"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/settings_control_selecter_flag_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/settings_control_selecter_flag_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_contro_selecter_flag_deafult"
+                android:textSize="25sp"
+                app:layout_constraintLeft_toRightOf="@+id/settings_controll_selecter_flag_sx"
+                app:layout_constraintRight_toLeftOf="@+id/settings_controll_selecter_flag_dx"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <Button
+                android:id="@+id/settings_controll_selecter_flag_dx"
+                android:layout_width="48dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="80dp"
+                android:text="@string/settings_Controll_selecter_dx"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settings_control_selecter_flag_text"
+                 />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/settings_control_sensivity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/settings_control_sensivity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_control_sensivity_title"
+                android:textSize="20sp"
+            />
+
+            <SeekBar
+                android:id="@+id/settings_control_sensivity_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:min="0"
+                android:progress="1"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/settings_control_hold"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/settings_control_hold_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_control_hold_title"
+                android:textSize="20sp"
+                />
+
+            <SeekBar
+                android:id="@+id/settings_control_hold_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:min="0"
+                android:progress="1"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

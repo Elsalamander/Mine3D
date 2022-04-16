@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menu">
+
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.example.mine3d.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menu_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.mine3d.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_control_settings" >
+        <action
+            android:id="@+id/action_settings_to_control"
+            app:destination="@id/control" />
+        <action
+            android:id="@+id/action_settings_to_menu"
+            app:destination="@id/menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/control"
+        android:name="com.example.mine3d.ControlSettingsFragment"
+        android:label="fragment_control"
+        tools:layout="@layout/fragment_control_settings" >
+        <action
+            android:id="@+id/action_control_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+
+</navigation>

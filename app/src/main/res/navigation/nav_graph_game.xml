@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_game"
+    app:startDestination="@id/buildGameSett">
+
+    <fragment
+        android:id="@+id/buildGameSett"
+        android:name="com.example.mine3d.Game.Game.GameBuildSettingsFragment"
+        android:label="fragment_game_build_settings"
+        tools:layout="@layout/fragment_build_game_settings" >
+        <action
+            android:id="@+id/action_game_build_settings_to_game"
+            app:destination="@id/gamefragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/buildGameSett"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/gamefragment"
+        android:name="com.example.mine3d.Game.Game.GameFragment"
+        android:label="fragment_game"
+        >
+        <action
+            android:id="@+id/action_game_to_pause"
+            app:destination="@id/pause" />
+        <action
+            android:id="@+id/action_game_to_end"
+            app:destination="@id/end_game" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pause"
+        android:name="com.example.mine3d.Game.Game.GamePauseFragment"
+        android:label="fragment_game_pause"
+        tools:layout="@layout/fragment_game_pause" >
+        <action
+            android:id="@+id/action_game_pause_to_game"
+            app:destination="@id/gamefragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/end_game"
+        android:name="com.example.mine3d.Game.Game.GamePauseFragment"
+        android:label="fragment_game_end"
+        tools:layout="@layout/fragment_game_end" >
+    </fragment>
+
+</navigation>

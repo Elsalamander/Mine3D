@@ -1,0 +1,164 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/settings_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent">
+
+        <TextView
+            android:id="@+id/settings_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            android:textSize="25sp"
+        />
+
+        <LinearLayout
+            android:id="@+id/settings_name_fram"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/settings_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_name"
+                android:textSize="20sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/settings_Name_Input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/settings_name_default"
+                android:minHeight="20dp"/>
+        </LinearLayout>
+
+
+        <CheckBox
+            android:id="@+id/settings_SelectTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_theme_dark"
+            />
+
+        <CheckBox
+            android:id="@+id/settings_Timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_timer"
+            />
+
+        <CheckBox
+            android:id="@+id/settings_bomb"
+            android:layout_width="376dp"
+            android:layout_height="59dp"
+            android:text="@string/settings_bomb"
+            />
+
+        <TextView
+            android:id="@+id/settings_Music_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_Music_title"
+            android:textSize="24sp"
+            />
+
+        <LinearLayout
+            android:id="@+id/settings_music_fram"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+
+
+            <SeekBar
+                android:id="@+id/settings_Music_Bar"
+                android:layout_width="266dp"
+                android:layout_height="40dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:min="0"
+                android:progress="1"
+                />
+
+            <TextView
+                android:id="@+id/settings_Music_cent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:textSize="24sp"
+                />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/settings_Effect_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_Effect_title"
+            android:textSize="24sp"
+            />
+
+        <LinearLayout
+            android:id="@+id/settings_effect_fram"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <SeekBar
+                android:id="@+id/settings_Effect_Bar"
+                android:layout_width="266dp"
+                android:layout_height="40dp"
+                android:max="100"
+                android:min="0"
+                android:progress="1"
+                />
+
+            <TextView
+                android:id="@+id/settings_Effect_cent"
+                android:layout_width="104dp"
+                android:layout_height="41dp"
+                android:text="0%"
+                android:textSize="24sp"
+                />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/settings_Vibbrazione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_Vibbrazione"
+            />
+
+        <Button
+            android:id="@+id/settings_controll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_Controll"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
