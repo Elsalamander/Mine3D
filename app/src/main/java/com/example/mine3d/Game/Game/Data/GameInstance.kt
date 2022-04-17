@@ -9,9 +9,7 @@ import com.example.mine3d.Game.Settings.ControlSettings.ControlSettings
 import com.example.mine3d.Game.Settings.JSONManager
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
+import java.io.*
 
 /****************************************************************
  * Oggetto che descive l'istanza di gioco e i suoi step
@@ -85,6 +83,13 @@ class GameInstance(var context: Game, var sett : GameSett) {
         val json = this.getJSON()
         this.sett.save(json)
         this.grid.save(json)
+
+        val userString: String = json.toString()
+        val file = File(context.filesDir, GameInstance.pathSettings)
+        val fileWriter = FileWriter(file)
+        val bufferedWriter = BufferedWriter(fileWriter)
+        bufferedWriter.write(userString)
+        bufferedWriter.close()
     }
 
     /**
