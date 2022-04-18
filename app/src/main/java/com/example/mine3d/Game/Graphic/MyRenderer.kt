@@ -36,10 +36,13 @@ import javax.microedition.khronos.opengles.GL10
  ****************************************************************/
 class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer {
 
+    var width : Int = 0
+    var height : Int = 0
+
     var mTotalDeltaX = 0f
     var mTotalDeltaY = 0f
     var mTotalDeltaZ = 0f
-    var zoom = 0.1f
+    var zoom = 0.2f
 
     @Volatile
     var mDeltaX = 0f
@@ -114,6 +117,9 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer {
 
         //serve per contrare la matrice nel centro dello schermo
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1f, 1f, 3f, 8f)
+
+        this.width = width
+        this.height = height
     }
 
     override fun onDrawFrame(gl: GL10?) {
@@ -159,7 +165,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer {
         game.grid.visitLeaf {
             if (it != null) {
                 val coord = it.getPoint()
-                val cube = it.getVal()?.second?.glCube
+                val myCube = it.getVal()?.second
+                val cube = myCube?.glCube
 
                 //Prendi il Cubo alla posizione x,y,z
                 System.arraycopy(scratch, 0, tmpM, 0, 16)
@@ -188,6 +195,17 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer {
                 // add the source code to the shader and compile it
                 GLES20.glShaderSource(framm, fragmentShaderCode)
                 GLES20.glCompileShader(framm)
+
+                var string = "Coordinate: "
+                //for(f in tmpM){
+                //string += " $f"
+                //}
+                Log.d("Matrice", "XCubo: ${tmpM[12]} ; ${tmpM[12]/tmpM[15]} ; D:${tmpM[15]}")
+
+                myCube?.xRend = tmpM[12]
+                myCube?.yRend = tmpM[13]
+                myCube?.zRend = tmpM[14]
+                myCube?.dist  = tmpM[15]
 
                 if (cube != null) {
                     val programGL = cube.createGlProgram(shader, framm)

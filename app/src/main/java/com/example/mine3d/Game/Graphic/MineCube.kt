@@ -13,8 +13,19 @@ package com.example.mine3d.Game.Graphic
  ****************************************************************/
 class MineCube(var value : Int = 0, var hide : Boolean = true) {
 
+    var flag : Boolean = false
+    var xRend : Float = 0f
+    var yRend : Float = 0f
+    var zRend : Float = 0f
+    var dist: Float = 0f
+
     var glCube : GLCubeBase = GLCubeBase
+
     fun isBomb() : Boolean {
         return this.value == -1
+    }
+
+    fun hit(x : Float, y : Float) : Boolean{
+        return true
     }
 }

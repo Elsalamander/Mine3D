@@ -2,9 +2,12 @@ package com.example.mine3d.Game.Graphic
 
 import android.content.Context
 import android.opengl.GLSurfaceView
+import android.opengl.Matrix
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import com.example.mine3d.Game.Game.Data.GameInstance
+
 
 /****************************************************************
  * Oggetto per descrivere la SurfaceView per creare il Render
@@ -90,8 +93,23 @@ class MyGLSurfaceView(var cont: Context, var game: GameInstance) : GLSurfaceView
         mPreviousY = y
 
 
+        //calcolo prova*****************************************************************************************
+        prova(x,y,mRenderer.width,mRenderer.height)
+
+
         //ritorna true perchè ho gestito l'evento
         return true
+    }
+
+    fun prova(x: Float, y: Float, w:Int, h:Int){
+        var ndc_x = 2.0 * x/w - 1.0;
+        var ndc_y = 1.0 - 2.0 * y/h;
+        Log.d("Point Click", "Coordinate: X: $ndc_x , y: $ndc_y")
+
+        //R0_view = inverse( projection-matrix ) * (ndc_x, ndc_y, 0.0, 1.0)
+        //var R0_view = Matrix.invertM()
+
+
     }
 
 }

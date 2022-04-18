@@ -43,4 +43,10 @@ data class GameSett(var n: Int, var bomb: Double, var next: Boolean, var incr: I
         incr = json.getInt(path_incr)
     }
 
+    /**
+     * Numero di bombe
+     */
+    fun numberOfBomb() : Int{
+        return (this.n * this.bomb).toInt()
+    }
 }

@@ -1,7 +1,9 @@
 package com.example.mine3d.Game.Graphic
 
 import com.example.mine3d.ADT.*
+import com.example.mine3d.Game.Game.Data.GameSett.GameSett
 import org.json.JSONObject
+import java.security.SecureRandom
 
 
 /****************************************************************
@@ -40,6 +42,8 @@ class Griglia(var N : Int) {
     private var volume : Piano<MineCube> = managerPiani.add("Gioco", 3)!!  //Crea un volume
     private var grid : Zona<MineCube> = volume.createZona()                               //Crea una zona nel volume per allocare gli oggetti
 
+    var popolated : Boolean = false    //la griglia è stata popolata
+
     init{
         //metti nel volume "grid" tutti i cubi
         for(x in 0 until N){
@@ -51,6 +55,67 @@ class Griglia(var N : Int) {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Popola la griglia, a partire dal cubo di coordinate X,Y,Z passate
+     * che deve essere != -1
+     * e con un numero di bombe fate da GameSettings
+     */
+    fun popolate(x : Int, y : Int, z : Int, gameSett : GameSett){
+        val random = SecureRandom()
+        val countBomb = gameSett.numberOfBomb()
+
+        //popola prima con le bombe
+        this.populateBomb(x,y,z,random,gameSett,countBomb)
+
+        //con le bombe piazzate ora metti i numeri
+        this.grid.visitLeaf {
+            val cube = it?.getVal()?.second
+
+            if(cube?.isBomb() == false){
+                //mi interessa
+                //guarda attorno cosa c'è
+                val cx = it.getPoint().getAxisValue(0)
+                val cy = it.getPoint().getAxisValue(1)
+                val cz = it.getPoint().getAxisValue(2)
+
+                var bPresenti : Int = 0
+
+                for(xR in -1 until 2){
+                    for(yR in -1 until 2){
+                        for(zR in -1 until 2){
+                            if(this.getCubeIn(cx+xR,cy+yR,cz+zR)?.isBomb() == true) {
+                                bPresenti++
+                            }
+                        }
+                    }
+                }
+                cube.value = bPresenti
+            }
+        }
+        this.popolated = true
+    }
+
+    private fun populateBomb(x: Int, y: Int, z:Int, random : SecureRandom, gameSett : GameSett, countBomb : Int){
+        var nBomb = countBomb
+        this.grid.visitLeaf {
+            //prima controllo se è la foglia da escudere
+            if((it?.getPoint()?.getAxisValue(0) == x.toLong()) and (it?.getPoint()?.getAxisValue(1) == y.toLong()) and (it?.getPoint()?.getAxisValue(2) == z.toLong())){
+                //skippa questo cubo
+            }else{
+                //per ogni foglia, genera un numero da 0 a 100 se è superiore a bomb*100 setta come boma
+                if((random.nextInt(101) > gameSett.bomb*100) and (it?.getVal()?.second?.isBomb() == false)){
+                    //imposta come bomba
+                    it?.getVal()?.second?.value = -1
+                    //decrementa contatore
+                    nBomb--
+                }
+            }
+        }
+        if(countBomb > 0){
+            this.populateBomb(x,y,z,random,gameSett,nBomb)
         }
     }
 
@@ -102,6 +167,28 @@ class Griglia(var N : Int) {
             grid.put(Point(arr), MineCube(value, reveal))
         }
 
+    }
+
+    fun multiRevealFrom(x: Long, y: Long, z: Long) {
+        //devo prendere i cubi vicini
+        // - se sono scoperti
+        // - prendi il valore che hanno
+        //      - se il valore è 0 continua
+        //      - se il valore è diverso da 0 fermati
+        // - scoprilo
+        for(xR in -1 until 2){
+            for(yR in -1 until 2){
+                for(zR in -1 until 2){
+                    val cube = this.getCubeIn(x+xR,y+yR,z+zR)
+                    if(cube?.hide == true){
+                        cube.hide = false
+                        if(cube.value == 0) {
+                            this.multiRevealFrom(x+xR,y+yR,z+zR)
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
