@@ -28,7 +28,7 @@ class BaseSettings(var context : Activity) : GenericSettings {
     var showBomb    : ShowBomb      = ShowBomb(context)     //Mostra le bombe rimanenti
     var musicLevel  : MusicLevel    = MusicLevel(context)   //Livello musica
     var effectLevel : EffectLevel   = EffectLevel(context)  //Livello effetti
-    var vibbrazione : Vibbrazione   = Vibbrazione(context)  //Vibbrazione al GameOver
+    var vibbrazione : Vibbrazione   = Vibbrazione(context)  //Vibbrazione al GameOverEvent
 
     companion object{
         private var pathSettings : String = "Settings.json"

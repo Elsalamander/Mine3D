@@ -1,6 +1,5 @@
 package com.example.mine3d.Game.Event.Listener
 
-import android.util.Log
 import com.example.mine3d.Game.Event.Manager.EventHandlerGame
 import com.example.mine3d.Game.Event.Manager.EventPriority
 import com.example.mine3d.Game.Event.Manager.ListenerGame
@@ -64,6 +63,12 @@ class Listener : ListenerGame{
 
         //incrementa il numero di cubi scoperti
         event.instanceGame.grid.scovered++
+
+        //controlla se ha vinto
+        if(event.instanceGame.grid.toFind == event.instanceGame.grid.scovered){
+            event.instanceGame.context.eventManager.callEvent(WinEvent(event))
+            return
+        }
     }
 
     /**
@@ -93,8 +98,8 @@ class Listener : ListenerGame{
      */
     @EventHandlerGame
     fun onRevealBomb(event : RevealBombEvent){
-        //chiama evento di GameOver
-        event.instanceGame.context.eventManager.callEvent(GameOver(event))
+        //chiama evento di GameOverEvent
+        event.instanceGame.context.eventManager.callEvent(GameOverEvent(event))
     }
 
     /**
@@ -109,6 +114,11 @@ class Listener : ListenerGame{
             event.cube.flag = true
             event.instanceGame.grid.flagged++
         }
+
+    }
+
+    @EventHandlerGame
+    fun onWinEvent(event : WinEvent){
 
     }
 

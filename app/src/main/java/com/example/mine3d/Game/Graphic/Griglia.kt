@@ -46,6 +46,8 @@ class Griglia(var N : Int) {
     var scovered  : Int = 0
     var flagged   : Int = 0
 
+    val toFind : Int = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
+
     init{
         //metti nel volume "grid" tutti i cubi
         for(x in 0 until N){
