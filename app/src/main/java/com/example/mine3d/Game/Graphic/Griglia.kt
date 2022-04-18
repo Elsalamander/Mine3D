@@ -43,6 +43,8 @@ class Griglia(var N : Int) {
     private var grid : Zona<MineCube> = volume.createZona()                               //Crea una zona nel volume per allocare gli oggetti
 
     var popolated : Boolean = false    //la griglia è stata popolata
+    var scovered  : Int = 0
+    var flagged   : Int = 0
 
     init{
         //metti nel volume "grid" tutti i cubi
@@ -181,7 +183,15 @@ class Griglia(var N : Int) {
                 for(zR in -1 until 2){
                     val cube = this.getCubeIn(x+xR,y+yR,z+zR)
                     if(cube?.hide == true){
+                        //controlla se ha la bandiera
+                        if(cube.flag){
+                            //non scoprire e non propagare
+                            continue
+                        }
                         cube.hide = false
+
+                        //incrementa il numero di cubi scoperti
+                        this.scovered++
                         if(cube.value == 0) {
                             this.multiRevealFrom(x+xR,y+yR,z+zR)
                         }

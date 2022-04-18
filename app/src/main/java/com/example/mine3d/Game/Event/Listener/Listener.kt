@@ -61,6 +61,9 @@ class Listener : ListenerGame{
 
         //sto rivelando un cubo che non è bomba, non ha valore uguale a 0 e non è il primo.
         cube.hide = false
+
+        //incrementa il numero di cubi scoperti
+        event.instanceGame.grid.scovered++
     }
 
     /**
@@ -99,7 +102,14 @@ class Listener : ListenerGame{
      */
     @EventHandlerGame
     fun onPlaceFlag(event : PlaceFlagEvent){
-        event.cube.flag = !event.cube.flag
+        if(event.cube.flag){
+            event.cube.flag = false
+            event.instanceGame.grid.flagged--
+        }else{
+            event.cube.flag = true
+            event.instanceGame.grid.flagged++
+        }
+
     }
 
 }
