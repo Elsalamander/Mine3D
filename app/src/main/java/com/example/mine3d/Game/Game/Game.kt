@@ -1,8 +1,10 @@
 package com.example.mine3d.Game.Game
 
+import android.opengl.GLSurfaceView
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import com.example.mine3d.Game.Event.Listener.Listener
 import com.example.mine3d.Game.Event.Manager.EventManager
 import com.example.mine3d.Game.Game.Data.GameInstance
 import com.example.mine3d.Game.Game.Data.GameSett.GameSett
@@ -38,8 +40,15 @@ class Game() : AppCompatActivity(){
     var gameSett : GameSett? = null
     var eventManager = EventManager
 
+    init {
+        eventManager.registerEvent(Listener())
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         //prendi il gameSett tramite la stringa passata tramite intent
         gameSett = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it).gameSettings }
@@ -60,5 +69,7 @@ class Game() : AppCompatActivity(){
         }
 
         navController.graph = graph
+
     }
+
 }

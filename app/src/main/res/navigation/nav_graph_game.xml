@@ -14,7 +14,8 @@
             android:id="@+id/action_game_build_settings_to_game"
             app:destination="@id/gamefragment"
             app:popUpToInclusive="true"
-            app:popUpTo="@id/buildGameSett"/>
+            app:popUpTo="@id/buildGameSett"
+            />
     </fragment>
 
     <fragment

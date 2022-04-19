@@ -1,15 +1,20 @@
 package com.example.mine3d.Game.Game.Data
 
+import android.os.Bundle
+import androidx.navigation.findNavController
 import com.example.mine3d.Game.Event.Set.GameStart
 import com.example.mine3d.Game.Game.Data.GameSett.GameSett
 import com.example.mine3d.Game.Game.Game
+import com.example.mine3d.Game.Game.GameEndFragment
+import com.example.mine3d.Game.Game.GamePauseFragment
 import com.example.mine3d.Game.Graphic.Griglia
 import com.example.mine3d.Game.Graphic.MyGLSurfaceView
-import com.example.mine3d.Game.Settings.ControlSettings.ControlSettings
 import com.example.mine3d.Game.Settings.JSONManager
+import com.example.mine3d.R
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.*
+
 
 /****************************************************************
  * Oggetto che descive l'istanza di gioco e i suoi step
@@ -28,7 +33,7 @@ import java.io.*
  * @data: 15 aprile 2021
  * @version: v1.0
  ****************************************************************/
-class GameInstance(var context: Game, var sett : GameSett) {
+class GameInstance(var context: Game, var sett: GameSett) {
 
 
     var settings : JSONManager = JSONManager(context)   //settings
@@ -58,14 +63,19 @@ class GameInstance(var context: Game, var sett : GameSett) {
      * Funzione chiamata quando deve essere messo in pausa il gioco
      */
     fun Pause(){
+        //salva lo stato corrente
+        this.saveState()
 
+        //naviga alla schermata di pausa
+        context.findNavController(R.id.nav_host_fragment_game).navigate(R.id.action_game_to_pause)
     }
 
     /**
      * Funzione chiamata quando deve essere eseguito il recupero dello stato del game
      */
     fun Reasume(){
-
+        //recupero lo stato
+        this.loadState()
     }
 
     /**
@@ -73,7 +83,15 @@ class GameInstance(var context: Game, var sett : GameSett) {
      * @param win TRUE se si ha vinto, FALSE altrimenti
      */
     fun Finish(win : Boolean){
+        val bundle = Bundle()
 
+        bundle.putBoolean("End", win)
+
+        val fragmentPause = GameEndFragment()
+        fragmentPause.arguments = bundle
+
+        //naviga alla schermata di End
+        context.findNavController(R.id.nav_host_fragment_game).navigate(R.id.action_game_to_end)
     }
 
     /**

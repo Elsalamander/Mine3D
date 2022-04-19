@@ -55,7 +55,9 @@ class GameBuildSettingsFragment : Fragment() {
 
         //Evento startGameButton -> fai il Build del GameSettings -> Crea l'istanza di gioco -> passa al fragment GameFragment
         startGame.setOnClickListener {
-            activity.gameInstance = GameInstance(activity, buildGameSett.build())
+            activity.gameInstance = GameInstance(
+                activity,
+                buildGameSett.build())
             view.findNavController().navigate(R.id.action_game_build_settings_to_game)
         }
 

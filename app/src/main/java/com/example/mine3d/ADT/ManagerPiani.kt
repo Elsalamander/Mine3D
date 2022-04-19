@@ -40,7 +40,7 @@ object ManagerPiani {
             piani[nome] = tmp
             return tmp
         }
-        return null
+        return piani[nome] as Piano<T>
     }
 
     /**

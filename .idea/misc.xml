@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/bomb.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/flag.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1965" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im0.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im1.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im2.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im3.xml" value="0.1965" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im4.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im5.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im6.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im7.xml" value="0.1165" />
+        <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/drawable/im8.xml" value="0.1165" />
         <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/layout/activity_control_settings.xml" value="0.1" />
         <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/layout/activity_game.xml" value="0.245018115942029" />
         <entry key="..\:/Users/ledi/AndroidStudioProjects/Mine3D/app/src/main/res/layout/activity_main.xml" value="0.264" />

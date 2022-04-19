@@ -117,9 +117,21 @@ class Listener : ListenerGame{
 
     }
 
+    /**
+     * Gestione evento Win
+     */
     @EventHandlerGame
     fun onWinEvent(event : WinEvent){
+        //chiama la funzione di game finito dicendo che si ha vinto
+        event.instanceGame.Finish(true)
+    }
 
+    /**
+     * Gestione evento GameOver
+     */
+    @EventHandlerGame
+    fun onGameOver(event : GameOverEvent){
+        event.instanceGame.Finish(false)
     }
 
 }
