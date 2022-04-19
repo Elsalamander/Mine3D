@@ -6,12 +6,34 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/fragment_pause_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="198dp"
-        android:text="Tertooooo"
+        android:text="@string/fragment_pause_text"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_pause_go_to_game"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fragment_pause_go_to_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/fragment_pause_go_to_game"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_pause_go_to_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_pause_text" />
+
+    <Button
+        android:id="@+id/fragment_pause_go_to_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/fragment_end_go_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_pause_go_to_game" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

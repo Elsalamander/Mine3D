@@ -6,6 +6,8 @@ import android.opengl.Matrix
 import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
+import com.example.mine3d.Game.Event.Set.RevealCubeEvent
+import com.example.mine3d.Game.Event.Set.WinEvent
 import com.example.mine3d.Game.Game.Data.GameInstance
 
 
@@ -92,24 +94,12 @@ class MyGLSurfaceView(var cont: Context, var game: GameInstance) : GLSurfaceView
         mPreviousX = x
         mPreviousY = y
 
-
-        //calcolo prova*****************************************************************************************
-        prova(x,y,mRenderer.width,mRenderer.height)
-
+        //debug
+        this.game.context.eventManager.callEvent(WinEvent(RevealCubeEvent(game, 0,0,0, MineCube())))
 
         //ritorna true perchè ho gestito l'evento
         return true
     }
 
-    fun prova(x: Float, y: Float, w:Int, h:Int){
-        var ndc_x = 2.0 * x/w - 1.0;
-        var ndc_y = 1.0 - 2.0 * y/h;
-        Log.d("Point Click", "Coordinate: X: $ndc_x , y: $ndc_y")
-
-        //R0_view = inverse( projection-matrix ) * (ndc_x, ndc_y, 0.0, 1.0)
-        //var R0_view = Matrix.invertM()
-
-
-    }
 
 }

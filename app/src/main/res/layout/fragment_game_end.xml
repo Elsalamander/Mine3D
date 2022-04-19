@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fragment_end_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_end_go_to_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fragment_end_go_to_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/fragment_end_go_to_menu"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_end_go_to_build"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_end_view" />
+
+    <Button
+        android:id="@+id/fragment_end_go_to_build"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/fragment_end_go_to_build"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_end_go_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_end_go_to_menu" />
+
+    <Button
+        android:id="@+id/fragment_end_go_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/fragment_end_go_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_end_go_to_build" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

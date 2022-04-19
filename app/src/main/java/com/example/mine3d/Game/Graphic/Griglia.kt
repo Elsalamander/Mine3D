@@ -203,4 +203,11 @@ class Griglia(var N : Int) {
         }
     }
 
+    fun resetGrid() {
+        this.scovered = 0
+        this.flagged = 0
+        this.popolated = false
+        this.grid.removeAll()
+    }
+
 }

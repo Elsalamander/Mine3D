@@ -49,4 +49,11 @@ data class GameSett(var n: Int, var bomb: Double, var next: Boolean, var incr: I
     fun numberOfBomb() : Int{
         return (this.n * this.bomb).toInt()
     }
+
+    /**
+     * Ritorna il GameSett per il prossimo game
+     */
+    fun getNextGameSett(): GameSett {
+        return GameSett(n+incr, bomb, next, incr)
+    }
 }

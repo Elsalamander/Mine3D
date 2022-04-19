@@ -2,6 +2,8 @@ package com.example.mine3d.Game.Game.Data
 
 import android.os.Bundle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.mine3d.Game.Event.Set.GameStart
 import com.example.mine3d.Game.Game.Data.GameSett.GameSett
 import com.example.mine3d.Game.Game.Game
@@ -87,11 +89,15 @@ class GameInstance(var context: Game, var sett: GameSett) {
 
         bundle.putBoolean("End", win)
 
-        val fragmentPause = GameEndFragment()
-        fragmentPause.arguments = bundle
+        val navHost = context.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_game) as NavHostFragment
+        navHost.findNavController().navigate(R.id.action_game_to_end, bundle)
+    }
 
-        //naviga alla schermata di End
-        context.findNavController(R.id.nav_host_fragment_game).navigate(R.id.action_game_to_end)
+    /**
+     * Crea l'istanza per il prossimo Game
+     */
+    fun getNextInstance() : GameInstance{
+        return GameInstance(context, sett.getNextGameSett())
     }
 
     /**

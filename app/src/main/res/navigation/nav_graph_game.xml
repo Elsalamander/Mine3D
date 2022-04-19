@@ -26,10 +26,17 @@
         <action
             android:id="@+id/action_game_to_pause"
             app:destination="@id/pause" />
-        <action
-            android:id="@+id/action_game_to_end"
-            app:destination="@id/end_game" />
     </fragment>
+
+    <action
+        android:id="@+id/action_game_to_end"
+        app:destination="@id/end_game">
+    </action>
+
+    <action
+        android:id="@+id/action_end_game_to_game"
+        app:destination="@id/gamefragment">
+    </action>
 
     <fragment
         android:id="@+id/pause"
@@ -43,9 +50,12 @@
 
     <fragment
         android:id="@+id/end_game"
-        android:name="com.example.mine3d.Game.Game.GamePauseFragment"
+        android:name="com.example.mine3d.Game.Game.GameEndFragment"
         android:label="fragment_game_end"
         tools:layout="@layout/fragment_game_end" >
+        <action
+            android:id="@+id/action_end_game_to_buildGameSett"
+            app:destination="@id/buildGameSett" />
     </fragment>
 
 </navigation>

@@ -68,6 +68,9 @@ object EventManager {
         }
     }
 
+    /**
+     * Chiama l'evento
+     */
     fun callEvent(event : EventGame){
         val funcs = this.map[event::class]
         if(funcs != null){

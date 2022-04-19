@@ -50,5 +50,10 @@
     <string name="build_game_settings_next_text">Incrementare alla vittoria</string>
     <string name="build_game_settings_next_text_input">Incremento:</string>
     <string name="build_game_settings_start">Start Game</string>
+    <string name="fragment_end_go_to_menu">Vai al menu</string>
+    <string name="fragment_end_go_to_build">CREA UN NUOVO GAME</string>
+    <string name="fragment_end_go_next">Next</string>
+    <string name="fragment_pause_text">Pausa</string>
+    <string name="fragment_pause_go_to_game">Torna alla partita</string>
 
 </resources>

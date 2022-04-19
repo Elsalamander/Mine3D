@@ -36,7 +36,7 @@ class MenuFragment : Fragment() {
             //crea un Intent
             val myIntent : Intent = Intent(view.context, Game::class.java)
 
-            myIntent.putExtra(Game.TAG_INTENT_GAME_TYPE, StandardGameSett.GAME_CUSTOM.str)
+            myIntent.putExtra(Game.TAG_INTENT_GAME_TYPE, StandardGameSett.GAME_NORMAL_5_EASY.str)
             //invia l'intent
             this.startActivity(myIntent)
         }

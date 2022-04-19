@@ -196,11 +196,11 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer {
                 GLES20.glShaderSource(framm, fragmentShaderCode)
                 GLES20.glCompileShader(framm)
 
-                var string = "Coordinate: "
+                //var string = "Coordinate: "
                 //for(f in tmpM){
                 //string += " $f"
                 //}
-                Log.d("Matrice", "XCubo: ${tmpM[12]} ; ${tmpM[12]/tmpM[15]} ; D:${tmpM[15]}")
+                //Log.d("Matrice", "XCubo: ${tmpM[12]} ; ${tmpM[12]/tmpM[15]} ; D:${tmpM[15]}")
 
                 myCube?.xRend = tmpM[12]
                 myCube?.yRend = tmpM[13]
