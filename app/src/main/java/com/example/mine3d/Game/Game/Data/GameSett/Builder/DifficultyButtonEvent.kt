@@ -16,8 +16,10 @@ class DifficultyButtonEvent(var builder: GameSettBuilder, var viewCellSuBomb: Te
     override fun onClick(v: View?) {
         builder.difficulty = difficulty.difficulty
 
-        val bombe = (builder.size * builder.difficulty).toInt()
-        viewCellSuBomb.text = "$bombe/${builder.size}"
+        val N = builder.size
+        val nC = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
+        val bombe = (nC * builder.difficulty).toInt()
+        viewCellSuBomb.text = "$bombe/$nC"
 
         val cent = (difficulty.difficulty*100).toInt()
         bombText.text = "$cent%"

@@ -20,8 +20,10 @@ class BombBarEvent(var builder: GameSettBuilder, var viewCellSuBomb: TextView, v
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         builder.difficulty = progress/100.0
 
-        val bombe = (builder.size * builder.difficulty).toInt()
-        viewCellSuBomb.text = "$bombe/${builder.size}"
+        val N = builder.size
+        val nC = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
+        val bombe = (nC * builder.difficulty).toInt()
+        viewCellSuBomb.text = "$bombe/$nC"
 
         bombText.text = "$progress%"
     }

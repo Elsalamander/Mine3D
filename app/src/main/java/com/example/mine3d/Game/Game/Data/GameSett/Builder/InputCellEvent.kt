@@ -23,8 +23,10 @@ class InputCellEvent(var builder: GameSettBuilder, var viewCellSuBomb: TextView)
         }catch(e : NumberFormatException){
             builder.size = 5
         }
-        val bombe = (builder.size * builder.difficulty).toInt()
-        viewCellSuBomb.text = "$bombe/${builder.size}"
+        val N = builder.size
+        val nC = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
+        val bombe = (nC * builder.difficulty).toInt()
+        viewCellSuBomb.text = "$bombe/$nC"
 
         return true
     }
