@@ -22,6 +22,9 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //crea una intercetta dell'evento di quando si preme il tasto "Back" per navigare la
+        //schermata nel fragment PAUSA
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
@@ -33,7 +36,7 @@ class GameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val activity = this.activity as Game
-        activity.gameInstance = GameInstance(activity, activity.gameSett as GameSett)
+        activity.gameInstance = GameInstance(activity)
 
         return activity.gameInstance!!.render
     }

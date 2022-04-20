@@ -37,21 +37,19 @@ class Game() : AppCompatActivity(){
     }
 
     var gameInstance : GameInstance? = null
-    var gameSett : GameSett? = null
+    lateinit var gameSett : GameSett
     var eventManager = EventManager
 
     init {
         eventManager.registerEvent(Listener())
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
         //prendi il gameSett tramite la stringa passata tramite intent
-        gameSett = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it).gameSettings }
+        gameSett = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it).gameSettings }!!
 
         this.setContentView(R.layout.activity_game)
 

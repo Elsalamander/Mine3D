@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.mine3d.MainActivity
@@ -21,6 +23,18 @@ import com.example.mine3d.R
  * @version: v1.0
  ****************************************************************/
 class GameEndFragment : Fragment() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    //intercetto il pulsante Back
+                    //stai fermo
+                }
+            })
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
         val view = inflater.inflate(R.layout.fragment_game_end, container, false)
@@ -53,7 +67,6 @@ class GameEndFragment : Fragment() {
         goNext.setOnClickListener {
             //crea la nuova istanza di gioco
             game.gameInstance = game.gameInstance?.getNextInstance()
-            game.gameSett = game.gameInstance?.sett //rindondanza
 
             val navHost = game.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_game) as NavHostFragment
             navHost.findNavController().navigate(R.id.action_end_game_to_game)

@@ -88,7 +88,7 @@ class Listener : ListenerGame{
         event.instanceGame.grid.popolate(event.upperEvent.x,
                                          event.upperEvent.y,
                                          event.upperEvent.z,
-                                         event.instanceGame.sett)
+                                         event.instanceGame.context.gameSett)
 
         //ora che ho popolato devo scoprire che cosa ho voluto scoprire xD
         //rilancio l'evento correlato, ovvero "RevealCubeEvent"

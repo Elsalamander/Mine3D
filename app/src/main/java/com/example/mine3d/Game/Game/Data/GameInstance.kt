@@ -35,15 +35,15 @@ import java.io.*
  * @data: 15 aprile 2021
  * @version: v1.0
  ****************************************************************/
-class GameInstance(var context: Game, var sett: GameSett) {
+class GameInstance(var context: Game) {
 
 
     var settings : JSONManager = JSONManager(context)   //settings
-    var grid : Griglia = Griglia(sett.n)                //griglia di gioco
+    var grid : Griglia = Griglia(context.gameSett.n)                //griglia di gioco
     var render : MyGLSurfaceView = MyGLSurfaceView(context, this)   //Renderer del gioco
 
     companion object{
-        val pathSettings : String = "LastGame.json"
+        const val pathSettings : String = "LastGame.json"
     }
 
     /**
@@ -97,7 +97,7 @@ class GameInstance(var context: Game, var sett: GameSett) {
      * Crea l'istanza per il prossimo Game
      */
     fun getNextInstance() : GameInstance{
-        return GameInstance(context, sett.getNextGameSett())
+        return GameInstance(context)
     }
 
     /**
@@ -105,7 +105,7 @@ class GameInstance(var context: Game, var sett: GameSett) {
      */
     fun saveState(){
         val json = this.getJSON()
-        this.sett.save(json)
+        context.gameSett.save(json)
         this.grid.save(json)
 
         val userString: String = json.toString()
@@ -121,7 +121,7 @@ class GameInstance(var context: Game, var sett: GameSett) {
      */
     fun loadState(){
         val json = this.getJSON()
-        this.sett = GameSett.loadFromJSON(json)
+        context.gameSett = GameSett.loadFromJSON(json)
         this.grid.load(json)
     }
 
@@ -144,11 +144,11 @@ class GameInstance(var context: Game, var sett: GameSett) {
             line = bufferedReader.readLine()
         }
         bufferedReader.close()
-        try{
-            return JSONObject(stringBuilder.toString())
+        return try{
+            JSONObject(stringBuilder.toString())
         }catch (e : JSONException){
             val json = JSONObject()
-            return json
+            json
         }
     }
 
