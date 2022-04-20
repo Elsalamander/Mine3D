@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/buildGameSett"
-        android:name="com.example.mine3d.Game.Game.GameBuildSettingsFragment"
+        android:name="it.elsalamander.mine3d.Game.Game.GameBuildSettingsFragment"
         android:label="fragment_game_build_settings"
         tools:layout="@layout/fragment_build_game_settings" >
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/gamefragment"
-        android:name="com.example.mine3d.Game.Game.GameFragment"
+        android:name="it.elsalamander.mine3d.Game.Game.GameFragment"
         android:label="fragment_game"
         >
         <action
@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/pause"
-        android:name="com.example.mine3d.Game.Game.GamePauseFragment"
+        android:name="it.elsalamander.mine3d.Game.Game.GamePauseFragment"
         android:label="fragment_game_pause"
         tools:layout="@layout/fragment_game_pause" >
         <action
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/end_game"
-        android:name="com.example.mine3d.Game.Game.GameEndFragment"
+        android:name="it.elsalamander.mine3d.Game.Game.GameEndFragment"
         android:label="fragment_game_end"
         tools:layout="@layout/fragment_game_end" >
         <action

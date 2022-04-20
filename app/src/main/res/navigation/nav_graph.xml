@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/menu"
-        android:name="com.example.mine3d.MenuFragment"
+        android:name="it.elsalamander.mine3d.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/settings"
-        android:name="com.example.mine3d.SettingsFragment"
+        android:name="it.elsalamander.mine3d.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_control_settings" >
         <action
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/control"
-        android:name="com.example.mine3d.ControlSettingsFragment"
+        android:name="it.elsalamander.mine3d.ControlSettingsFragment"
         android:label="fragment_control"
         tools:layout="@layout/fragment_control_settings" >
         <action
