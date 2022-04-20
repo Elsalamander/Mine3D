@@ -1,10 +1,14 @@
 package com.example.mine3d.Game.Game.Data.GameSett.Builder
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import com.example.mine3d.Game.Game.GameBuildSettingsFragment
 
-class InputCellEvent(var builder: GameSettBuilder, var viewCellSuBomb: TextView) : TextView.OnEditorActionListener {
+class InputCellEvent(var builder: GameSettBuilder, var fragment: GameBuildSettingsFragment) : TextView.OnEditorActionListener {
     /**
      * Called when an action is being performed.
      *
@@ -17,17 +21,26 @@ class InputCellEvent(var builder: GameSettBuilder, var viewCellSuBomb: TextView)
      * @return Return true if you have consumed the action, else false.
      */
     @SuppressLint("SetTextI18n")
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+    override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
         try{
             builder.size = v?.text.toString().toInt()
         }catch(e : NumberFormatException){
             builder.size = 5
         }
-        val N = builder.size
-        val nC = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
-        val bombe = (nC * builder.difficulty).toInt()
-        viewCellSuBomb.text = "$bombe/$nC"
 
-        return true
+        fragment.upDateLayout(builder)
+
+        return when (actionId) {
+            EditorInfo.IME_ACTION_DONE -> {
+                // Hide keyboard
+                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+
+                // Give up focus
+                v.clearFocus()
+                true
+            }
+            else -> false
+        }
     }
 }

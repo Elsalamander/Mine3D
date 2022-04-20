@@ -42,7 +42,7 @@
     <string name="settings_contro_reveal_title">Rivela</string>
     <string name="settings_contro_flag_title">Metti bandiera</string>
     <string name="build_game_sett_title">Custom Game</string>
-    <string name="build_game_settings_size_text">Lato cubo</string>
+    <string name="build_game_settings_size_text">Lato cubo:</string>
     <string name="build_game_settings_n_defualt">Numero bombe su celle:</string>
     <string name="build_game_settings_difficulty_easy">EASY</string>
     <string name="build_game_settings_difficulty_medium">MEDIUM</string>

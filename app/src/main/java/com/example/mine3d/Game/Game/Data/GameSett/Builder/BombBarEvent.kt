@@ -3,8 +3,9 @@ package com.example.mine3d.Game.Game.Data.GameSett.Builder
 import android.annotation.SuppressLint
 import android.widget.SeekBar
 import android.widget.TextView
+import com.example.mine3d.Game.Game.GameBuildSettingsFragment
 
-class BombBarEvent(var builder: GameSettBuilder, var viewCellSuBomb: TextView, var bombText : TextView) : SeekBar.OnSeekBarChangeListener {
+class BombBarEvent(var builder: GameSettBuilder, var fragment: GameBuildSettingsFragment) : SeekBar.OnSeekBarChangeListener {
     /**
      * Notification that the progress level has changed. Clients can use the fromUser parameter
      * to distinguish user-initiated changes from those that occurred programmatically.
@@ -18,14 +19,13 @@ class BombBarEvent(var builder: GameSettBuilder, var viewCellSuBomb: TextView, v
      */
     @SuppressLint("SetTextI18n")
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        if(!fromUser){
+            //se la modifica non è fatta dall'utente ignora, perchè la barra può essere modificata dalla
+            // funzione chiamata sotto
+            return
+        }
         builder.difficulty = progress/100.0
-
-        val N = builder.size
-        val nC = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
-        val bombe = (nC * builder.difficulty).toInt()
-        viewCellSuBomb.text = "$bombe/$nC"
-
-        bombText.text = "$progress%"
+        fragment.upDateLayout(builder)
     }
 
     /**

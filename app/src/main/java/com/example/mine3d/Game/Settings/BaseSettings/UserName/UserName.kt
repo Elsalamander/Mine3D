@@ -1,7 +1,9 @@
 package com.example.mine3d.Game.Settings.BaseSettings.UserName
 
 import android.app.Activity
+import android.content.Context
 import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import com.example.mine3d.Game.Settings.Setting
@@ -26,14 +28,25 @@ class UserName(context : Activity) : Setting<String>("User", context),
      * otherwise, this is null.
      * @return Return true if you have consumed the action, else false.
      */
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+    override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
         //ho premuto ENTER
         if(event != null){
             val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(this.context.currentFocus?.windowToken, 0)
         }
-        this.value = v?.text.toString()
-        return true
+        this.value = v.text.toString()
+        return when (actionId) {
+            EditorInfo.IME_ACTION_DONE -> {
+                // Hide keyboard
+                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+
+                // Give up focus
+                v.clearFocus()
+                true
+            }
+            else -> false
+        }
     }
 
 }

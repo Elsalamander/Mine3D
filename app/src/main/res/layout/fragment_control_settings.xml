@@ -6,31 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".ControlSettingsFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/settings_control_guide_line_sx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/settings_control_guide_line_dx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
     <LinearLayout
         android:id="@+id/settings_control_frame"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/settings_control_guide_line_dx"
+        app:layout_constraintStart_toStartOf="@+id/settings_control_guide_line_sx"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/settings_control_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_contro_title"
-            android:textSize="40sp"
-        />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/settings_control_preset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_contro_preset"
-            android:textSize="25sp"
-        />
+            android:textSize="25sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/settings_control_frame_default_buttons"
@@ -58,8 +70,7 @@
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/settings_controll_default_normal"
-                 />
+                app:layout_constraintStart_toEndOf="@+id/settings_controll_default_normal" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -67,8 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_contro_reveal_title"
-            android:textSize="25sp"
-        />
+            android:textSize="25sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/settings_control_frame_reveal"
@@ -93,11 +103,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/settings_contro_selecter_reveal_deafult"
                 android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/settings_controll_selecter_reveal_sx"
                 app:layout_constraintRight_toLeftOf="@+id/settings_controll_selecter_reveal_dx"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-            />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/settings_controll_selecter_reveal_dx"
@@ -108,8 +117,7 @@
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/settings_control_selecter_reveal_text"
-                 />
+                app:layout_constraintStart_toEndOf="@+id/settings_control_selecter_reveal_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -117,8 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_contro_flag_title"
-            android:textSize="25sp"
-        />
+            android:textSize="25sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/settings_control_frame_flag"
@@ -143,11 +150,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/settings_contro_selecter_flag_deafult"
                 android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/settings_controll_selecter_flag_sx"
                 app:layout_constraintRight_toLeftOf="@+id/settings_controll_selecter_flag_dx"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/settings_controll_selecter_flag_dx"
@@ -158,8 +164,7 @@
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/settings_control_selecter_flag_text"
-                 />
+                app:layout_constraintStart_toEndOf="@+id/settings_control_selecter_flag_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -174,20 +179,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_control_sensivity_title"
-                android:textSize="20sp"
-            />
+                android:textSize="20sp" />
 
             <SeekBar
                 android:id="@+id/settings_control_sensivity_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:indeterminate="false"
                 android:max="100"
                 android:min="0"
-                android:progress="1"
-            />
+                android:progress="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -202,20 +205,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_control_hold_title"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
             <SeekBar
                 android:id="@+id/settings_control_hold_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:indeterminate="false"
                 android:max="100"
                 android:min="0"
-                android:progress="1"
-                />
+                android:progress="1" />
         </LinearLayout>
 
     </LinearLayout>

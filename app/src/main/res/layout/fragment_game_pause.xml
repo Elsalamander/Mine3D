@@ -5,16 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/pause_guide_line_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/pause_guide_line_bot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70" />
+
     <TextView
         android:id="@+id/fragment_pause_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fragment_pause_text"
         android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_pause_go_to_game"
+        app:layout_constraintBottom_toTopOf="@id/fragment_pause_go_to_game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/pause_guide_line_top" />
 
     <Button
         android:id="@+id/fragment_pause_go_to_game"
@@ -31,9 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text= "@string/fragment_end_go_next"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/pause_guide_line_bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fragment_pause_go_to_game" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_pause_go_to_game" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

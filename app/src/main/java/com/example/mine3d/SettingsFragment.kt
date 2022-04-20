@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mine3d.Game.Settings.BaseSettings.BaseSettings
@@ -30,25 +27,39 @@ class SettingsFragment : Fragment() {
 
     private var dati : JSONManager? = null
 
+    private lateinit var title_id    : TextView
+    private lateinit var name_tv     : TextView
+    private lateinit var name_input  : EditText
+    private lateinit var theme_box   : CheckBox
+    private lateinit var timer_box   : CheckBox
+    private lateinit var bomb_box    : CheckBox
+    private lateinit var music_title : TextView
+    private lateinit var music_bar   : SeekBar
+    private lateinit var music_cent  : TextView
+    private lateinit var effect_title: TextView
+    private lateinit var effect_bar  : SeekBar
+    private lateinit var effect_cent : TextView
+    private lateinit var vibbrazione : CheckBox
+    private lateinit var control     : Button
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
         //Ottieni tutti i gli oggetti grafici
-        val title_id    : TextView  = view.findViewById(R.id.settings_Title)
-        val name_tv     : TextView  = view.findViewById(R.id.settings_Name)
-        val name_input  : TextInputEditText = view.findViewById(R.id.settings_Name_Input)
-        val theme_box   : CheckBox  = view.findViewById(R.id.settings_SelectTheme)
-        val timer_box   : CheckBox  = view.findViewById(R.id.settings_Timer)
-        val bomb_box    : CheckBox  = view.findViewById(R.id.settings_bomb)
-        val music_title : TextView  = view.findViewById(R.id.settings_Music_Title)
-        val music_bar   : SeekBar   = view.findViewById(R.id.settings_Music_Bar)
-        val music_cent  : TextView  = view.findViewById(R.id.settings_Music_cent)
-        val effect_title: TextView  = view.findViewById(R.id.settings_Effect_Title)
-        val effect_bar  : SeekBar   = view.findViewById(R.id.settings_Effect_Bar)
-        val effect_cent : TextView  = view.findViewById(R.id.settings_Effect_cent)
-        val vibbrazione : CheckBox  = view.findViewById(R.id.settings_Vibbrazione)
-        val control     : Button    = view.findViewById(R.id.settings_controll)
-
+        title_id     = view.findViewById(R.id.settings_Title)
+        name_tv      = view.findViewById(R.id.settings_Name)
+        name_input   = view.findViewById(R.id.settings_Name_Input)
+        theme_box    = view.findViewById(R.id.settings_SelectTheme)
+        timer_box    = view.findViewById(R.id.settings_Timer)
+        bomb_box     = view.findViewById(R.id.settings_bomb)
+        music_title  = view.findViewById(R.id.settings_Music_Title)
+        music_bar    = view.findViewById(R.id.settings_Music_Bar)
+        music_cent   = view.findViewById(R.id.settings_Music_cent)
+        effect_title = view.findViewById(R.id.settings_Effect_Title)
+        effect_bar   = view.findViewById(R.id.settings_Effect_Bar)
+        effect_cent  = view.findViewById(R.id.settings_Effect_cent)
+        vibbrazione  = view.findViewById(R.id.settings_Vibbrazione)
+        control      = view.findViewById(R.id.settings_controll)
 
 
         //carica i dati dal file JSON
@@ -56,8 +67,8 @@ class SettingsFragment : Fragment() {
         val sett : BaseSettings = dati?.baseSett!!
 
         //imposta i valori recuperati
-        name_input.hint = sett.nameUtente.getVal()
-        theme_box.isChecked = (sett.theme.getVal().equals(ThemeList.DARK))
+        name_input.setText(sett.nameUtente.getVal())
+        theme_box.isChecked = sett.theme.getVal() == ThemeList.DARK
         timer_box.isChecked = sett.showTimer.getVal()
         bomb_box.isChecked  = sett.showBomb.getVal()
         music_bar.progress  = sett.musicLevel.getVal()

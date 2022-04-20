@@ -4,9 +4,9 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
 import com.example.mine3d.Game.Game.Data.GameSett.Difficulty
+import com.example.mine3d.Game.Game.GameBuildSettingsFragment
 
-class DifficultyButtonEvent(var builder: GameSettBuilder, var viewCellSuBomb: TextView, var bombText : TextView,
-                            var bar : SeekBar, var difficulty: Difficulty) : View.OnClickListener {
+class DifficultyButtonEvent(var builder: GameSettBuilder, var fragment: GameBuildSettingsFragment, var difficulty: Difficulty) : View.OnClickListener {
 
     /**
      * Called when a view has been clicked.
@@ -16,14 +16,6 @@ class DifficultyButtonEvent(var builder: GameSettBuilder, var viewCellSuBomb: Te
     override fun onClick(v: View?) {
         builder.difficulty = difficulty.difficulty
 
-        val N = builder.size
-        val nC = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
-        val bombe = (nC * builder.difficulty).toInt()
-        viewCellSuBomb.text = "$bombe/$nC"
-
-        val cent = (difficulty.difficulty*100).toInt()
-        bombText.text = "$cent%"
-
-        bar.progress = cent
+        fragment.upDateLayout(builder)
     }
 }
