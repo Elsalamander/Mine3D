@@ -5,6 +5,13 @@ import com.example.mine3d.Game.Event.Manager.EventPriority
 import com.example.mine3d.Game.Event.Manager.ListenerGame
 import com.example.mine3d.Game.Event.Set.*
 
+/**
+ * Classe dove faccio una prima gestione degli eventi prencipali del gioco
+ *
+ * C'è la soppressione del Lint per quanto riguarda funzioni "unused" poichè queste
+ * funzioni sono chiamate in un modo non dichiarato risultando così apparentemente
+ * non utilizzate
+ */
 class Listener : ListenerGame{
 
     /**
@@ -36,12 +43,6 @@ class Listener : ListenerGame{
             return
         }
 
-        if(cube.isBomb()){
-            //chiama l'evento di rivelazione bomba
-            event.instanceGame.context.eventManager.callEvent(RevealBombEvent(event))
-            return
-        }
-        //se non è una bomba altrimenti
         //c'è il caso che questo è il primo reveal
         //chiama l'evento di FirstReveal
         if(!event.instanceGame.grid.popolated){
@@ -50,6 +51,13 @@ class Listener : ListenerGame{
             return
         }
 
+        if(cube.isBomb()){
+            //chiama l'evento di rivelazione bomba
+            event.instanceGame.context.eventManager.callEvent(RevealBombEvent(event))
+            return
+        }
+
+        //se non è una bomba altrimenti
         //quando rivelo, devo filtrare 2 casi ancora, uguale a 0 o no
         if(cube.value == 0){
             //se è zero devo rivelare tutti i cubi finchè non trovo uno diverso da 0
@@ -81,6 +89,10 @@ class Listener : ListenerGame{
                                          event.upperEvent.y,
                                          event.upperEvent.z,
                                          event.instanceGame.sett)
+
+        //ora che ho popolato devo scoprire che cosa ho voluto scoprire xD
+        //rilancio l'evento correlato, ovvero "RevealCubeEvent"
+        event.instanceGame.context.eventManager.callEvent(event.upperEvent)
     }
 
     /**
