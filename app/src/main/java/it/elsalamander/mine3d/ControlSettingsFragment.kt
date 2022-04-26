@@ -28,14 +28,14 @@ class ControlSettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_control_settings, container, false)
 
-        var default_normal : Button = view.findViewById(R.id.settings_controll_default_normal)
-        var default_inverted : Button = view.findViewById(R.id.settings_controll_default_inverted)
-        var reveal_sx : Button = view.findViewById(R.id.settings_controll_selecter_reveal_sx)
-        var reveal_dx : Button = view.findViewById(R.id.settings_controll_selecter_reveal_dx)
-        var reveal_text : TextView = view.findViewById(R.id.settings_control_selecter_reveal_text)
-        var flag_sx : Button = view.findViewById(R.id.settings_controll_selecter_flag_sx)
-        var flag_dx : Button = view.findViewById(R.id.settings_controll_selecter_flag_dx)
-        var flag_text : TextView = view.findViewById(R.id.settings_control_selecter_flag_text)
+        val default_normal : Button = view.findViewById(R.id.settings_controll_default_normal)
+        val default_inverted : Button = view.findViewById(R.id.settings_controll_default_inverted)
+        val reveal_sx : Button = view.findViewById(R.id.settings_controll_selecter_reveal_sx)
+        val reveal_dx : Button = view.findViewById(R.id.settings_controll_selecter_reveal_dx)
+        val reveal_text : TextView = view.findViewById(R.id.settings_control_selecter_reveal_text)
+        val flag_sx : Button = view.findViewById(R.id.settings_controll_selecter_flag_sx)
+        val flag_dx : Button = view.findViewById(R.id.settings_controll_selecter_flag_dx)
+        val flag_text : TextView = view.findViewById(R.id.settings_control_selecter_flag_text)
         var sensivity : SeekBar = view.findViewById(R.id.settings_control_sensivity_bar)
         var hold_time : SeekBar  = view.findViewById(R.id.settings_control_hold_bar)
 

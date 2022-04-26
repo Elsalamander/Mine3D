@@ -10,7 +10,7 @@ import it.elsalamander.mine3d.ADT.exception.NotValidPointDimension
  * Per essere allocato mi serve avere un piano di partenza,
  * per poter iniziare ad allocare devo specificare i mondi su
  * cui la mia Zona agisce.
- * Usando la classe "ElementoArea" definisco il trio (World, X, Z)
+ * Usando la classe "Point" definisco il trio x,y,z
  * per indicare dove si piazzerà nel mio ADT questo elemento d'area
  *
  * Insieme ci si può mettere un qualsiasi generico
@@ -18,7 +18,7 @@ import it.elsalamander.mine3d.ADT.exception.NotValidPointDimension
  * @author: Elsalamander
  * @data: 21 lug 2021
  * @version: v3.1
- */
+ *******************************************************************/
 class Zona<T>(private val piano: Piano<T>) {
 
 

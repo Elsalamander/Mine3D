@@ -37,7 +37,7 @@ class Game() : AppCompatActivity(){
     }
 
     var gameInstance : GameInstance? = null
-    lateinit var gameSett : GameSett
+    var gameSett : GameSett? = null
     var eventManager = EventManager
 
     init {
@@ -49,7 +49,7 @@ class Game() : AppCompatActivity(){
 
 
         //prendi il gameSett tramite la stringa passata tramite intent
-        gameSett = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it).gameSettings }!!
+        gameSett = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it).gameSettings }
 
         this.setContentView(R.layout.activity_game)
 

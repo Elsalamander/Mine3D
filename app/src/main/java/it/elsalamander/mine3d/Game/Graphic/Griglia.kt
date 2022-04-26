@@ -67,9 +67,9 @@ class Griglia(var N : Int) {
      * che deve essere != -1
      * e con un numero di bombe fate da GameSettings
      */
-    fun popolate(x : Int, y : Int, z : Int, gameSett : GameSett){
+    fun popolate(x : Int, y : Int, z : Int, gameSett : GameSett?){
         val random = SecureRandom()
-        val countBomb = gameSett.numberOfBomb()
+        val countBomb = gameSett!!.numberOfBomb()
 
         //popola prima con le bombe
         this.populateBomb(x,y,z,random,gameSett,countBomb)

@@ -42,7 +42,7 @@ class NodeSAH<T>(private var punto: Point, size: Byte, padre: NodeSAH<T>?, value
             //non allocare l'array per i figli
             null
         }else{
-            arrayOfNulls<NodeSAH<T>>(1 shl punto.getDimension().toInt())
+            arrayOfNulls(1 shl punto.getDimension().toInt())
         }
         this.value = value
     }

@@ -1,5 +1,6 @@
 package it.elsalamander.mine3d.Game.Event.Manager
 
+import android.annotation.SuppressLint
 import kotlin.reflect.KClass
 import kotlin.reflect.full.memberFunctions
 import kotlin.reflect.jvm.jvmErasure
