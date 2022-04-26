@@ -1,12 +1,12 @@
 package it.elsalamander.mine3d.Game.Graphic.V3
 
-import android.content.Context
 import android.opengl.GLSurfaceView
-import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
-import it.elsalamander.mine3d.Game.Graphic.V2.MyRendereV2
+import it.elsalamander.mine3d.Game.Graphic.Engine.MyRenderer
+import it.elsalamander.mine3d.Game.Graphic.Engine.ScaleDetector
 
-class MyGLSurfaceViewV3(var cont: Context, var game: GameInstance) : GLSurfaceView(cont) {
+class MyGLSurfaceViewV3(var game: GameInstance) : GLSurfaceView(game.context) {
 
     var mRenderer: GLES20TriangleRenderer
 
@@ -19,7 +19,7 @@ class MyGLSurfaceViewV3(var cont: Context, var game: GameInstance) : GLSurfaceVi
         setEGLContextClientVersion(2)
         mRenderer = GLES20TriangleRenderer(game.context)
         setRenderer(mRenderer)
-        renderMode = RENDERMODE_WHEN_DIRTY
+        renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
     }
 
 

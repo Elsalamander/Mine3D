@@ -7,9 +7,8 @@ import androidx.navigation.fragment.findNavController
 import it.elsalamander.mine3d.Game.Event.Set.GameStart
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
 import it.elsalamander.mine3d.Game.Game.Game
+import it.elsalamander.mine3d.Game.Graphic.Engine.MyGLSurfaceView
 import it.elsalamander.mine3d.Game.Graphic.Griglia
-import it.elsalamander.mine3d.Game.Graphic.MyGLSurfaceView
-import it.elsalamander.mine3d.Game.Graphic.V2.MyGLSurfaceViewV2
 import it.elsalamander.mine3d.Game.Graphic.V3.MyGLSurfaceViewV3
 import it.elsalamander.mine3d.Game.Settings.JSONManager
 import it.elsalamander.mine3d.R
@@ -42,7 +41,8 @@ class GameInstance(var context: Game) {
     var grid : Griglia = Griglia(context.gameSett?.n ?: 5)                   //griglia di gioco
     //var render : MyGLSurfaceView = MyGLSurfaceView(context, this) //Renderer del gioco
     //var render  = MyGLSurfaceViewV2(context, this) //Renderer del gioco
-    var render  = MyGLSurfaceViewV3(context, this) //Renderer del gioco
+    //var render  = MyGLSurfaceViewV3(this) //Renderer del gioco
+    var render  = MyGLSurfaceView(this) //Renderer del gioco
 
 
     companion object{
