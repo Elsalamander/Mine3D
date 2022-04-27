@@ -9,6 +9,29 @@ import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
+/****************************************************************
+ * Classe per realizzare il renderer del gioco
+ * Gestisce il rendering del gioco, in particolare l'insieme dei
+ * cubi presenti, con il supporto della classe object GLCube
+ *
+ * Ottimizzazioni/Log:
+ * V 2.1: Data di modifica 26/04/2020
+ *        Il codice realizza correttamente il rendering dei cubi
+ *        NON sono state effettuate ottimizzazioni o accorgimenti
+ *        particolari.
+ *
+ *
+ *
+ *
+ * **Nota: le versioni precedenti alla 2.1 non eseguivano il texturing
+ *         o comunque non realizzava l'obbiettivo, non ho tenuto in
+ *         considerazione.
+ *
+ *
+ * @author: Elsalamander
+ * @data: 16 aprile 2021
+ * @version: v2.1
+ ****************************************************************/
 class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
 
     var width : Int = 0
@@ -53,7 +76,11 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         Matrix.setIdentityM(mAccumulatedRotation, 0)
 
         //crea il programma e carica le texture
-        GLCube.createSurfaceView(game.context)
+        val theme = game.settings.baseSett.theme.getVal()
+        val r = theme.red.toFloat()
+        val g = theme.green.toFloat()
+        val b = theme.blue.toFloat()
+        GLCube.createSurfaceView(game.context, r, g, b, 1f)
 
         //punto di vista
         Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 4f, 0f, 0f, 0f, 0f, 1f, 0f)
@@ -138,7 +165,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 //Log.d("Debug", "coordinate x: ${myCube?.xRend}")
 
                 if (cube != null) {
-                    cube.draw(tmpM)
+                    cube.draw(tmpM,5)
                 }
             }
         }

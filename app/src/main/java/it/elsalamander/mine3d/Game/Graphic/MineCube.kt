@@ -1,5 +1,7 @@
 package it.elsalamander.mine3d.Game.Graphic
 
+import it.elsalamander.mine3d.Game.Graphic.Engine.GLCube
+
 /****************************************************************
  * Classe per la realizzazione del cubo di gioco, non a livello grafico.
  * Ogni cubo ha:
@@ -19,7 +21,7 @@ class MineCube(var value : Int = 0, var hide : Boolean = true) {
     var zRend : Float = 0f
     var dist: Float = 0f
 
-    var glCube : GLCubeBase = GLCubeBase
+    //var glCube : GLCube = GLCube
 
     fun isBomb() : Boolean {
         return this.value == -1
