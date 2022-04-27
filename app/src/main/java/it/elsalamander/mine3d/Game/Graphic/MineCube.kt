@@ -21,8 +21,6 @@ class MineCube(var value : Int = 0, var hide : Boolean = true) {
     var zRend : Float = 0f
     var dist: Float = 0f
 
-    //var glCube : GLCube = GLCube
-
     fun isBomb() : Boolean {
         return this.value == -1
     }

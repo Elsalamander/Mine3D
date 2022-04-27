@@ -2,6 +2,7 @@ package it.elsalamander.mine3d.Game.Settings.ControlSettings
 
 import android.app.Activity
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.Flag.FlagSetting
+import it.elsalamander.mine3d.Game.Settings.ControlSettings.HoldTimer.HoldTimer
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.Reveal.RevealSetting
 import it.elsalamander.mine3d.Game.Settings.GenericSettings
 import org.json.JSONException
@@ -19,6 +20,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
 
     var reveal_sx_dx = RevealSetting(context)
     var flag_sx_dx   = FlagSetting(context)
+    var holdTimer    = HoldTimer(context)
 
     companion object{
         private var pathSettings : String = "Settings.json"
@@ -37,7 +39,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
      */
     override fun getJSON(): JSONObject {
         val file = File(context.filesDir, ControlSettings.pathSettings)
-        if(!file?.exists()){
+        if(!file.exists()){
             //il file non esiste
             file.createNewFile()
         }
@@ -65,6 +67,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
     override fun load(json: JSONObject) {
         this.reveal_sx_dx.load(json)
         this.flag_sx_dx.load(json)
+        this.holdTimer.load(json)
         //...
 
 
@@ -76,6 +79,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
     override fun save(json: JSONObject) {
         this.reveal_sx_dx.save(json)
         this.flag_sx_dx.save(json)
+        this.holdTimer.save(json)
         //...
 
 
