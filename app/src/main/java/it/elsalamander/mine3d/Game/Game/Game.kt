@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import it.elsalamander.mine3d.Game.Event.Listener.Listener
+import it.elsalamander.mine3d.Game.Event.Listener.ListenerForSound
 import it.elsalamander.mine3d.Game.Event.Manager.EventManager
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
@@ -42,6 +43,7 @@ class Game() : AppCompatActivity(){
 
     init {
         eventManager.registerEvent(Listener())
+        eventManager.registerEvent(ListenerForSound())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

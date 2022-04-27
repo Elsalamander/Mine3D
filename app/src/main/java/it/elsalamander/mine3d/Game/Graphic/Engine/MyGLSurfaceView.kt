@@ -7,7 +7,19 @@ import it.elsalamander.mine3d.Game.Event.Set.RevealCubeEvent
 import it.elsalamander.mine3d.Game.Event.Set.WinEvent
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Graphic.MineCube
+import kotlin.math.PI
+import kotlin.math.atan
 
+/****************************************************************
+ * Classe che contiene il renderer e gestisce il tocco quando
+ * esso è attivo, per ruotare e zommare.
+ *
+ * Manca da fare: -Determinare il cubo premuto.
+ *
+ * @author: Elsalamander
+ * @data: 16 aprile 2021
+ * @version: v2.0
+ ****************************************************************/
 class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
     var mRenderer: MyRenderer
 
@@ -49,9 +61,9 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
             var y_2 = y2
 
 
-            var newAng = Math.atan(((y_2-y_1)/(x_2-x_1)).toDouble())
+            var newAng = atan(((y_2-y_1)/(x_2-x_1)).toDouble())
 
-            if(x_1 == x_2){
+            if((x_1 == x_2) or ((newAng < -PI/4) and (oldAng > PI/4)) or ((newAng > PI/4) and (oldAng < -PI/4))){
                 oldAng = -100.0
             }
 
@@ -79,12 +91,9 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
                 mRenderer.mTotalDeltaY = mRenderer.mTotalDeltaY % 360
                 requestRender()
             }
+            mPreviousX = x
+            mPreviousY = y
         }
-        mPreviousX = x
-        mPreviousY = y
-
-        //debug
-        //this.game.context.eventManager.callEvent(WinEvent(RevealCubeEvent(game, 0,0,0, MineCube())))
 
         //ritorna true perchè ho gestito l'evento
         return true

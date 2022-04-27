@@ -32,8 +32,9 @@
     </option>
   </component>
   <component name="EntryPointsManager">
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="com.example.mine3d.Game.Event.Manager.EventHandlerGame" />
+      <item index="1" class="java.lang.String" itemvalue="it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame" />
     </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">

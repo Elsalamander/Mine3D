@@ -1,15 +1,22 @@
 package it.elsalamander.mine3d.Game.Event.Listener
 
-import it.elsalamander.mine3d.Game.Event.Manager.*
+import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
+import it.elsalamander.mine3d.Game.Event.Manager.EventPriority
+import it.elsalamander.mine3d.Game.Event.Manager.ListenerGame
 import it.elsalamander.mine3d.Game.Event.Set.*
 
-/**
- * Classe dove faccio una prima gestione degli eventi prencipali del gioco
+/****************************************************************
+ * Classe dove faccio una prima gestione degli eventi prencipali
+ * del gioco
  *
- * C'è la soppressione del Lint per quanto riguarda funzioni "unused" poichè queste
- * funzioni sono chiamate in un modo non dichiarato risultando così apparentemente
- * non utilizzate
- */
+ * C'è la soppressione del Lint per quanto riguarda funzioni "unused"
+ * poichè queste funzioni sono chiamate in un modo non dichiarato
+ * risultando così apparentemente non utilizzate
+ *
+ * @author: Elsalamander
+ * @data: 15 aprile 2021
+ * @version: v2.0
+ ****************************************************************/
 class Listener : ListenerGame {
 
     /**

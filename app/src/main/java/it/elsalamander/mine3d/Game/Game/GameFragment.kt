@@ -39,5 +39,4 @@ class GameFragment : Fragment() {
 
         return activity.gameInstance!!.render
     }
-
 }

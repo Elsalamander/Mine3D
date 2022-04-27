@@ -21,6 +21,6 @@ data class FunctionToCall(var cl : ListenerGame, var fn : KFunction<*>) : Compar
     override fun compareTo(other: FunctionToCall): Int {
         val prio_A = (other.fn.annotations.filterIsInstance<EventHandlerGame>()[0]).prio.priority
         val prio_B = (this.fn.annotations.filterIsInstance<EventHandlerGame>()[0]).prio.priority
-        return prio_A - prio_B
+        return prio_B - prio_A
     }
 }

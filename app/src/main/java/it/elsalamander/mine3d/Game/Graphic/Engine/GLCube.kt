@@ -34,7 +34,7 @@ import javax.microedition.khronos.opengles.GL10
  *
  * @author: Elsalamander
  * @data: 16 aprile 2021
- * @version: v2.1
+ * @version: v2.0
  ****************************************************************/
 object GLCube {
     private val cubeVerticesStrip = floatArrayOf(

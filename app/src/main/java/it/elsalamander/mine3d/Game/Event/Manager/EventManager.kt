@@ -36,7 +36,6 @@ object EventManager {
 
     private var map : HashMap<KClass<out EventGame>, MutableList<FunctionToCall>> = HashMap()
 
-
     /**
      * Registra l'oggetto Listener come ascoltatore degli eventi che verranno lanciati
      */

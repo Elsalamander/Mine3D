@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
-import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
