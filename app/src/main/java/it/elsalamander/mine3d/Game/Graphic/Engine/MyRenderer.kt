@@ -139,7 +139,6 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
             if (it != null) {
                 val coord = it.getPoint()
                 val myCube = it.getVal()?.second
-                val cube = GLCube
 
                 //Prendi il Cubo alla posizione x,y,z
                 System.arraycopy(scratch, 0, tmpM, 0, 16)
@@ -162,11 +161,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.zRend = tmpM[14]
                 myCube?.dist  = tmpM[15]
 
-                //Log.d("Debug", "coordinate x: ${myCube?.xRend}")
-
-                if (cube != null) {
-                    cube.draw(tmpM,5)
-                }
+                //disegna il cubo
+                GLCube.draw(tmpM,5)
             }
         }
     }
