@@ -127,7 +127,7 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
         //se rilascio, "smetto di premere", devo resettare tutti i valori
         if(event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL){
             //prima di resettare esegui il reveal o flag
-            if(System.currentTimeMillis() - timer < holdTimer){
+            if(System.currentTimeMillis() - timer < holdTimer && valid){
                 val pair = getCube(firstX, firstY)
                 if(pair != null){
                     val cube = pair.second
@@ -158,8 +158,24 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
     /**
      * Funzione che prende l'oggetto cubo premuto in base alle coordinate
      * passate.
+     * Ritorna un Pair dove i valori sono:
+     *  - first: array delle coordinate x,y,z della griglia, non quelli grafici!
+     *  - seccond: oggetto mineCube alle coordinate date
      */
     private fun getCube(x : Float, y : Float) : Pair<IntArray, MineCube>?{
-        return null
+        var coords = IntArray(3)
+        var cube : MineCube? = null
+
+        //visita tutti i nodi per scoprire quale cubo si trova alle coordinate passate
+        game.grid.visitLeaf {
+            //...
+        }
+
+        //ritorna il risultato finale
+        return if(cube == null){
+            null
+        }else{
+            Pair(coords, cube)
+        }
     }
 }

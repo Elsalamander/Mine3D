@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
+import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
+import kotlin.math.sqrt
 
 /****************************************************************
  * Classe per realizzare il renderer del gioco
@@ -39,7 +41,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     var mTotalDeltaX = 0f
     var mTotalDeltaY = 0f
     var mTotalDeltaZ = 0f
-    var zoom = 0.1f
+    var zoom = 0.125f
 
     @Volatile
     var mDeltaX = 0f
@@ -91,6 +93,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     override fun onSurfaceChanged(glUnused: GL10, width: Int, height: Int) {
         GLES20.glViewport(0, 0, width, height)
         val ratio = width.toFloat() / height
+        this.width = width
+        this.height = height
 
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1f, 1f, 3f, 8f)
     }
@@ -159,6 +163,18 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.yRend = tmpM[13]
                 myCube?.zRend = tmpM[14]
                 myCube?.dist  = tmpM[15]
+
+                var str = ""
+                var norm : Float= 0f
+                for(i in 0 until 16){
+                    norm += tmpM[i] * tmpM[i]
+                }
+                //norm = sqrt(norm)
+                norm = 1f
+                for(i in 0 until 16){
+                    str += "${tmpM[i]/norm}  "
+                }
+                Log.d("Cubo", "coords: $str")
 
                 //disegna il cubo
                 GLCube.draw(tmpM,5)

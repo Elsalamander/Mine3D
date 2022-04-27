@@ -1,6 +1,7 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
 import android.opengl.GLSurfaceView
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import it.elsalamander.mine3d.Game.Event.Set.RevealCubeEvent
@@ -94,6 +95,13 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
             mPreviousX = x
             mPreviousY = y
         }
+
+        Log.d("Touch", "coordiante x: $x , y: $y")
+        val w = mRenderer.width
+        val h = mRenderer.height
+        val ndc_x = 2.0 * x/w - 1.0;
+        val ndc_y = 1.0 - 2.0 * y/h;
+        Log.d("Touch", "coordiante x_ndc: $ndc_x , y_ndc: $ndc_y")
 
         //ritorna true perchè ho gestito l'evento
         return true
