@@ -2,10 +2,10 @@ package it.elsalamander.mine3d.Game.Game
 
 import android.opengl.GLSurfaceView
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import it.elsalamander.mine3d.Game.Event.Listener.Listener
-import it.elsalamander.mine3d.Game.Event.Listener.ListenerForSound
 import it.elsalamander.mine3d.Game.Event.Manager.EventManager
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
@@ -41,14 +41,12 @@ class Game() : AppCompatActivity(){
     var gameSett : GameSett? = null
     var eventManager = EventManager
 
-    init {
-        eventManager.registerEvent(Listener())
-        eventManager.registerEvent(ListenerForSound())
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //registra eventi
+        eventManager.registerEvent(Listener())
 
         //prendi il gameSett tramite la stringa passata tramite intent
         gameSett = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it).gameSettings }
@@ -69,7 +67,30 @@ class Game() : AppCompatActivity(){
         }
 
         navController.graph = graph
-
     }
 
+    override fun onPause() {
+        super.onPause()
+        gameInstance?.media?.pause()
+        Log.d("Music", "Pause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        gameInstance?.media?.reasume()
+        Log.d("Music", "Reasume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        gameInstance?.media?.stop()
+        eventManager.unRegisterAll()
+        Log.d("Music", "Stop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        gameInstance?.media?.stop()
+        Log.d("Music", "Destroy")
+    }
 }

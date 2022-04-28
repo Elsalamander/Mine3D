@@ -45,7 +45,7 @@
         android:id="@+id/fragment_pause_go_to_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text= "@string/fragment_end_go_next"
+        android:text= "@string/fragment_end_go_to_menu"
         app:layout_constraintBottom_toBottomOf="@id/pause_guide_line_bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

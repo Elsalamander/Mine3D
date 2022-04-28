@@ -9,6 +9,7 @@ import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
 import it.elsalamander.mine3d.Game.Game.Game
 import it.elsalamander.mine3d.Game.Graphic.Engine.MyGLSurfaceView
 import it.elsalamander.mine3d.Game.Graphic.Griglia
+import it.elsalamander.mine3d.Game.Media.SoundMedia
 import it.elsalamander.mine3d.Game.Settings.JSONManager
 import it.elsalamander.mine3d.R
 import org.json.JSONException
@@ -35,10 +36,10 @@ import java.io.*
  ****************************************************************/
 class GameInstance(var context: Game) {
 
-
     var settings : JSONManager = JSONManager(context)                           //settings
     var grid : Griglia = Griglia(context.gameSett?.n ?: 5)                   //griglia di gioco
     var render  = MyGLSurfaceView(this) //Renderer del gioco
+    var media = SoundMedia(this)
 
 
     companion object{

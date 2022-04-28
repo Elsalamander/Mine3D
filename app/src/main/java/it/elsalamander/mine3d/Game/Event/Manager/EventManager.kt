@@ -87,6 +87,10 @@ object EventManager {
             }
         }
     }
+
+    fun unRegisterAll() {
+        map.clear()
+    }
 }
 
 

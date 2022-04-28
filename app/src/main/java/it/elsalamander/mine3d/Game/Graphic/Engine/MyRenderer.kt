@@ -174,7 +174,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 for(i in 0 until 16){
                     str += "${tmpM[i]/norm}  "
                 }
-                Log.d("Cubo", "coords: $str")
+                //Log.d("Cubo", "coords: $str")
 
                 //disegna il cubo
                 GLCube.draw(tmpM,5)

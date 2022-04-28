@@ -1,5 +1,6 @@
 package it.elsalamander.mine3d.Game.Game
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,10 +39,14 @@ class GamePauseFragment : Fragment() {
         goToMenu.setOnClickListener {
             val myIntent = Intent(game, MainActivity::class.java)
 
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
             game.startActivity(myIntent)
 
             //termina l'activity
-            game.finish()
+            //game.finish()
+            (game as Activity).finish();
         }
 
         return view
