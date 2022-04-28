@@ -76,6 +76,7 @@ object GLCube {
     private var mProgram = 0
     private var mTextureID : IntArray = IntArray(11)
     private val mTexturePNG = arrayOf(  //le 11 skin che dovrò mettere
+        R.drawable.nuno,    //nero 0
         R.drawable.nuno,    //1
         R.drawable.nuno,    //2
         R.drawable.nuno,    //3
@@ -84,9 +85,8 @@ object GLCube {
         R.drawable.nuno,    //6
         R.drawable.nuno,    //7
         R.drawable.nuno,    //8
-        R.drawable.nuno,    //nero
-        R.drawable.nuno,    //bianco
-        R.drawable.nuno     //bomba
+        R.drawable.nuno,    //bianco 9
+        R.drawable.nuno     //bomba 10
     )
 
     private var muMVPMatrixHandle = 0

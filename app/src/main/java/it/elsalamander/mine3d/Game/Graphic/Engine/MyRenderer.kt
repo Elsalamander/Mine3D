@@ -177,7 +177,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 //Log.d("Cubo", "coords: $str")
 
                 //disegna il cubo
-                GLCube.draw(tmpM,5)
+                GLCube.draw(tmpM, myCube?.getTextureID() ?: 9)
             }
         }
     }

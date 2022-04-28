@@ -25,7 +25,31 @@ class MineCube(var value : Int = 0, var hide : Boolean = true) {
         return this.value == -1
     }
 
-    fun hit(x : Float, y : Float) : Boolean{
-        return true
+    /**
+     * Ritorna l'id della Texture da visualizzare in accordo con
+     * la classe object dove i valori sono:
+     * 0 -> nero
+     * 1 -> 1
+     * 2 -> 2
+     * 3 -> 3
+     * 4 -> 4
+     * 5 -> 5
+     * 6 -> 6
+     * 7 -> 7
+     * 8 -> 8
+     * 9 -> Bianco
+     * 10-> Bomba
+     */
+    fun getTextureID(): Int {
+        if(hide){
+            return 9
+        }
+        //se è scoperto mostra
+        //se è una bomba
+        if(isBomb()){
+            return 10
+        }
+        //se è scoperto e non è una bomba mostra il valore
+        return value
     }
 }
