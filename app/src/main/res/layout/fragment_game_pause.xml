@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fragment_pause_text"
-        android:textSize="40dp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@id/fragment_pause_go_to_game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

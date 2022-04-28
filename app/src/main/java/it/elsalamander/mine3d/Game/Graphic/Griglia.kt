@@ -21,16 +21,20 @@ import java.security.SecureRandom
  *             XXXX
  *             XXXX
  *
- * Le coordinate devono essere tali da rappresentarsi nello spazio possibilmente.
+ * Le coordinate devono essere tali da rappresentarsi nello spazio
+ * possibilmente.
  * Idea 1:
  *      Creare 6 matrici NxN, con rindondanza degli spigoli
- *      Essendo i piani del cubo ortogonali le matrice scorrono solo su 2 assi.
+ *      Essendo i piani del cubo ortogonali le matrice scorrono solo
+ *      su 2 assi.
  *
- * Idea 2: Creare varie matrici per avere rindondanza degli spigoli, difficile poi
- *         capire date le coordinate che matrice prendere
+ * Idea 2: Creare varie matrici per avere rindondanza degli spigoli,
+ *         difficile poi capire date le coordinate che matrice prendere
  *
  * Realizzazione:
- *      - Uso una mia vecchia libreria per mappare gli oggetti in un volume, libreria ElsaLib
+ *      - Uso una mia vecchia libreria per mappare gli oggetti in un
+ *        volume, libreria ElsaLib
+ *      - Non è stata importata ma parzialmente ri-realizzata in kotlin
  *
  * @author: Elsalamander
  * @data: 15 aprile 2021

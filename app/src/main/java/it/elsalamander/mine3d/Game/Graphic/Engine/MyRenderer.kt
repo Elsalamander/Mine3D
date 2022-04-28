@@ -134,7 +134,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         //matrice temporanea
         val tmpM = FloatArray(16)
 
-        val N = game.grid.N
+        val n = game.grid.N
 
         //Visita tutti i nodi e fai il render di ognuno
 
@@ -151,9 +151,9 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 val z = coord.getAxisValue(2).toFloat()
 
                 //trasla la matrice alle coordinate date
-                val x_ = (x - (N - 1f) / 2f) * 2.5f * zoom
-                val y_ = (y - (N - 1f) / 2f) * 2.5f * zoom
-                val z_ = (z - (N - 1f) / 2f) * 2.5f * zoom
+                val x_ = (x - (n - 1f) / 2f) * 2.5f * zoom
+                val y_ = (y - (n - 1f) / 2f) * 2.5f * zoom
+                val z_ = (z - (n - 1f) / 2f) * 2.5f * zoom
                 Matrix.translateM(tmpM, 0, x_, y_, z_)
 
                 //Esegui lo scalamneto dello zoom
@@ -165,7 +165,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.dist  = tmpM[15]
 
                 var str = ""
-                var norm : Float= 0f
+                var norm = 0f
                 for(i in 0 until 16){
                     norm += tmpM[i] * tmpM[i]
                 }

@@ -46,7 +46,7 @@ class GamePauseFragment : Fragment() {
 
             //termina l'activity
             //game.finish()
-            (game as Activity).finish();
+            (game as Activity).finish()
         }
 
         return view

@@ -1,6 +1,5 @@
 package it.elsalamander.mine3d.Game.Game
 
-import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +33,7 @@ import it.elsalamander.mine3d.R
 class Game() : AppCompatActivity(){
 
     companion object{
-        val TAG_INTENT_GAME_TYPE = "GameType"
+        const val TAG_INTENT_GAME_TYPE = "GameType"
     }
 
     var gameInstance : GameInstance? = null

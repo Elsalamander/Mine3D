@@ -8,6 +8,14 @@ import it.elsalamander.mine3d.Game.Event.Set.GameStart
 import it.elsalamander.mine3d.Game.Media.Event.Set.EndSongEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.StartSongEvent
 
+/****************************************************************
+ * Classe listener per eseguire le chiamate ad evento per
+ * i media
+ *
+ * @author: Elsalamander
+ * @data: 28 aprile 2021
+ * @version: v1.0
+ ****************************************************************/
 class MediaListener : ListenerGame {
 
     /**

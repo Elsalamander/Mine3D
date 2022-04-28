@@ -1,5 +1,6 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
+import android.annotation.SuppressLint
 import android.view.MotionEvent
 import android.view.View
 import it.elsalamander.mine3d.Game.Event.Set.PlaceFlagEvent
@@ -57,6 +58,7 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
      * the event.
      * @return True if the listener has consumed the event, false otherwise.
      */
+    @SuppressLint("ClickableViewAccessibility") //l'accesso viene fatto, al difuori del mio codice
     override fun onTouch(v: View, event: MotionEvent): Boolean {
 
         //è il primo istante valido?

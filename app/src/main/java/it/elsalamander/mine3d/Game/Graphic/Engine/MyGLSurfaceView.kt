@@ -1,13 +1,11 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
+import android.annotation.SuppressLint
 import android.opengl.GLSurfaceView
 import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
-import it.elsalamander.mine3d.Game.Event.Set.RevealCubeEvent
-import it.elsalamander.mine3d.Game.Event.Set.WinEvent
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
-import it.elsalamander.mine3d.Game.Graphic.MineCube
 import kotlin.math.PI
 import kotlin.math.atan
 
@@ -35,12 +33,13 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
         setEGLContextClientVersion(2)
         mRenderer = MyRenderer(game)
         setRenderer(mRenderer)
-        renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
+        renderMode = RENDERMODE_WHEN_DIRTY
 
         scale = ScaleDetector(this)
         mScaleDetector = ScaleGestureDetector(context, scale)
     }
 
+    @SuppressLint("ClickableViewAccessibility") //chiamata fatta aldifuori del mio codice
     override fun onTouchEvent(event: MotionEvent): Boolean {
         //evento per lo zoom
         if(mScaleDetector.onTouchEvent(event)){
@@ -56,13 +55,13 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
         if(x != x2){
 
             //chi è a sinistra?
-            var x_1 = x
-            var y_1 = y
-            var x_2 = x2
-            var y_2 = y2
+            val x_1 = x
+            val y_1 = y
+            val x_2 = x2
+            val y_2 = y2
 
 
-            var newAng = atan(((y_2-y_1)/(x_2-x_1)).toDouble())
+            val newAng = atan(((y_2-y_1)/(x_2-x_1)).toDouble())
 
             if((x_1 == x_2) or ((newAng < -PI/4) and (oldAng > PI/4)) or ((newAng > PI/4) and (oldAng < -PI/4))){
                 oldAng = -100.0
@@ -99,9 +98,9 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
         Log.d("Touch", "coordiante x: $x , y: $y")
         val w = mRenderer.width
         val h = mRenderer.height
-        val ndc_x = 2.0 * x/w - 1.0;
-        val ndc_y = 1.0 - 2.0 * y/h;
-        Log.d("Touch", "coordiante x_ndc: $ndc_x , y_ndc: $ndc_y")
+        val ndcX = 2.0 * x/w - 1.0
+        val ndcY = 1.0 - 2.0 * y/h
+        Log.d("Touch", "coordiante x_ndc: $ndcX , y_ndc: $ndcY")
 
         //ritorna true perchè ho gestito l'evento
         return true

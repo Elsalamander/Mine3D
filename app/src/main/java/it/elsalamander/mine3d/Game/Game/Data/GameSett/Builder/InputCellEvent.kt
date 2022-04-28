@@ -23,7 +23,7 @@ class InputCellEvent(var builder: GameSettBuilder, var fragment: GameBuildSettin
     @SuppressLint("SetTextI18n")
     override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
         try{
-            builder.size = v?.text.toString().toInt()
+            builder.size = v.text.toString().toInt()
         }catch(e : NumberFormatException){
             builder.size = 5
         }

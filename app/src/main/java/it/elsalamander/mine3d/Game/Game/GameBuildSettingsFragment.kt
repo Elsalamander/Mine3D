@@ -1,5 +1,6 @@
 package it.elsalamander.mine3d.Game.Game
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -78,6 +79,7 @@ class GameBuildSettingsFragment : Fragment() {
     /**
      * Aggiorna il testo
      */
+    @SuppressLint("SetTextI18n")    //soppresione poichè devo editare il contenuto di una textView
     fun upDateLayout(builder : GameSettBuilder){
         val size = this.inputCell.text.toString().toInt()
         if(size <= 2){

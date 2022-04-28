@@ -6,8 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.opengl.GLES20
 import android.opengl.GLUtils
-import android.opengl.Matrix
-import android.os.SystemClock
 import android.util.Log
 import it.elsalamander.mine3d.R
 import java.io.IOException
@@ -15,7 +13,6 @@ import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
-import javax.microedition.khronos.opengles.GL10
 
 /****************************************************************
  * Classe per aiutare il renderer del gioco.
@@ -40,11 +37,11 @@ object GLCube {
     private val cubeVerticesStrip = floatArrayOf(
         -1f, -1f,  1f,  1f,
         -1f,  1f, -1f,  1f,
-        1f,  1f,  1f,  1f,
-        1f, -1f,  1f,  1f,
+         1f,  1f,  1f,  1f,
+         1f, -1f,  1f,  1f,
         -1f, -1f,  1f,  1f,
-        1f,  1f,  1f, -1f,
-        1f, -1f, -1f, -1f,
+         1f,  1f,  1f, -1f,
+         1f, -1f, -1f, -1f,
         -1f, -1f,  1f,  1f,
         -1f, -1f,  1f, -1f,
         -1f, -1f, -1f, -1f,
@@ -52,9 +49,9 @@ object GLCube {
         -1f, -1f,  1f,  1f,
         -1f, -1f, -1f,  1f,
         -1f, -1f, -1f, -1f,
-        1f,  1f, -1f,  1f,
+         1f,  1f, -1f,  1f,
         -1f,  1f,  1f,  1f,
-        1f,  1f, -1f,  1f,
+         1f,  1f, -1f,  1f,
         -1f,  1f,  1f, -1f
     )
 
@@ -98,7 +95,7 @@ object GLCube {
     private lateinit var mTriangleVertices: FloatBuffer
     private lateinit var mTriangleTexcoords: FloatBuffer
 
-    private val mVertexShader =
+    private const val mVertexShader =
         "uniform mat4 uMVPMatrix;" +
         "attribute vec4 aPosition;" +
         "attribute vec2 aTextureCoord;" +
@@ -108,7 +105,7 @@ object GLCube {
         "vTextureCoord = aTextureCoord;" +
         "}"
 
-    private val mFragmentShader =
+    private const val mFragmentShader =
         "precision mediump float;" +
         "varying vec2 vTextureCoord;" +
         "uniform sampler2D sTexture;" +
@@ -120,7 +117,7 @@ object GLCube {
     /**
      * Crea il programma di rendering
      */
-    fun createProgram(): Int {
+    private fun createProgram(): Int {
         mTriangleTexcoords = ByteBuffer.allocateDirect(cubeTexCoordsStrip.size * FLOAT_SIZE_BYTES)
             .order(ByteOrder.nativeOrder()).asFloatBuffer()
         mTriangleTexcoords.put(cubeTexCoordsStrip).position(0)
@@ -164,7 +161,7 @@ object GLCube {
     /**
      * Carica/Compila il codice per il render
      */
-    fun loadShader(shaderType: Int, source: String): Int {
+    private fun loadShader(shaderType: Int, source: String): Int {
         var shader = GLES20.glCreateShader(shaderType)
         if (shader != 0) {
             GLES20.glShaderSource(shader, source)
@@ -186,7 +183,7 @@ object GLCube {
     /**
      * Controlla gli errori, e lancia una eccezione in caso
      */
-    fun checkGlError(op: String) {
+    private fun checkGlError(op: String) {
         var error: Int
         while (GLES20.glGetError().also { error = it } != GLES20.GL_NO_ERROR) {
             Log.e(TAG, "$op: glError $error")

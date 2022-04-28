@@ -10,5 +10,4 @@ import it.elsalamander.mine3d.Game.Media.Event.MediaEvent
  * @data: 28 aprile 2021
  * @version: v1.0
  ****************************************************************/
-class EndSongEvent(game : GameInstance, var id : Int) : MediaEvent(game) {
-}
+class EndSongEvent(game : GameInstance, var id : Int) : MediaEvent(game)

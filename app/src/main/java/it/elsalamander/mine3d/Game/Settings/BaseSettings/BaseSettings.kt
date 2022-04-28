@@ -46,7 +46,7 @@ class BaseSettings(var context : Activity) : GenericSettings {
      */
     override fun getJSON(): JSONObject {
         val file = File(context.filesDir, pathSettings)
-        if(!file?.exists()){
+        if(!file.exists()){
             //il file non esiste
             file.createNewFile()
         }

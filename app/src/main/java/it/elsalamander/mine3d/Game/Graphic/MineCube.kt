@@ -1,7 +1,5 @@
 package it.elsalamander.mine3d.Game.Graphic
 
-import it.elsalamander.mine3d.Game.Graphic.Engine.GLCube
-
 /****************************************************************
  * Classe per la realizzazione del cubo di gioco, non a livello grafico.
  * Ogni cubo ha:

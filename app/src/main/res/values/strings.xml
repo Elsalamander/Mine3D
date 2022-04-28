@@ -55,5 +55,6 @@
     <string name="fragment_end_go_next">Next</string>
     <string name="fragment_pause_text">Pausa</string>
     <string name="fragment_pause_go_to_game">Torna alla partita</string>
+    <string name="fragment_end_default_text">GameOver</string>
 
 </resources>
