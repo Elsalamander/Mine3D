@@ -1,13 +1,19 @@
 package it.elsalamander.mine3d.Game.Game
 
+import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
+import it.elsalamander.mine3d.Game.Graphic.Engine.MyGLSurfaceView
+import it.elsalamander.mine3d.Game.Graphic.OtherView.CountUpTimer
 import it.elsalamander.mine3d.R
 
 /****************************************************************
@@ -37,6 +43,37 @@ class GameFragment : Fragment() {
         val activity = this.activity as Game
         activity.gameInstance = GameInstance(activity)
 
-        return activity.gameInstance!!.render
+        val settings = activity.gameInstance!!.settings
+
+        val view = inflater.inflate(R.layout.fragment_game, container, false)
+
+        val timer : TextView = view.findViewById(R.id.fragment_game_timer)
+        val bomb  : TextView = view.findViewById(R.id.fragment_game_bomb)
+        val pause : ImageButton = view.findViewById(R.id.fragment_game_pause_button)
+        val chrono: Chronometer = view.findViewById(R.id.fragment_game_timer_chrono)
+
+        timer.visibility = if(settings.baseSett.showTimer.getVal()){
+            View.VISIBLE
+        }else{
+            View.INVISIBLE
+        }
+
+        bomb.visibility = if(settings.baseSett.showBomb.getVal()){
+            View.VISIBLE
+        }else{
+            View.INVISIBLE
+        }
+
+        pause.setOnClickListener{
+            view.findNavController().navigate(R.id.action_game_to_pause)
+        }
+
+        chrono.onChronometerTickListener = CountUpTimer(timer)
+        chrono.base = Long.MAX_VALUE
+        chrono.start()
+
+
+
+        return view
     }
 }

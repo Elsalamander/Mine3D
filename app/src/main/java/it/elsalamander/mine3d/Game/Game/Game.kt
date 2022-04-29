@@ -71,25 +71,17 @@ class Game() : AppCompatActivity(){
     override fun onPause() {
         super.onPause()
         gameInstance?.media?.pause()
-        Log.d("Music", "Pause")
     }
 
     override fun onResume() {
         super.onResume()
         gameInstance?.media?.reasume()
-        Log.d("Music", "Reasume")
     }
 
     override fun onStop() {
         super.onStop()
         gameInstance?.media?.stop()
-        eventManager.unRegisterAll()
-        Log.d("Music", "Stop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
         gameInstance?.media?.stop()
-        Log.d("Music", "Destroy")
+        eventManager.unRegisterAll()
     }
 }

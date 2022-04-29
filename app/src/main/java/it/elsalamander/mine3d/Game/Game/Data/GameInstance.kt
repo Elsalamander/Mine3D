@@ -38,7 +38,6 @@ class GameInstance(var context: Game) {
 
     var settings : JSONManager = JSONManager(context)                           //settings
     var grid : Griglia = Griglia(context.gameSett?.n ?: 5)                   //griglia di gioco
-    var render  = MyGLSurfaceView(this) //Renderer del gioco
     var media = SoundMedia(this)
 
 

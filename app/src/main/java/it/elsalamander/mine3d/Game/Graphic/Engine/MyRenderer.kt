@@ -41,7 +41,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     var mTotalDeltaX = 0f
     var mTotalDeltaY = 0f
     var mTotalDeltaZ = 0f
-    var zoom = 0.125f
+    var zoom = 0.25f
 
     @Volatile
     var mDeltaX = 0f
@@ -96,7 +96,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         this.width = width
         this.height = height
 
-        Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1f, 1f, 3f, 8f)
+        Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1f, 1f, 1f, 10f)
     }
 
     override fun onDrawFrame(gl: GL10?) {
@@ -181,6 +181,4 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
             }
         }
     }
-
-
 }

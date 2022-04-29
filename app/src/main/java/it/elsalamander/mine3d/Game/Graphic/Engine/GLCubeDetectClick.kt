@@ -1,6 +1,7 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import it.elsalamander.mine3d.Game.Event.Set.PlaceFlagEvent
@@ -34,16 +35,16 @@ import it.elsalamander.mine3d.Game.Settings.ControlSettings.TypeTouch
 class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
 
     companion object{
-        val dx : Float = 5f //scostamento massimo di x
-        val dy : Float = 5f //scostamento massimo di y
+        const val dx : Float = 5f //scostamento massimo di x
+        const val dy : Float = 5f //scostamento massimo di y
     }
 
-    var firstX : Float = 0f  //Primo valore della X
-    var firstY : Float = 0f  //Primo valore della Y
-    var firstCheck : Boolean = false    //TRUE se ho preso il primo valore della x e y, altrimenti FALSE
-    var valid : Boolean = false     //tiene conto se è valida la procedura o se ho sforato in un momento precedente
-    var timer : Long = 0  //timer, inizia a contare quando ho iniziato a premere
-    val holdTimer : Double  //valore da aspettare
+    private var firstX : Float = 0f  //Primo valore della X
+    private var firstY : Float = 0f  //Primo valore della Y
+    private var firstCheck : Boolean = false    //TRUE se ho preso il primo valore della x e y, altrimenti FALSE
+    private var valid : Boolean = false     //tiene conto se è valida la procedura o se ho sforato in un momento precedente
+    private var timer : Long = 0  //timer, inizia a contare quando ho iniziato a premere
+    private val holdTimer : Double  //valore da aspettare
         get() {
             return game.settings.controlSett.holdTimer.getVal()
         }

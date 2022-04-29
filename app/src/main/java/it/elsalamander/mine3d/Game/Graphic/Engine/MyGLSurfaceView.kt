@@ -1,11 +1,16 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.opengl.GLSurfaceView
+import android.util.AttributeSet
 import android.util.Log
+import android.util.Xml
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
+import it.elsalamander.mine3d.Game.Game.Game
+import it.elsalamander.mine3d.R
 import kotlin.math.PI
 import kotlin.math.atan
 
@@ -19,13 +24,15 @@ import kotlin.math.atan
  * @data: 16 aprile 2021
  * @version: v2.0
  ****************************************************************/
-class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
+class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceView(cont, attrs)  {
     var mRenderer: MyRenderer
 
+    private var game : GameInstance = (cont as Game).gameInstance!!
     private var mPreviousX = 0f
     private var mPreviousY = 0f
     private var mScaleDetector : ScaleGestureDetector
     private var scale : ScaleDetector
+    private var touchDetector : GLCubeDetectClick
 
     private var oldAng = -100.0
 
@@ -37,10 +44,14 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
 
         scale = ScaleDetector(this)
         mScaleDetector = ScaleGestureDetector(context, scale)
+        touchDetector = GLCubeDetectClick(game)
     }
 
     @SuppressLint("ClickableViewAccessibility") //chiamata fatta aldifuori del mio codice
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        //evento di detect
+        touchDetector.onTouch(this, event)
+
         //evento per lo zoom
         if(mScaleDetector.onTouchEvent(event)){
             requestRender()
@@ -95,12 +106,12 @@ class MyGLSurfaceView(var game: GameInstance) : GLSurfaceView(game.context)  {
             mPreviousY = y
         }
 
-        Log.d("Touch", "coordiante x: $x , y: $y")
+        //Log.d("Touch", "coordiante x: $x , y: $y")
         val w = mRenderer.width
         val h = mRenderer.height
         val ndcX = 2.0 * x/w - 1.0
         val ndcY = 1.0 - 2.0 * y/h
-        Log.d("Touch", "coordiante x_ndc: $ndcX , y_ndc: $ndcY")
+        //Log.d("Touch", "coordiante x_ndc: $ndcX , y_ndc: $ndcY")
 
         //ritorna true perchè ho gestito l'evento
         return true
