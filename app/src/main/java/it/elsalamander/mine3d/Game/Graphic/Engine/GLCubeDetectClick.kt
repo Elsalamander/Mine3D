@@ -9,6 +9,9 @@ import it.elsalamander.mine3d.Game.Event.Set.RevealCubeEvent
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Graphic.MineCube
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.TypeTouch
+import it.elsalamander.mine3d.util.Pair
+import java.lang.Math.abs
+import java.util.ArrayList
 
 /****************************************************************
  * Classe per capire se sto premendo un cubo o no.
@@ -21,6 +24,10 @@ import it.elsalamander.mine3d.Game.Settings.ControlSettings.TypeTouch
  * ovvero che premo e rilascio e non arrivarci "strascinando"
  * l'evento deve nascere e morire in quel punto per effettuare un
  * reveal o un flag.
+ *
+ * --------------------------------------------------------------
+ * Soluzione temporanea, quando clicco faccio riferimento al cubo alle coordinate
+ * x=0 e y=0
  *
  * Note:
  *  - Un gesto inizia con un evento di movimento con ACTION_DOWN
@@ -46,7 +53,7 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
     private var timer : Long = 0  //timer, inizia a contare quando ho iniziato a premere
     private val holdTimer : Double  //valore da aspettare
         get() {
-            return game.settings.controlSett.holdTimer.getVal()
+            return game.settings.controlSett.holdTimer.getVal() * 1000
         }
 
 
@@ -105,7 +112,8 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
             if(System.currentTimeMillis() - timer > holdTimer){
                 //il timer è andato oltre, voglio metterci una bandiera nel cubo in cui mi trovo
                 //prendi il cubo
-                val pair = getCube(firstX, firstY)
+                //val pair = getCube(firstX, firstY)
+                val pair = getCube(0f, 0f)
                 if(pair != null){
                     val cube = pair.second
                     val coords = pair.first
@@ -131,7 +139,8 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
         if(event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL){
             //prima di resettare esegui il reveal o flag
             if(System.currentTimeMillis() - timer < holdTimer && valid){
-                val pair = getCube(firstX, firstY)
+                //val pair = getCube(firstX, firstY)
+                val pair = getCube(0f, 0f)
                 if(pair != null){
                     val cube = pair.second
                     val coords = pair.first
@@ -164,21 +173,47 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
      * Ritorna un Pair dove i valori sono:
      *  - first: array delle coordinate x,y,z della griglia, non quelli grafici!
      *  - seccond: oggetto mineCube alle coordinate date
+     *
+     *  ----------------------------------------------------
+     *  Soluzione temporanea quando clicco faccio riferimento
+     *  al cubo che si trova alle coordinate x=0 e y=0
      */
     private fun getCube(x : Float, y : Float) : Pair<IntArray, MineCube>?{
-        var coords = IntArray(3)
-        var cube : MineCube? = null
+        var larghezza = 0f
 
+        var xM = 0f
+        var yM = 0f
+        var last : Pair<IntArray, MineCube>? = null
         //visita tutti i nodi per scoprire quale cubo si trova alle coordinate passate
         game.grid.visitLeaf {
-            //...
+            if(larghezza == 0f){
+                larghezza = kotlin.math.abs(it?.getVal()?.second?.larghezza ?: 0f)
+            }
+            xM = it?.getVal()?.second?.xRend ?: 0f
+            yM = it?.getVal()?.second?.yRend ?: 0f
+
+            //rientra nelle coordinate passate?
+            if(xM - larghezza <= x && x <= xM + larghezza){
+                if(yM - larghezza <= y && y <= yM + larghezza){
+                    //rientra, butta nella lista
+                    val arr = IntArray(3)
+                    arr[0] = it?.getPoint()?.getAxisValue(0)!!.toInt()
+                    arr[1] = it.getPoint().getAxisValue(1).toInt()
+                    arr[2] = it.getPoint().getAxisValue(2).toInt()
+
+                    if(last != null){
+                        if(last!!.first[2] < arr[2]){
+                            last = Pair(arr, it.getVal()!!.second)
+                        }
+                    }else{
+                        last = Pair(arr, it.getVal()!!.second)
+                    }
+                }
+            }
         }
 
+        Log.d("TouchEvent", "Cubo trovato $last")
         //ritorna il risultato finale
-        return if(cube == null){
-            null
-        }else{
-            Pair(coords, cube)
-        }
+        return last
     }
 }

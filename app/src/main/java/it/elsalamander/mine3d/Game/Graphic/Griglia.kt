@@ -114,7 +114,7 @@ class Griglia(var N : Int) {
                 //skippa questo cubo
             }else{
                 //per ogni foglia, genera un numero da 0 a 100 se è superiore a bomb*100 setta come boma
-                if((random.nextInt(101) > gameSett.bomb*100) and (it?.getVal()?.second?.isBomb() == false)){
+                if((random.nextInt(101) < gameSett.bomb*100) and (it?.getVal()?.second?.isBomb() == false) and (nBomb > 0)){
                     //imposta come bomba
                     it?.getVal()?.second?.value = -1
                     //decrementa contatore

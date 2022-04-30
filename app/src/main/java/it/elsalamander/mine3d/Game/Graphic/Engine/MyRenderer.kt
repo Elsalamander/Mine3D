@@ -159,6 +159,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 //Esegui lo scalamneto dello zoom
                 Matrix.scaleM(tmpM, 0, zoom, zoom, zoom)
 
+                myCube?.larghezza = tmpM[11]
                 myCube?.xRend = tmpM[12]
                 myCube?.yRend = tmpM[13]
                 myCube?.zRend = tmpM[14]

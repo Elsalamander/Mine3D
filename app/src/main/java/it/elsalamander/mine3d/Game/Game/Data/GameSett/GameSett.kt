@@ -47,7 +47,8 @@ data class GameSett(var n: Int, var bomb: Double, var next: Boolean, var incr: I
      * Numero di bombe
      */
     fun numberOfBomb() : Int{
-        return (this.n * this.bomb).toInt()
+        val nC = (n*n*2 + n*(n-2)*2 + (n-2)*(n-2)*2)
+        return (nC * this.bomb).toInt()
     }
 
     /**

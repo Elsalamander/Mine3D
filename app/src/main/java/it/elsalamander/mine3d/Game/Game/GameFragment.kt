@@ -25,6 +25,8 @@ import it.elsalamander.mine3d.R
  ****************************************************************/
 class GameFragment : Fragment() {
 
+    lateinit var bomb : TextView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,13 +44,14 @@ class GameFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val activity = this.activity as Game
         activity.gameInstance = GameInstance(activity)
+        activity.gameFragment = this
 
         val settings = activity.gameInstance!!.settings
 
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
         val timer : TextView = view.findViewById(R.id.fragment_game_timer)
-        val bomb  : TextView = view.findViewById(R.id.fragment_game_bomb)
+            bomb             = view.findViewById(R.id.fragment_game_bomb)
         val pause : ImageButton = view.findViewById(R.id.fragment_game_pause_button)
         val chrono: Chronometer = view.findViewById(R.id.fragment_game_timer_chrono)
 
@@ -63,6 +66,7 @@ class GameFragment : Fragment() {
         }else{
             View.INVISIBLE
         }
+        bomb.text = activity.gameSett?.numberOfBomb().toString()
 
         pause.setOnClickListener{
             view.findNavController().navigate(R.id.action_game_to_pause)
@@ -71,8 +75,6 @@ class GameFragment : Fragment() {
         chrono.onChronometerTickListener = CountUpTimer(timer)
         chrono.base = Long.MAX_VALUE
         chrono.start()
-
-
 
         return view
     }

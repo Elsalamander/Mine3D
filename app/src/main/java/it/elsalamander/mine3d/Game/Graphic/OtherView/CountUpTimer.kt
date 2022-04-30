@@ -17,8 +17,7 @@ class CountUpTimer(var text : TextView) : Chronometer.OnChronometerTickListener 
      */
     override fun onChronometerTick(chronometer: Chronometer) {
         val countUp = (System.currentTimeMillis() - countUpTimer) / 1000
-        val asText: String = (countUp / 60).toString() + ":" + countUp % 60
+        val asText: String = String.format("%02d:%02d", countUp / 60, countUp % 60)
         text.text = asText
-        Log.d("Timer", "Tick: $countUp")
     }
 }

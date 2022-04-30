@@ -1,9 +1,13 @@
 package it.elsalamander.mine3d.Game.Event.Listener
 
+import android.annotation.SuppressLint
+import android.util.Log
 import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
 import it.elsalamander.mine3d.Game.Event.Manager.EventPriority
 import it.elsalamander.mine3d.Game.Event.Manager.ListenerGame
 import it.elsalamander.mine3d.Game.Event.Set.*
+import it.elsalamander.mine3d.Game.Game.GameFragment
+import it.elsalamander.mine3d.R
 
 /****************************************************************
  * Classe dove faccio una prima gestione degli eventi prencipali
@@ -36,6 +40,7 @@ class Listener : ListenerGame {
      */
     @EventHandlerGame
     fun onRevealCubeEvent(event : RevealCubeEvent){
+        Log.d("Event RevealCubeEvent", "Scopro il cubo")
         //voglio rilevare questo cubo
         //ci sono 2 principali casi:
         // - è una bomba
@@ -90,10 +95,20 @@ class Listener : ListenerGame {
     @EventHandlerGame
     fun onFirstReveal(event: FirstRevealEvent){
         //popola la griglia
+        Log.d("FirstReveal Event", "Popolo")
         event.instanceGame.grid.popolate(event.upperEvent.x,
                                          event.upperEvent.y,
                                          event.upperEvent.z,
                                          event.instanceGame.context.gameSett)
+
+        //mostro la popolazione al debugger
+        event.instanceGame.grid.visitLeaf {
+            val x = it?.getPoint()?.getAxisValue(0)
+            val y = it?.getPoint()?.getAxisValue(1)
+            val z = it?.getPoint()?.getAxisValue(2)
+            val value = it?.getVal()?.second?.value
+            Log.d("Valori nelle foglie", "x:$x , y:$y , z:$z , value:$value")
+        }
 
         //ora che ho popolato devo scoprire che cosa ho voluto scoprire xD
         //rilancio l'evento correlato, ovvero "RevealCubeEvent"
@@ -122,8 +137,10 @@ class Listener : ListenerGame {
     /**
      * Gestione dell'evneto per il piazzamento della bandiera
      */
+    @SuppressLint("ResourceType")
     @EventHandlerGame
     fun onPlaceFlag(event : PlaceFlagEvent){
+        Log.d("Event PlaceFlag", "Piazzo bandiera")
         if(event.cube.flag){
             event.cube.flag = false
             event.instanceGame.grid.flagged--
@@ -131,7 +148,9 @@ class Listener : ListenerGame {
             event.cube.flag = true
             event.instanceGame.grid.flagged++
         }
-
+        val gameFrag = event.instanceGame.context.gameFragment
+        val toText = (event.instanceGame.context.gameSett?.numberOfBomb()?.minus(event.instanceGame.grid.flagged)).toString()
+        gameFrag?.bomb?.text = toText
     }
 
     /**

@@ -39,6 +39,7 @@ class Game() : AppCompatActivity(){
     var gameInstance : GameInstance? = null
     var gameSett : GameSett? = null
     var eventManager = EventManager
+    var gameFragment: GameFragment? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
