@@ -61,6 +61,10 @@ class Listener : ListenerGame {
             return
         }
 
+        Log.d("Event RevealCubeEvent", "Valore cubo: ${
+            cube.value
+        }")
+
         if(cube.isBomb()){
             //chiama l'evento di rivelazione bomba
             event.instanceGame.context.eventManager.callEvent(RevealBombEvent(event))
@@ -102,6 +106,7 @@ class Listener : ListenerGame {
                                          event.instanceGame.context.gameSett)
 
         //mostro la popolazione al debugger
+        /*
         event.instanceGame.grid.visitLeaf {
             val x = it?.getPoint()?.getAxisValue(0)
             val y = it?.getPoint()?.getAxisValue(1)
@@ -109,6 +114,7 @@ class Listener : ListenerGame {
             val value = it?.getVal()?.second?.value
             Log.d("Valori nelle foglie", "x:$x , y:$y , z:$z , value:$value")
         }
+        */
 
         //ora che ho popolato devo scoprire che cosa ho voluto scoprire xD
         //rilancio l'evento correlato, ovvero "RevealCubeEvent"
@@ -123,6 +129,11 @@ class Listener : ListenerGame {
         event.instanceGame.grid.multiRevealFrom(event.upperEvent.x.toLong(),
                                                 event.upperEvent.y.toLong(),
                                                 event.upperEvent.z.toLong())
+        //controlla le condizioni di vittoria
+        if(event.instanceGame.grid.toFind == event.instanceGame.grid.scovered){
+            event.instanceGame.context.eventManager.callEvent(WinEvent(event.upperEvent))
+            return
+        }
     }
 
     /**
@@ -141,6 +152,12 @@ class Listener : ListenerGame {
     @EventHandlerGame
     fun onPlaceFlag(event : PlaceFlagEvent){
         Log.d("Event PlaceFlag", "Piazzo bandiera")
+        //non posso mettere la bandiera in un cubo gia esplorato!
+        if(event.cube.hide == false){
+            event.instanceGame.context.eventManager.callEvent(CantFlagCubeEvent(event))
+            return
+        }
+
         if(event.cube.flag){
             event.cube.flag = false
             event.instanceGame.grid.flagged--
@@ -152,6 +169,12 @@ class Listener : ListenerGame {
         val toText = (event.instanceGame.context.gameSett?.numberOfBomb()?.minus(event.instanceGame.grid.flagged)).toString()
         gameFrag?.bomb?.text = toText
     }
+
+    @EventHandlerGame
+    fun onCantFlagCube(event : CantFlagCubeEvent){
+        Log.d("Event CantPlaceFlagCube", "non metto la bandiera")
+    }
+
 
     /**
      * Gestione evento Win

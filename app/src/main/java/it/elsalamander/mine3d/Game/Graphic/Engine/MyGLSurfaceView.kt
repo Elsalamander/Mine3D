@@ -33,6 +33,7 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
     private var mScaleDetector : ScaleGestureDetector
     private var scale : ScaleDetector
     private var touchDetector : GLCubeDetectClick
+    private val sensivity = game.settings.controlSett.sensivity.getVal().toFloat()
 
     private var oldAng = -100.0
 
@@ -81,7 +82,7 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
             if(oldAng == -100.0){
                 oldAng = newAng
             }else{
-                mRenderer.mDeltaZ += ((oldAng - newAng) * 201).toFloat()
+                mRenderer.mDeltaZ += ((oldAng - newAng) * 201).toFloat() * sensivity
                 oldAng = newAng
                 mRenderer.mTotalDeltaZ += mRenderer.mDeltaZ
                 mRenderer.mTotalDeltaZ = mRenderer.mTotalDeltaZ % 360
@@ -92,8 +93,8 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
 
             //Gestione rotazione X e Y
             if (event.action == MotionEvent.ACTION_MOVE) {
-                val deltaX = (x - mPreviousX) / 2f
-                val deltaY = (y - mPreviousY) / 2f
+                val deltaX = ((x - mPreviousX) / 2f) * sensivity
+                val deltaY = ((y - mPreviousY) / 2f) * sensivity
                 mRenderer.mDeltaX += deltaX
                 mRenderer.mDeltaY += deltaY
                 mRenderer.mTotalDeltaX += mRenderer.mDeltaX

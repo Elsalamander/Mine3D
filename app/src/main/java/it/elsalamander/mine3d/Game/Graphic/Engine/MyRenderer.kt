@@ -137,6 +137,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         val n = game.grid.N
 
         //Visita tutti i nodi e fai il render di ognuno
+        //Log.d("Renderer", "Rotazione X: $mTotalDeltaX")
+        //Log.d("Renderer", "Rotazione Y: $mTotalDeltaY")
 
         game.grid.visitLeaf {
             if (it != null) {
@@ -172,7 +174,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 }
                 //norm = sqrt(norm)
                 norm = 1f
-                for(i in 0 until 16){
+                for(i in 11 until 16){
                     str += "${tmpM[i]/norm}  "
                 }
                 //Log.d("Cubo", "coords: $str")

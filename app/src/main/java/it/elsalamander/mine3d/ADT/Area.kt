@@ -1,6 +1,6 @@
 package it.elsalamander.mine3d.ADT
 
-
+import it.elsalamander.mine3d.util.Pair
 
 /*********************************************************************
  *
@@ -75,7 +75,7 @@ class Area<T>(private val piano: Piano<T>) {
      * @return
      */
     fun remove(coords: Point): T? {
-        val tmp: Pair<Area<T>?, T>?
+        val tmp: Pair<Area<T>, T>?
 
         //controlla di che area fa parte
         val area: Area<T>? = piano.getAreaNode(coords)

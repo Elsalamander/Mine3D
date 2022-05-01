@@ -1,5 +1,7 @@
 package it.elsalamander.mine3d.ADT
 
+import it.elsalamander.mine3d.util.Pair
+
 /*********************************************************************
  *
  * Oggetto per gestire i dati, un albero con nodi da 4 figli, in più specifico

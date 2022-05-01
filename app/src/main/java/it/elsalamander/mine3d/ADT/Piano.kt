@@ -1,7 +1,7 @@
 package it.elsalamander.mine3d.ADT
 
 import it.elsalamander.mine3d.ADT.exception.NotValidPointDimension
-
+import it.elsalamander.mine3d.util.Pair
 
 /*********************************************************************
  *

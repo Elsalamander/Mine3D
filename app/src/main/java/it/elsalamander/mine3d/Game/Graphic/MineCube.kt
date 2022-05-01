@@ -38,8 +38,13 @@ class MineCube(var value : Int = 0, var hide : Boolean = true) {
      * 8 -> 8
      * 9 -> Bianco
      * 10-> Bomba
+     * 11-> Flag
      */
     fun getTextureID(): Int {
+        if(flag){
+            return 11
+        }
+
         if(hide){
             return 9
         }
@@ -48,6 +53,7 @@ class MineCube(var value : Int = 0, var hide : Boolean = true) {
         if(isBomb()){
             return 10
         }
+
         //se è scoperto e non è una bomba mostra il valore
         return value
     }

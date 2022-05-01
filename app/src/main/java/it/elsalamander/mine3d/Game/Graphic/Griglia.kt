@@ -1,9 +1,12 @@
 package it.elsalamander.mine3d.Game.Graphic
 
+import android.util.Log
 import it.elsalamander.mine3d.ADT.*
+import it.elsalamander.mine3d.util.Pair
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
 import org.json.JSONObject
 import java.security.SecureRandom
+import java.util.ArrayList
 
 
 /****************************************************************
@@ -60,6 +63,7 @@ class Griglia(var N : Int) {
                     if(x == 0 || y == 0 || z == 0 || x == N-1 || y == N-1 || z == N-1){
                         val arr = longArrayOf(x.toLong(), y.toLong(), z.toLong())
                         grid.put(Point(arr), MineCube())
+                        Log.d("Generazione foglia", "per il cubo x:$x, y:$y z:$z")
                     }
                 }
             }
@@ -91,16 +95,23 @@ class Griglia(var N : Int) {
 
                 var bPresenti : Int = 0
 
-                for(xR in -1 until 2){
-                    for(yR in -1 until 2){
-                        for(zR in -1 until 2){
-                            if(this.getCubeIn(cx+xR,cy+yR,cz+zR)?.isBomb() == true) {
-                                bPresenti++
-                            }
-                        }
+                Log.d("Valori nelle foglie", "per il cubo x:$cx, y:$cy z:$cz")
+
+                //predi la lista di quelli attorno
+                val near = this.getNear(cx, cy, cz)
+
+                Log.d("Valori nelle foglie", "Cubi vicini trovati: ${near.size} dovrebbe essere 8")
+
+                //cicla e popola
+                for(nr in near){
+                    if(nr.isBomb()){
+                        bPresenti++
                     }
                 }
+
                 cube.value = bPresenti
+                Log.d("Valori nelle foglie", "numero bombe trovate $bPresenti")
+                Log.d("Valori nelle foglie", "-------------------------------------------------------------------")
             }
         }
         this.popolated = true
@@ -122,13 +133,13 @@ class Griglia(var N : Int) {
                 }
             }
         }
-        if(countBomb > 0){
+        if(nBomb > 0){
             this.populateBomb(x,y,z,random,gameSett,nBomb)
         }
     }
 
     fun getCubeIn(x: Long, y: Long, z: Long) : MineCube?{
-        return grid[Point(longArrayOf(x, y, z))]
+        return grid.get(Point(longArrayOf(x, y, z)))
     }
 
     fun visitLeaf(function: (NodeSAH<Pair<Area<MineCube>, MineCube>?>?) -> Unit) {
@@ -184,6 +195,33 @@ class Griglia(var N : Int) {
         //      - se il valore è 0 continua
         //      - se il valore è diverso da 0 fermati
         // - scoprilo
+        val near = this.getNearPair(x,y,z)
+        val coord = LongArray(3)
+        coord[0] = x
+        coord[0] = y
+        coord[0] = z
+        val centre : MineCube = this.getCubeIn(x,y,z)!!
+        near.add(Pair(coord, centre))
+
+        for(curr in near){
+            if(curr.second.hide){
+                //controlla se ha la bandiera
+                if(curr.second.flag){
+                    //non scoprire e non propagare
+                    continue
+                }
+
+                //scopri
+                curr.second.hide = false
+
+                //incrementa il numero di cubi scoperti
+                this.scovered++
+                if(curr.second.value == 0) {
+                    this.multiRevealFrom(curr.first[0],curr.first[1],curr.first[2])
+                }
+            }
+        }
+        /*
         for(xR in -1 until 2){
             for(yR in -1 until 2){
                 for(zR in -1 until 2){
@@ -205,13 +243,121 @@ class Griglia(var N : Int) {
                 }
             }
         }
+        */
     }
 
+    /**
+     * Resetta la griglia attuale
+     */
     fun resetGrid() {
         this.scovered = 0
         this.flagged = 0
         this.popolated = false
         this.grid.removeAll()
+    }
+
+    /**
+     * Ritorna i otto cubi vicini secondo le regole del gioco
+     */
+    private fun getNearPair(x : Long, y : Long, z : Long) : ArrayList<Pair<LongArray,MineCube>>{
+        val arr = ArrayList<Pair<LongArray,MineCube>>()
+
+        //prendo tutti quelli attorno di raggio 1 cubo
+        //poi filtro il risultato con quelli che mi interessano.
+        for(xR in -1 until 2){
+            for(yR in -1 until 2){
+                for(zR in -1 until 2){
+                    val nx = x+xR.toLong()
+                    val ny = y+yR.toLong()
+                    val nz = z+zR.toLong()
+                    val coords = LongArray(3)
+                    coords[0] = nx
+                    coords[1] = ny
+                    coords[2] = nz
+                    if(nx == x && ny == y && nz == z){
+                        continue
+                    }
+                    this.getCubeIn(nx,ny,nz)?.let { arr.add(Pair(coords, it)) }
+                }
+            }
+        }
+        //ora filtra il risultato
+        val filt = ArrayList<Pair<LongArray,MineCube>>()
+
+        //devo aggiungere i cubi che hanno almeno 1 coordinata in comune
+        //se fa parte del telaio
+        val nX = LongArray(3)  //numeri di cubi nello stesso asse x
+        val nY = LongArray(3)  //numeri di cubi nello stesso asse y
+        val nZ = LongArray(3)  //numeri di cubi nello stesso asse z
+        for(curr in arr){
+            if(curr.first[0] == x){
+                filt.add(curr)
+                nX[(1+curr.first[0]-x).toInt()] = nX[(1+curr.first[0]-x).toInt()]+1
+            }else if(curr.first[2] == z){
+                filt.add(curr)
+                nZ[(1+curr.first[2]-z).toInt()] = nZ[(1+curr.first[2]-z).toInt()]+1
+            }else if(curr.first[1] == y){
+                filt.add(curr)
+                nY[(1+curr.first[1]-y).toInt()] = nY[(1+curr.first[1]-y).toInt()]+1
+            }
+        }
+
+        //controllo se sono 7 o 9
+        if(filt.size > 8){
+            //devo ulteriormente filtrare un caso
+            //per poterlo fare uso l'asse più usato
+            val maxX = nX.maxOrNull()
+            val maxY = nY.maxOrNull()
+            val maxZ = nZ.maxOrNull()
+            if (maxX != null && maxY != null && maxZ != null) {
+                if(maxX > maxY && maxX > maxZ){
+                    //la X è la più usata, elimina tutti quelli che hanno una X diversa
+                    var id = 0
+                    while(id < filt.size){
+                        if(filt[id].first[0] != x){
+                            filt.removeAt(id)
+                        }else{
+                            id++
+                        }
+                    }
+                }
+                if(maxX < maxY && maxY > maxZ){
+                    //la Y è la più usata, elimina tutti quelli che hanno una Y diversa
+                    var id = 0
+                    while(id < filt.size){
+                        if(filt[id].first[1] != y){
+                            filt.removeAt(id)
+                        }else{
+                            id++
+                        }
+                    }
+                }
+                if(maxX < maxZ && maxY < maxZ){
+                    //la Z è la più usata, elimina tutti quelli che hanno una Z diversa
+                    var id = 0
+                    while(id < filt.size){
+                        if(filt[id].first[2] != z){
+                            filt.removeAt(id)
+                        }else{
+                            id++
+                        }
+                    }
+                }
+            }
+        }
+        return filt
+    }
+
+    private fun getNear(x : Long, y : Long, z : Long) : ArrayList<MineCube> {
+        val pairNear = this.getNearPair(x,y,z)
+        val filtered = ArrayList<MineCube>()
+        for(curr in pairNear){
+            if(curr.first[0] == x && curr.first[1] == y && curr.first[2] == z){
+                continue
+            }
+            filtered.add(curr.second)
+        }
+        return filtered
     }
 
 }

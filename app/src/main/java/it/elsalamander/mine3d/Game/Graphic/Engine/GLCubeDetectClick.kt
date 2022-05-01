@@ -187,7 +187,7 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
         //visita tutti i nodi per scoprire quale cubo si trova alle coordinate passate
         game.grid.visitLeaf {
             if(larghezza == 0f){
-                larghezza = kotlin.math.abs(it?.getVal()?.second?.larghezza ?: 0f)
+                larghezza = kotlin.math.abs(it?.getVal()?.second?.larghezza ?: 0f) * 2
             }
             xM = it?.getVal()?.second?.xRend ?: 0f
             yM = it?.getVal()?.second?.yRend ?: 0f

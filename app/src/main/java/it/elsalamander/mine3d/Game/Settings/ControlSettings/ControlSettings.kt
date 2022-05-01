@@ -4,6 +4,7 @@ import android.app.Activity
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.Flag.FlagSetting
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.HoldTimer.HoldTimer
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.Reveal.RevealSetting
+import it.elsalamander.mine3d.Game.Settings.ControlSettings.Sensivity.Sensivity
 import it.elsalamander.mine3d.Game.Settings.GenericSettings
 import org.json.JSONException
 import org.json.JSONObject
@@ -21,6 +22,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
     var reveal_sx_dx = RevealSetting(context)
     var flag_sx_dx   = FlagSetting(context)
     var holdTimer    = HoldTimer(context)
+    var sensivity    = Sensivity(context)
 
     companion object{
         private var pathSettings : String = "Settings.json"
