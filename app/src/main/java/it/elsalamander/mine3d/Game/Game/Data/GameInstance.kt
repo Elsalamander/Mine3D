@@ -36,9 +36,7 @@ import java.io.*
  ****************************************************************/
 class GameInstance(var context: Game) {
 
-    var settings : JSONManager = JSONManager(context)                           //settings
     var grid : Griglia = Griglia(context.gameSett?.n ?: 5)                   //griglia di gioco
-    var media = SoundMedia(this)
 
 
     companion object{
@@ -49,6 +47,7 @@ class GameInstance(var context: Game) {
      * Questo oggetto viene creato quando la partita deve iniziare -> Chiama evento StartGame
      */
     init{
+        this.context.gameInstance = this
         this.context.eventManager.callEvent(GameStart(this))
     }
 
@@ -96,7 +95,8 @@ class GameInstance(var context: Game) {
      * Crea l'istanza per il prossimo Game
      */
     fun getNextInstance() : GameInstance{
-        return GameInstance(context)
+        val nextInstance = GameInstance(context)
+        return nextInstance
     }
 
     /**

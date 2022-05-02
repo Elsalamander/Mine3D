@@ -38,7 +38,7 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_settings">Impostazioni</string>
-    <string name="menu_game_base">Standard Game</string>
+    <string name="menu_game_base">Standard</string>
     <string name="settings_contro_reveal_title">Rivela</string>
     <string name="settings_contro_flag_title">Metti bandiera</string>
     <string name="build_game_sett_title">Custom Game</string>
@@ -58,5 +58,13 @@
     <string name="fragment_end_default_text">GameOver</string>
     <string name="fragment_game_timer_default">00:00</string>
     <string name="fragment_game_bomb_default">0</string>
+    <string name="menu_game_custom">Custom</string>
+    <string name="menu_game_reasum">Riprendi</string>
+    <string name="standard_5_easy">5-Easy</string>
+    <string name="standard_5_medium">5-medium</string>
+    <string name="standard_5_hard">5-hard</string>
+    <string name="standard_7_hard">7-Hard</string>
+    <string name="standard_7_medium">7-Medium</string>
+    <string name="standard_7_easy">7-Easy</string>
 
 </resources>

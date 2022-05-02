@@ -31,8 +31,14 @@ class MenuFragment : Fragment() {
             view.findNavController().navigate(R.id.action_menu_to_settings)
         }
 
-        val gameButton = view.findViewById<Button>(R.id.game)
-        gameButton.setOnClickListener {
+        val gameButton = view.findViewById<Button>(R.id.game_standard)
+        gameButton.setOnClickListener{
+            //apri il fragment di selezione game
+            view.findNavController().navigate(R.id.action_menu_to_standard_game)
+        }
+
+        val gameCustomButton = view.findViewById<Button>(R.id.game_custom)
+        gameCustomButton.setOnClickListener {
             //crea un Intent
             val myIntent : Intent = Intent(view.context, Game::class.java)
 

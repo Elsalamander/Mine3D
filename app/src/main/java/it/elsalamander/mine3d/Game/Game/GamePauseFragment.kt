@@ -10,6 +10,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
+import it.elsalamander.mine3d.Game.Event.Set.QuitGameEvent
 import it.elsalamander.mine3d.MainActivity
 import it.elsalamander.mine3d.R
 
@@ -47,6 +49,9 @@ class GamePauseFragment : Fragment() {
             //termina l'activity
             //game.finish()
             (game as Activity).finish()
+
+            game.gameInstance?.let { it1 -> QuitGameEvent(it1) }
+                ?.let { it2 -> game.eventManager.callEvent(it2) }
         }
 
         return view

@@ -53,7 +53,7 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
     private var timer : Long = 0  //timer, inizia a contare quando ho iniziato a premere
     private val holdTimer : Double  //valore da aspettare
         get() {
-            return game.settings.controlSett.holdTimer.getVal() * 1000
+            return game.context.settings.controlSett.holdTimer.getVal() * 1000
         }
 
 
@@ -119,10 +119,10 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
                     val coords = pair.first
 
                     //ci sono 2 casi
-                    if(game.settings.controlSett.flag_sx_dx.getVal() == TypeTouch.Hold){
+                    if(game.context.settings.controlSett.flag_sx_dx.getVal() == TypeTouch.Hold){
                         game.context.eventManager.callEvent(PlaceFlagEvent(game, coords[0], coords[1], coords[2], cube))
                     }
-                    if(game.settings.controlSett.reveal_sx_dx.getVal() == TypeTouch.Hold){
+                    if(game.context.settings.controlSett.reveal_sx_dx.getVal() == TypeTouch.Hold){
                         game.context.eventManager.callEvent(RevealCubeEvent(game, coords[0], coords[1], coords[2], cube))
                     }
                 }else{
@@ -146,10 +146,10 @@ class GLCubeDetectClick(var game: GameInstance) : View.OnTouchListener {
                     val coords = pair.first
 
                     //ci sono 2 casi
-                    if(game.settings.controlSett.flag_sx_dx.getVal() == TypeTouch.Tap){
+                    if(game.context.settings.controlSett.flag_sx_dx.getVal() == TypeTouch.Tap){
                         game.context.eventManager.callEvent(PlaceFlagEvent(game, coords[0], coords[1], coords[2], cube))
                     }
-                    if(game.settings.controlSett.reveal_sx_dx.getVal() == TypeTouch.Tap){
+                    if(game.context.settings.controlSett.reveal_sx_dx.getVal() == TypeTouch.Tap){
                         game.context.eventManager.callEvent(RevealCubeEvent(game, coords[0], coords[1], coords[2], cube))
                     }
                 }else{

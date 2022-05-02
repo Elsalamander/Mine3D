@@ -1,7 +1,7 @@
 package it.elsalamander.mine3d.Game.Media
 
 import android.media.MediaPlayer
-import it.elsalamander.mine3d.Game.Game.Data.GameInstance
+import it.elsalamander.mine3d.Game.Game.Game
 import it.elsalamander.mine3d.Game.Media.Event.Listener.MediaListener
 import it.elsalamander.mine3d.Game.Media.Event.Set.EndSongEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.StartSongEvent
@@ -17,24 +17,25 @@ import it.elsalamander.mine3d.R
  * @data: 28 aprile 2021
  * @version: v1.0
  ****************************************************************/
-class SoundMedia(var game : GameInstance) {
+class SoundMedia(var game : Game) {
 
     private val options = game.settings
     private val songs = arrayOf(
-        MediaPlayer.create(game.context, R.raw.song1),
-        MediaPlayer.create(game.context, R.raw.song2)
+        MediaPlayer.create(game, R.raw.song1),
+        MediaPlayer.create(game, R.raw.song2)
     )
 
     private var state = -1 //stato: -1 non riproduce, 0: riproduce A, 1: riproduce B
 
     init{
         //configuro l'eventManager con i nuovi eventi
-        game.context.eventManager.registerEvent(MediaListener())
+        //game.eventManager.registerEvent(MediaListener())
 
         //setto l'evento da lancare quando una musica finisce
         for(song in songs){
             song.setOnCompletionListener {
-                game.context.eventManager.callEvent(EndSongEvent(game,state))
+                game.gameInstance?.let { it1 -> EndSongEvent(it1,state) }
+                    ?.let { it2 -> game.eventManager.callEvent(it2) }
             }
         }
     }
@@ -43,7 +44,7 @@ class SoundMedia(var game : GameInstance) {
      * Ritorna il volume da mettere alla musica
      */
     fun getVolume() : Float {
-        return options.baseSett.musicLevel.getVal()/100f
+        return options.baseSett.musicLevel.getVal().div(100f)
     }
 
     /**
@@ -60,7 +61,7 @@ class SoundMedia(var game : GameInstance) {
             state = 0
         }
 
-        game.context.eventManager.callEvent(StartSongEvent(game,state))
+        game.eventManager.callEvent(StartSongEvent(game.gameInstance!!, state))
     }
 
     /**

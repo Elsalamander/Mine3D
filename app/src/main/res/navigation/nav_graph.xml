@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_menu_to_settings"
             app:destination="@id/settings" />
+
+        <action
+            android:id="@+id/action_menu_to_standard_game"
+            app:destination="@id/selection_game"/>
     </fragment>
 
     <fragment
@@ -36,6 +40,13 @@
         <action
             android:id="@+id/action_control_to_settings"
             app:destination="@id/settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selection_game"
+        android:name="it.elsalamander.mine3d.StandardGameFragment"
+        android:label="fragment_selection_game"
+        tools:layout="@layout/fragment_standard_game_list" >
     </fragment>
 
 </navigation>

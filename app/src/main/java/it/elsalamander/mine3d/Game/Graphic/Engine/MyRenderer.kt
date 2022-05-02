@@ -77,7 +77,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         Matrix.setIdentityM(mAccumulatedRotation, 0)
 
         //crea il programma e carica le texture
-        val theme = game.settings.baseSett.theme.getVal()
+        val theme = game.context.settings.baseSett.theme.getVal()
         val r = theme.red.toFloat()
         val g = theme.green.toFloat()
         val b = theme.blue.toFloat()
@@ -167,16 +167,16 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.zRend = tmpM[14]
                 myCube?.dist  = tmpM[15]
 
-                var str = ""
-                var norm = 0f
-                for(i in 0 until 16){
-                    norm += tmpM[i] * tmpM[i]
-                }
+                //var str = ""
+                //var norm = 0f
+                //for(i in 0 until 16){
+                    //norm += tmpM[i] * tmpM[i]
+                //}
                 //norm = sqrt(norm)
-                norm = 1f
-                for(i in 11 until 16){
-                    str += "${tmpM[i]/norm}  "
-                }
+                //norm = 1f
+                //for(i in 11 until 16){
+                    //str += "${tmpM[i]/norm}  "
+                //}
                 //Log.d("Cubo", "coords: $str")
 
                 //disegna il cubo

@@ -46,7 +46,7 @@ class GameFragment : Fragment() {
         activity.gameInstance = GameInstance(activity)
         activity.gameFragment = this
 
-        val settings = activity.gameInstance!!.settings
+        val settings = activity.settings
 
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
@@ -81,4 +81,5 @@ class GameFragment : Fragment() {
 
         return view
     }
+
 }

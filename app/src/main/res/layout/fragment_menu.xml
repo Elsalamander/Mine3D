@@ -5,20 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/sett"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_top_guideline"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/menu_settings"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_bot_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
     <Button
-        android:id="@+id/game"
-        android:layout_width="0dp"
+        android:id="@+id/game_standard"
+        android:layout_width="145sp"
         android:layout_height="wrap_content"
         android:text="@string/menu_game_base"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/sett"
-        />
+        app:layout_constraintTop_toTopOf="@id/menu_top_guideline"
+        app:layout_constraintLeft_toRightOf="@id/menu_left_guideline" />
+
+    <Button
+        android:id="@+id/game_custom"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_game_custom"
+        app:layout_constraintTop_toTopOf="@id/menu_top_guideline"
+        app:layout_constraintRight_toRightOf="@id/menu_right_guideline" />
+
+    <Button
+        android:id="@+id/game_reasum"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_game_reasum"
+        app:layout_constraintBottom_toTopOf="@id/menu_bot_guideline"
+        app:layout_constraintLeft_toRightOf="@id/menu_left_guideline"  />
+
+    <Button
+        android:id="@+id/sett"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_settings"
+        app:layout_constraintBottom_toTopOf="@id/menu_bot_guideline"
+        app:layout_constraintRight_toLeftOf="@id/menu_right_guideline" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

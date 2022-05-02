@@ -26,10 +26,8 @@ class MediaListener : ListenerGame {
     @EventHandlerGame(EventPriority.LOW, true)
     fun onStartGame(event : GameStart){
         //avvia la musica
-        Log.d("Music", "PlayStartGame")
-        if(event.instanceGame.media.getCurrentSong() == null){
-            Log.d("Music", "PlayStartGame avvia nuova canzone")
-            event.instanceGame.media.playSong()
+        if(event.instanceGame.context.media.getCurrentSong() == null){
+            event.instanceGame.context.media.playSong()
         }
     }
 

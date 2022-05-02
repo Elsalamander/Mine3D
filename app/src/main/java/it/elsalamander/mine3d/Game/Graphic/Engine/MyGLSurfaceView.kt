@@ -33,7 +33,7 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
     private var mScaleDetector : ScaleGestureDetector
     private var scale : ScaleDetector
     private var touchDetector : GLCubeDetectClick
-    private val sensivity = game.settings.controlSett.sensivity.getVal().toFloat()
+    private val sensivity = game.context.settings.controlSett.sensivity.getVal().toFloat()
 
     private var oldAng = -100.0
 

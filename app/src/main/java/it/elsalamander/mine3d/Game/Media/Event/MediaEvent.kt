@@ -14,6 +14,6 @@ import it.elsalamander.mine3d.Game.Media.SoundMedia
 abstract class MediaEvent(game : GameInstance) : EventGame(game){
     val songManager : SoundMedia
         get() {
-            return super.instanceGame.media
+            return super.instanceGame.context.media
         }
 }

@@ -9,6 +9,9 @@ import it.elsalamander.mine3d.Game.Event.Manager.EventManager
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.StandardGameSett
+import it.elsalamander.mine3d.Game.Media.Event.Listener.MediaListener
+import it.elsalamander.mine3d.Game.Media.SoundMedia
+import it.elsalamander.mine3d.Game.Settings.JSONManager
 import it.elsalamander.mine3d.R
 
 
@@ -40,6 +43,8 @@ class Game() : AppCompatActivity(){
     var gameSett : GameSett? = null
     var eventManager = EventManager
     var gameFragment: GameFragment? = null
+    lateinit var settings : JSONManager
+    lateinit var media : SoundMedia
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,22 +72,25 @@ class Game() : AppCompatActivity(){
         }
 
         navController.graph = graph
+
+        settings = JSONManager(this)
+        media = SoundMedia(this)
+        eventManager.registerEvent(MediaListener())
     }
 
     override fun onPause() {
         super.onPause()
-        gameInstance?.media?.pause()
+        media.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        gameInstance?.media?.reasume()
+        media.reasume()
     }
 
     override fun onStop() {
         super.onStop()
-        gameInstance?.media?.stop()
-        gameInstance?.media?.stop()
+        media.stop()
         eventManager.unRegisterAll()
     }
 }

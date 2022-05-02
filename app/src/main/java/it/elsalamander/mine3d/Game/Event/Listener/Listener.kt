@@ -105,17 +105,6 @@ class Listener : ListenerGame {
                                          event.upperEvent.z,
                                          event.instanceGame.context.gameSett)
 
-        //mostro la popolazione al debugger
-        /*
-        event.instanceGame.grid.visitLeaf {
-            val x = it?.getPoint()?.getAxisValue(0)
-            val y = it?.getPoint()?.getAxisValue(1)
-            val z = it?.getPoint()?.getAxisValue(2)
-            val value = it?.getVal()?.second?.value
-            Log.d("Valori nelle foglie", "x:$x , y:$y , z:$z , value:$value")
-        }
-        */
-
         //ora che ho popolato devo scoprire che cosa ho voluto scoprire xD
         //rilancio l'evento correlato, ovvero "RevealCubeEvent"
         event.instanceGame.context.eventManager.callEvent(event.upperEvent)
@@ -191,6 +180,15 @@ class Listener : ListenerGame {
     @EventHandlerGame
     fun onGameOver(event : GameOverEvent){
         event.instanceGame.Finish(false)
+    }
+
+    /**
+     * Gestisco l'evento nel caso si quitta dal gioco
+     */
+    @EventHandlerGame
+    fun onQuitGame(event : QuitGameEvent){
+        //ferma la musica
+        event.instanceGame.context.media.stop()
     }
 
 }

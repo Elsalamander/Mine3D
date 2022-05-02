@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_bot_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/menu_right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+
+
+    <Button
+        android:id="@+id/game_standard_5_easy"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/standard_5_easy"
+        app:layout_constraintTop_toTopOf="@id/menu_top_guideline"
+        app:layout_constraintLeft_toRightOf="@id/menu_left_guideline"
+        app:layout_constraintBottom_toTopOf="@id/game_standard_5_medium"/>
+
+    <Button
+        android:id="@+id/game_standard_5_medium"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/standard_5_medium"
+        app:layout_constraintTop_toBottomOf="@id/game_standard_5_easy"
+        app:layout_constraintLeft_toRightOf="@id/menu_left_guideline"
+        app:layout_constraintBottom_toTopOf="@id/game_standard_5_hard"/>
+
+    <Button
+        android:id="@+id/game_standard_5_hard"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/standard_5_hard"
+        app:layout_constraintTop_toBottomOf="@id/game_standard_5_medium"
+        app:layout_constraintLeft_toRightOf="@id/menu_left_guideline"
+        app:layout_constraintBottom_toTopOf="@id/menu_bot_guideline"/>
+
+
+
+    <Button
+        android:id="@+id/game_standard_7_easy"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/standard_7_easy"
+        app:layout_constraintTop_toTopOf="@id/menu_top_guideline"
+        app:layout_constraintRight_toLeftOf="@id/menu_right_guideline"
+        app:layout_constraintBottom_toTopOf="@id/game_standard_7_medium"/>
+
+    <Button
+        android:id="@+id/game_standard_7_medium"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/standard_7_medium"
+        app:layout_constraintTop_toBottomOf="@id/game_standard_7_easy"
+        app:layout_constraintRight_toLeftOf="@id/menu_right_guideline"
+        app:layout_constraintBottom_toTopOf="@id/game_standard_7_hard"/>
+
+    <Button
+        android:id="@+id/game_standard_7_hard"
+        android:layout_width="145sp"
+        android:layout_height="wrap_content"
+        android:text="@string/standard_7_hard"
+        app:layout_constraintTop_toBottomOf="@id/game_standard_7_medium"
+        app:layout_constraintRight_toLeftOf="@id/menu_right_guideline"
+        app:layout_constraintBottom_toTopOf="@id/menu_bot_guideline"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
