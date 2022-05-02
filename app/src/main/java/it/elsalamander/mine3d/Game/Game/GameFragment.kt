@@ -54,6 +54,9 @@ class GameFragment : Fragment() {
             bomb             = view.findViewById(R.id.fragment_game_bomb)
         val pause : ImageButton = view.findViewById(R.id.fragment_game_pause_button)
         val chrono: Chronometer = view.findViewById(R.id.fragment_game_timer_chrono)
+        val mySurface : MyGLSurfaceView = view.findViewById(R.id.glSurfaceViewID)
+
+        mySurface.setMyRenderer()
 
         timer.visibility = if(settings.baseSett.showTimer.getVal()){
             View.VISIBLE

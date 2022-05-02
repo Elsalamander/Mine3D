@@ -40,8 +40,8 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
     init{
         setEGLContextClientVersion(2)
         mRenderer = MyRenderer(game)
-        setRenderer(mRenderer)
-        renderMode = RENDERMODE_WHEN_DIRTY
+        //setRenderer(mRenderer)  //da spostare in una funzione dopo la creazione dell'activity
+
 
         scale = ScaleDetector(this)
         mScaleDetector = ScaleGestureDetector(context, scale)
@@ -116,5 +116,10 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
 
         //ritorna true perchè ho gestito l'evento
         return true
+    }
+
+    fun setMyRenderer() {
+        setRenderer(mRenderer)
+        renderMode = RENDERMODE_WHEN_DIRTY
     }
 }

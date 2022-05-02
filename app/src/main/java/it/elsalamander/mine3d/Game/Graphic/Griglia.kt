@@ -132,8 +132,8 @@ class Griglia(var N : Int) {
         }
     }
 
-    fun getCubeIn(x: Long, y: Long, z: Long) : MineCube?{
-        return grid.get(Point(longArrayOf(x, y, z)))
+    private fun getCubeIn(x: Long, y: Long, z: Long) : MineCube?{
+        return grid[Point(longArrayOf(x, y, z))]
     }
 
     fun visitLeaf(function: (NodeSAH<Pair<Area<MineCube>, MineCube>?>?) -> Unit) {
