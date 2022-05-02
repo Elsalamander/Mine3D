@@ -1,6 +1,5 @@
 package it.elsalamander.mine3d.Game.Graphic
 
-import android.util.Log
 import it.elsalamander.mine3d.ADT.*
 import it.elsalamander.mine3d.util.Pair
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
@@ -41,7 +40,7 @@ import java.util.ArrayList
  *
  * @author: Elsalamander
  * @data: 15 aprile 2021
- * @version: v1.0
+ * @version: v2.0
  ****************************************************************/
 class Griglia(var N : Int) {
 
@@ -53,7 +52,7 @@ class Griglia(var N : Int) {
     var scovered  : Int = 0
     var flagged   : Int = 0
 
-    val toFind : Int = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
+    var toFind : Int = (N*N*2 + N*(N-2)*2 + (N-2)*(N-2)*2)
 
     init{
         //metti nel volume "grid" tutti i cubi
@@ -63,7 +62,6 @@ class Griglia(var N : Int) {
                     if(x == 0 || y == 0 || z == 0 || x == N-1 || y == N-1 || z == N-1){
                         val arr = longArrayOf(x.toLong(), y.toLong(), z.toLong())
                         grid.put(Point(arr), MineCube())
-                        Log.d("Generazione foglia", "per il cubo x:$x, y:$y z:$z")
                     }
                 }
             }
@@ -79,6 +77,8 @@ class Griglia(var N : Int) {
         val random = SecureRandom()
         val countBomb = gameSett!!.numberOfBomb()
 
+        toFind -= countBomb
+
         //popola prima con le bombe
         this.populateBomb(x,y,z,random,gameSett,countBomb)
 
@@ -93,14 +93,10 @@ class Griglia(var N : Int) {
                 val cy = it.getPoint().getAxisValue(1)
                 val cz = it.getPoint().getAxisValue(2)
 
-                var bPresenti : Int = 0
-
-                Log.d("Valori nelle foglie", "per il cubo x:$cx, y:$cy z:$cz")
+                var bPresenti = 0
 
                 //predi la lista di quelli attorno
                 val near = this.getNear(cx, cy, cz)
-
-                Log.d("Valori nelle foglie", "Cubi vicini trovati: ${near.size} dovrebbe essere 8")
 
                 //cicla e popola
                 for(nr in near){
@@ -110,8 +106,6 @@ class Griglia(var N : Int) {
                 }
 
                 cube.value = bPresenti
-                Log.d("Valori nelle foglie", "numero bombe trovate $bPresenti")
-                Log.d("Valori nelle foglie", "-------------------------------------------------------------------")
             }
         }
         this.popolated = true
@@ -221,29 +215,6 @@ class Griglia(var N : Int) {
                 }
             }
         }
-        /*
-        for(xR in -1 until 2){
-            for(yR in -1 until 2){
-                for(zR in -1 until 2){
-                    val cube = this.getCubeIn(x+xR,y+yR,z+zR)
-                    if(cube?.hide == true){
-                        //controlla se ha la bandiera
-                        if(cube.flag){
-                            //non scoprire e non propagare
-                            continue
-                        }
-                        cube.hide = false
-
-                        //incrementa il numero di cubi scoperti
-                        this.scovered++
-                        if(cube.value == 0) {
-                            this.multiRevealFrom(x+xR,y+yR,z+zR)
-                        }
-                    }
-                }
-            }
-        }
-        */
     }
 
     /**
