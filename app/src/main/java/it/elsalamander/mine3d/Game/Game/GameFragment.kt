@@ -94,7 +94,7 @@ class GameFragment : Fragment() {
         val activity = this.activity as Game
 
         //chiama la funzione pausa della istanza di gioco
-        activity.gameInstance?.let {activity.eventManager.callEvent( PausedGameEvent(it))}
+        activity.gameInstance?.let {activity.eventManager.callEvent(PausedGameEvent(it))}
     }
 
 }

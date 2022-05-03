@@ -37,6 +37,7 @@ class Game() : AppCompatActivity(){
 
     companion object{
         const val TAG_INTENT_GAME_TYPE = "GameType"
+        const val TAG_INTENT_GAME_RECUPERA = "Recupera"
     }
 
     var gameInstance : GameInstance? = null
@@ -56,7 +57,7 @@ class Game() : AppCompatActivity(){
         //prendi il gameSett tramite la stringa passata tramite intent
         val typeGame = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it) }
 
-        if(typeGame == StandardGameSett.GAME_LOAD){
+        if(typeGame == StandardGameSett.GAME_LOAD || (intent.getBooleanExtra(TAG_INTENT_GAME_RECUPERA,false))){
             //carica il gioco
             gameInstance = GameInstance(this, true)
         }else{
@@ -88,6 +89,9 @@ class Game() : AppCompatActivity(){
     override fun onPause() {
         super.onPause()
         media.pause()
+
+        //quando viene messo in pausa per rotazione
+        intent.putExtra(TAG_INTENT_GAME_RECUPERA, true)
     }
 
     override fun onResume() {

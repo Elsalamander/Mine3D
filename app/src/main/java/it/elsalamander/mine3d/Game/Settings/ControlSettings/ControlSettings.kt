@@ -70,9 +70,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
         this.reveal_sx_dx.load(json)
         this.flag_sx_dx.load(json)
         this.holdTimer.load(json)
-        //...
-
-
+        this.sensivity.load(json)
     }
 
     /**
@@ -82,8 +80,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
         this.reveal_sx_dx.save(json)
         this.flag_sx_dx.save(json)
         this.holdTimer.save(json)
-        //...
-
+        this.sensivity.save(json)
 
         val userString: String = json.toString()
         val file = File(context.filesDir, pathSettings)

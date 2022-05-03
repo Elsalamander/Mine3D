@@ -47,6 +47,8 @@ class ControlSettingsFragment : Fragment() {
         //imposta i valori recuperati
         reveal_text.text = sett.reveal_sx_dx.getVal().toString()
         flag_text.text = sett.flag_sx_dx.getVal().toString()
+        sensivity.progress = (sett.sensivity.getVal()*100).toInt()
+        hold_time.progress = (sett.holdTimer.getVal()*100).toInt()
 
 
         //imposta gli eventi
