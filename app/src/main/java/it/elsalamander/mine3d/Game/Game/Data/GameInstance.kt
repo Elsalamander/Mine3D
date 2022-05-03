@@ -1,16 +1,13 @@
 package it.elsalamander.mine3d.Game.Game.Data
 
 import android.os.Bundle
-import androidx.navigation.findNavController
+import android.util.Log
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import it.elsalamander.mine3d.Game.Event.Set.GameStart
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.GameSett
 import it.elsalamander.mine3d.Game.Game.Game
-import it.elsalamander.mine3d.Game.Graphic.Engine.MyGLSurfaceView
 import it.elsalamander.mine3d.Game.Graphic.Griglia
-import it.elsalamander.mine3d.Game.Media.SoundMedia
-import it.elsalamander.mine3d.Game.Settings.JSONManager
 import it.elsalamander.mine3d.R
 import org.json.JSONException
 import org.json.JSONObject
@@ -65,9 +62,6 @@ class GameInstance(var context: Game) {
     fun Pause(){
         //salva lo stato corrente
         this.saveState()
-
-        //naviga alla schermata di pausa
-        context.findNavController(R.id.nav_host_fragment_game).navigate(R.id.action_game_to_pause)
     }
 
     /**
@@ -95,20 +89,20 @@ class GameInstance(var context: Game) {
      * Crea l'istanza per il prossimo Game
      */
     fun getNextInstance() : GameInstance{
-        val nextInstance = GameInstance(context)
-        return nextInstance
+        context.gameSett = context.gameSett?.getNextGameSett()
+        return GameInstance(context)
     }
 
     /**
      * Salva il GameCorrente
      */
-    fun saveState(){
+    private fun saveState(){
         val json = this.getJSON()
         context.gameSett?.save(json)
         this.grid.save(json)
 
         val userString: String = json.toString()
-        val file = File(context.filesDir, GameInstance.pathSettings)
+        val file = File(context.filesDir, pathSettings)
         val fileWriter = FileWriter(file)
         val bufferedWriter = BufferedWriter(fileWriter)
         bufferedWriter.write(userString)
@@ -129,7 +123,7 @@ class GameInstance(var context: Game) {
      * Se non esiste crea un file vuoto.
      */
     private fun getJSON(): JSONObject {
-        val file = File(context.filesDir, GameInstance.pathSettings)
+        val file = File(context.filesDir, pathSettings)
         if(!file.exists()){
             //il file non esiste
             file.createNewFile()
@@ -146,8 +140,7 @@ class GameInstance(var context: Game) {
         return try{
             JSONObject(stringBuilder.toString())
         }catch (e : JSONException){
-            val json = JSONObject()
-            json
+            JSONObject()
         }
     }
 

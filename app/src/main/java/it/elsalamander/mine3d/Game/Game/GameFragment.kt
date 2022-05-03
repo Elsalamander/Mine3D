@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import it.elsalamander.mine3d.Game.Event.Set.PausedGameEvent
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Graphic.Engine.MyGLSurfaceView
 import it.elsalamander.mine3d.Game.Graphic.OtherView.CountUpTimer
@@ -30,6 +31,8 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = this.activity as Game
+
         //crea una intercetta dell'evento di quando si preme il tasto "Back" per navigare la
         //schermata nel fragment PAUSA
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
@@ -43,7 +46,11 @@ class GameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val activity = this.activity as Game
-        activity.gameInstance = GameInstance(activity)
+
+        //se non ho già l'istanza di gioco creala
+        if(activity.gameInstance == null){
+            activity.gameInstance = GameInstance(activity)
+        }
         activity.gameFragment = this
 
         val settings = activity.settings
@@ -80,6 +87,14 @@ class GameFragment : Fragment() {
         chrono.start()
 
         return view
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val activity = this.activity as Game
+
+        //chiama la funzione pausa della istanza di gioco
+        activity.gameInstance?.let {activity.eventManager.callEvent( PausedGameEvent(it))}
     }
 
 }

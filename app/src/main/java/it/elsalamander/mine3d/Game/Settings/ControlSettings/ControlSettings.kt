@@ -40,7 +40,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
      * Prendi il file JSON
      */
     override fun getJSON(): JSONObject {
-        val file = File(context.filesDir, ControlSettings.pathSettings)
+        val file = File(context.filesDir, pathSettings)
         if(!file.exists()){
             //il file non esiste
             file.createNewFile()
@@ -54,12 +54,12 @@ class ControlSettings(var context : Activity) : GenericSettings {
             line = bufferedReader.readLine()
         }
         bufferedReader.close()
-        try{
-            return JSONObject(stringBuilder.toString())
+        return try{
+            JSONObject(stringBuilder.toString())
         }catch (e : JSONException){
             val json = JSONObject()
             this.save(json)
-            return json
+            json
         }
     }
 
@@ -86,7 +86,7 @@ class ControlSettings(var context : Activity) : GenericSettings {
 
 
         val userString: String = json.toString()
-        val file = File(context.filesDir, ControlSettings.pathSettings)
+        val file = File(context.filesDir, pathSettings)
         val fileWriter = FileWriter(file)
         val bufferedWriter = BufferedWriter(fileWriter)
         bufferedWriter.write(userString)

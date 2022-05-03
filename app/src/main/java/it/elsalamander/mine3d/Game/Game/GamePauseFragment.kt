@@ -35,6 +35,7 @@ class GamePauseFragment : Fragment() {
         goToGame.setOnClickListener {
             val navHost = game.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_game) as NavHostFragment
             navHost.findNavController().navigate(R.id.action_game_pause_to_game)
+            game.gameInstance?.Reasume()
         }
 
         //se clicco di andare al menu, lancia l'activity per andare al menu, e uccidi questa

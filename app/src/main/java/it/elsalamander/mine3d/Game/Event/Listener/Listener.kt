@@ -191,4 +191,8 @@ class Listener : ListenerGame {
         event.instanceGame.context.media.stop()
     }
 
+    @EventHandlerGame
+    fun onPausedGame(event : PausedGameEvent){
+        event.instanceGame.Pause()
+    }
 }

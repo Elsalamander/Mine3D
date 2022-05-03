@@ -16,7 +16,7 @@ import org.json.JSONObject
 data class GameSett(var n: Int, var bomb: Double, var next: Boolean, var incr: Int) {
 
     companion object{
-        const val path_size = "$.GameSett.Size"
+        const val path_size = "GameSett.Size"
         const val path_bomb = "$.GameSett.Bomb"
         const val path_next = "$.GameSett.Next"
         const val path_incr = "$.GameSett.Increment"
