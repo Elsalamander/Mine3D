@@ -36,14 +36,14 @@ class ControlSettingsFragment : Fragment() {
         val flag_sx : Button = view.findViewById(R.id.settings_controll_selecter_flag_sx)
         val flag_dx : Button = view.findViewById(R.id.settings_controll_selecter_flag_dx)
         val flag_text : TextView = view.findViewById(R.id.settings_control_selecter_flag_text)
-        var sensivity : SeekBar = view.findViewById(R.id.settings_control_sensivity_bar)
-        var hold_time : SeekBar  = view.findViewById(R.id.settings_control_hold_bar)
+        val sensivity : SeekBar = view.findViewById(R.id.settings_control_sensivity_bar)
+        val hold_time : SeekBar  = view.findViewById(R.id.settings_control_hold_bar)
 
 
         //carica i dati dal file JSON
         this.dati = JSONManager(view.context as Activity)
         val sett : ControlSettings = dati?.controlSett!!
-        sett.load()
+        //sett.load()
 
         //imposta i valori recuperati
         reveal_text.text = sett.reveal_sx_dx.getVal().toString()
@@ -59,6 +59,8 @@ class ControlSettingsFragment : Fragment() {
         flag_dx.setOnClickListener(sett.flag_sx_dx)
         default_normal.setOnClickListener(PresetRevealFlag(sett,1, view))
         default_inverted.setOnClickListener(PresetRevealFlag(sett,2, view))
+        sensivity.setOnSeekBarChangeListener(sett.sensivity)
+        hold_time.setOnSeekBarChangeListener(sett.holdTimer)
 
         return view
     }

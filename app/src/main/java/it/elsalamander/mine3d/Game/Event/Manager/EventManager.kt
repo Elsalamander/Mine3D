@@ -18,7 +18,7 @@ import kotlin.reflect.jvm.jvmErasure
  * - Gli eventi concreti possono implementare l'interfaccia Cancellable
  * - Gli eventi hanno una priorità di chiamata, questa viene generata
  *   mettendo in ordine gli oggetti dentro la lista mappata citata sopra
- * - Data la possibile presenza di piu funzioni per lo stesso eventola
+ * - Data la possibile presenza di piu funzioni per lo stesso evento la
  *   lista è composta da oggetti che comprendono queste informazioni:
  *      - Oggetto della classe
  *      - Funzione da chiamare

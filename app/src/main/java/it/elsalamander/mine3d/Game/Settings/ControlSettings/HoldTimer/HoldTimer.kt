@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.View
 import android.widget.SeekBar
 import it.elsalamander.mine3d.Game.Settings.Setting
+import org.json.JSONObject
 
 class HoldTimer(context : Activity) :  Setting<Double>(0.5, context), SeekBar.OnSeekBarChangeListener{
 
