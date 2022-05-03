@@ -43,6 +43,7 @@ class ControlSettingsFragment : Fragment() {
         //carica i dati dal file JSON
         this.dati = JSONManager(view.context as Activity)
         val sett : ControlSettings = dati?.controlSett!!
+        sett.load()
 
         //imposta i valori recuperati
         reveal_text.text = sett.reveal_sx_dx.getVal().toString()

@@ -48,13 +48,13 @@ class GamePauseFragment : Fragment() {
             game.startActivity(myIntent)
 
             //termina l'activity
-            //game.finish()
             (game as Activity).finish()
 
             game.gameInstance?.let { it1 -> QuitGameEvent(it1) }
                 ?.let { it2 -> game.eventManager.callEvent(it2) }
-        }
 
+            game.finish()
+        }
         return view
     }
 }

@@ -155,14 +155,15 @@ class Griglia(var N : Int) {
         this.visitLeaf {
             // JSONObject temporaneo
             val tmp = JSONObject()
-            tmp.put("$.x", it?.getPoint()?.getAxisValue(0))
-            tmp.put("$.y", it?.getPoint()?.getAxisValue(1))
-            tmp.put("$.z", it?.getPoint()?.getAxisValue(2))
-            tmp.put("$.reveal", it?.getVal()?.second?.hide)
-            tmp.put("$.value", it?.getVal()?.second?.value)
+            tmp.put("x", it?.getPoint()?.getAxisValue(0))
+            tmp.put("y", it?.getPoint()?.getAxisValue(1))
+            tmp.put("z", it?.getPoint()?.getAxisValue(2))
+            tmp.put("reveal", it?.getVal()?.second?.hide)
+            tmp.put("value", it?.getVal()?.second?.value)
+            tmp.put("bandiera", it?.getVal()?.second?.flag)
 
             //accoda nell'array JSON
-            json.accumulate("$.cubes", tmp)
+            json.accumulate("cubes", tmp)
         }
     }
 
@@ -170,7 +171,7 @@ class Griglia(var N : Int) {
      * Carica tutti i valori dal file JSON
      */
     fun load(json : JSONObject){
-        val jsonArr = json.getJSONArray("$.cubes")
+        val jsonArr = json.getJSONArray("cubes")
 
         scovered = json.getInt("scovered")
         popolated = json.getBoolean("popolated")
@@ -179,13 +180,16 @@ class Griglia(var N : Int) {
         (0 until jsonArr.length()).forEach{
             val tmp = jsonArr.getJSONObject(it)
 
-            val x = tmp.getLong("$.x")
-            val y = tmp.getLong("$.y")
-            val z = tmp.getLong("$.z")
-            val reveal = tmp.getBoolean("$.reveal")
-            val value  = tmp.getInt("$.value")
+            val x = tmp.getLong("x")
+            val y = tmp.getLong("y")
+            val z = tmp.getLong("z")
+            val reveal = tmp.getBoolean("reveal")
+            val value  = tmp.getInt("value")
+            val flag = tmp.getBoolean("bandiera")
             val arr = longArrayOf(x, y, z)
-            grid.put(Point(arr), MineCube(value, reveal))
+            val mineCude = MineCube(value, reveal)
+            mineCude.flag = flag
+            grid.put(Point(arr), mineCude)
         }
 
     }

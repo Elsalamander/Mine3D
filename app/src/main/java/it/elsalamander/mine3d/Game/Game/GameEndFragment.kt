@@ -12,6 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import it.elsalamander.mine3d.Game.Event.Set.QuitGameEvent
 import it.elsalamander.mine3d.MainActivity
 import it.elsalamander.mine3d.R
 
@@ -53,6 +54,9 @@ class GameEndFragment : Fragment() {
             val myIntent = Intent(game, MainActivity::class.java)
 
             game.startActivity(myIntent)
+
+            game.gameInstance?.let { it1 -> QuitGameEvent(it1) }
+                ?.let { it2 -> game.eventManager.callEvent(it2) }
 
             //termina l'activity
             game.finish()

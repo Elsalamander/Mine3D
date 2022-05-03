@@ -1,6 +1,7 @@
 package it.elsalamander.mine3d.Game.Settings
 
 import android.app.Activity
+import android.util.Log
 import it.elsalamander.mine3d.Game.Settings.BaseSettings.Theme.ThemeList
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.TypeTouch
 import org.json.JSONException

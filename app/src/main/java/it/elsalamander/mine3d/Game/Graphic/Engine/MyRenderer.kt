@@ -84,7 +84,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         GLCube.createSurfaceView(game.context, r, g, b, 1f)
 
         //punto di vista
-        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 4f, 0f, 0f, 0f, 0f, 1f, 0f)
+        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 8f, 0f, 0f, 0f, 0f, 1f, 0f)
 
         //Inizializza la matrice della rotazione
         Matrix.setIdentityM(mAccumulatedRotation, 0)
@@ -123,7 +123,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         System.arraycopy(mTemporaryMatrix, 0, mRotationMatrix, 0, 16)
 
         //Imposta la posizione della camera
-        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 4f, 0f, 0f, 0f, 0f, 1f, 0f)
+        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 8f, 0f, 0f, 0f, 0f, 1f, 0f)
 
         //Calcola la proiezione della camera
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0)

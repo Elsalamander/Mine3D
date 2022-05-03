@@ -5,6 +5,7 @@ import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
 import it.elsalamander.mine3d.Game.Event.Manager.EventPriority
 import it.elsalamander.mine3d.Game.Event.Manager.ListenerGame
 import it.elsalamander.mine3d.Game.Event.Set.GameStart
+import it.elsalamander.mine3d.Game.Event.Set.QuitGameEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.EndSongEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.StartSongEvent
 
@@ -54,5 +55,10 @@ class MediaListener : ListenerGame {
         if(event.songManager.getCurrentSong()!= null){
             event.songManager.playSong()
         }
+    }
+
+    @EventHandlerGame(EventPriority.LOW, true)
+    fun onQuitGame(event : QuitGameEvent){
+        event.instanceGame.context.media.stop()
     }
 }

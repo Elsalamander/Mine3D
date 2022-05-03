@@ -16,10 +16,10 @@ import org.json.JSONObject
 data class GameSett(var n: Int, var bomb: Double, var next: Boolean, var incr: Int) {
 
     companion object{
-        const val path_size = "GameSett.Size"
-        const val path_bomb = "$.GameSett.Bomb"
-        const val path_next = "$.GameSett.Next"
-        const val path_incr = "$.GameSett.Increment"
+        const val path_size = "Size"
+        const val path_bomb = "Bomb"
+        const val path_next = "Next"
+        const val path_incr = "Increment"
 
         /**
          * Crea e carica i valori dal file JSON

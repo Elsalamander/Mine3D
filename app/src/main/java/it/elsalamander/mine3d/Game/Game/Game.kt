@@ -13,6 +13,7 @@ import it.elsalamander.mine3d.Game.Media.Event.Listener.MediaListener
 import it.elsalamander.mine3d.Game.Media.SoundMedia
 import it.elsalamander.mine3d.Game.Settings.JSONManager
 import it.elsalamander.mine3d.R
+import java.io.File
 
 
 /****************************************************************
@@ -51,8 +52,12 @@ class Game() : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        settings = JSONManager(this)
+        media = SoundMedia(this)
+
         //registra eventi
         eventManager.registerEvent(Listener())
+        eventManager.registerEvent(MediaListener())
 
         //prendi il gameSett tramite la stringa passata tramite intent
         val typeGame = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it) }
@@ -61,6 +66,11 @@ class Game() : AppCompatActivity(){
             //carica il gioco
             gameInstance = GameInstance(this, true)
         }else{
+            //elimina il file corrente
+            val file = File(this.filesDir, GameInstance.pathSettings)
+            if(file.exists()){
+                file.delete()
+            }
             gameSett = typeGame?.gameSettings
         }
 
@@ -80,10 +90,6 @@ class Game() : AppCompatActivity(){
         }
 
         navController.graph = graph
-
-        settings = JSONManager(this)
-        media = SoundMedia(this)
-        eventManager.registerEvent(MediaListener())
     }
 
     override fun onPause() {
