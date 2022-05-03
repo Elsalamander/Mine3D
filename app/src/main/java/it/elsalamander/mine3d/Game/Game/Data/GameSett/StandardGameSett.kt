@@ -19,7 +19,8 @@ enum class StandardGameSett(var gameSettings : GameSett?, var str: String) {
     GAME_NORMAL_7_MEDIUM(GameSett(7, Difficulty.EASY.difficulty, false, 0), "N-7-M"),
     GAME_NORMAL_7_HARD(GameSett(7, Difficulty.EASY.difficulty, false, 0), "N-7-H"),
 
-    GAME_CUSTOM(null, "C");
+    GAME_CUSTOM(null, "C"),
+    GAME_LOAD(null, "L");
 
     companion object {
         fun getFromString(str : String) : StandardGameSett{
@@ -48,6 +49,7 @@ enum class StandardGameSett(var gameSettings : GameSett?, var str: String) {
                 }
 
                 "C" -> GAME_CUSTOM
+                "L" -> GAME_LOAD
                 else -> GAME_CUSTOM
             }
 

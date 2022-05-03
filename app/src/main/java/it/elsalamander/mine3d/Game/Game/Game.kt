@@ -54,7 +54,14 @@ class Game() : AppCompatActivity(){
         eventManager.registerEvent(Listener())
 
         //prendi il gameSett tramite la stringa passata tramite intent
-        gameSett = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it).gameSettings }
+        val typeGame = intent.getStringExtra(TAG_INTENT_GAME_TYPE)?.let{ StandardGameSett.getFromString(it) }
+
+        if(typeGame == StandardGameSett.GAME_LOAD){
+            //carica il gioco
+            gameInstance = GameInstance(this, true)
+        }else{
+            gameSett = typeGame?.gameSettings
+        }
 
         this.setContentView(R.layout.activity_game)
 

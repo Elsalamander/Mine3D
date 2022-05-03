@@ -1,7 +1,6 @@
 package it.elsalamander.mine3d.Game.Game.Data
 
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import it.elsalamander.mine3d.Game.Event.Set.GameStart
@@ -31,10 +30,9 @@ import java.io.*
  * @data: 15 aprile 2021
  * @version: v1.0
  ****************************************************************/
-class GameInstance(var context: Game) {
+class GameInstance(var context: Game, load : Boolean = false) {
 
-    var grid : Griglia = Griglia(context.gameSett?.n ?: 5)                   //griglia di gioco
-
+    lateinit var grid : Griglia  //griglia di gioco
 
     companion object{
         const val pathSettings : String = "LastGame.json"
@@ -45,6 +43,11 @@ class GameInstance(var context: Game) {
      */
     init{
         this.context.gameInstance = this
+        if(!load){
+            this.grid = Griglia(context.gameSett?.n ?: 5)
+        }else{
+            this.Reasume()
+        }
         this.context.eventManager.callEvent(GameStart(this))
     }
 
@@ -68,8 +71,9 @@ class GameInstance(var context: Game) {
      * Funzione chiamata quando deve essere eseguito il recupero dello stato del game
      */
     fun Reasume(){
-        //recupero lo stato
+        this.grid = Griglia(0)
         this.loadState()
+        this.grid.N = context.gameSett?.n ?: 5
     }
 
     /**
@@ -83,6 +87,13 @@ class GameInstance(var context: Game) {
 
         val navHost = context.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_game) as NavHostFragment
         navHost.findNavController().navigate(R.id.action_game_to_end, bundle)
+
+        //elimina il salvataggio
+        val file = File(context.filesDir, pathSettings)
+        if(file.exists()){
+            //elimina il file se esiste
+            file.delete()
+        }
     }
 
     /**

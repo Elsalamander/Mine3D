@@ -148,6 +148,10 @@ class Griglia(var N : Int) {
      *      - Valore: -1 ~ 8
      */
     fun save(json: JSONObject) {
+        json.put("scovered", scovered)
+        json.put("popolated", popolated)
+        json.put("flagged", flagged)
+
         this.visitLeaf {
             // JSONObject temporaneo
             val tmp = JSONObject()
@@ -167,6 +171,10 @@ class Griglia(var N : Int) {
      */
     fun load(json : JSONObject){
         val jsonArr = json.getJSONArray("$.cubes")
+
+        scovered = json.getInt("scovered")
+        popolated = json.getBoolean("popolated")
+        flagged = json.getInt("flagged")
 
         (0 until jsonArr.length()).forEach{
             val tmp = jsonArr.getJSONObject(it)
