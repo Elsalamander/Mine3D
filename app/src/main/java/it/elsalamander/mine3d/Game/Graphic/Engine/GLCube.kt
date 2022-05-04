@@ -56,18 +56,35 @@ object GLCube {
     )
 
     private val cubeTexCoordsStrip = floatArrayOf(
-        0f,  0f,  1f,  0f,
-        0f,  1f,  1f,  1f,
-        0f,  0f,  1f,  0f,
-        0f,  1f,  1f,  1f,
-        0f,  0f,  1f,  0f,
-        0f,  1f,  1f,  1f,
-        0f,  0f,  1f,  0f,
-        0f,  1f,  1f,  1f,
-        0f,  0f,  1f,  0f,
-        0f,  1f,  1f,  1f,
-        0f,  0f,  1f,  0f,
-        0f,  1f,  1f,  1f
+        0f,  1f,
+        1f,  1f,
+        0f,  0f,
+        1f,  0f,
+
+        0f,  1f,
+        1f,  1f,
+        0f,  0f,
+        1f,  0f,
+
+        0f,  1f,
+        1f,  1f,
+        0f,  0f,
+        1f,  0f,
+
+        0f,  1f,
+        1f,  1f,
+        0f,  0f,
+        1f,  0f,
+
+        0f,  1f,
+        1f,  1f,
+        0f,  0f,
+        1f,  0f,
+
+        0f,  1f,
+        1f,  1f,
+        0f,  0f,
+        1f,  0f,
     )
 
     private var mProgram = 0
@@ -77,12 +94,12 @@ object GLCube {
         R.drawable.nuno,    //1
         R.drawable.ndue,    //2
         R.drawable.ntre,    //3
-        R.drawable.nuno,    //4
-        R.drawable.nuno,    //5
-        R.drawable.nuno,    //6
-        R.drawable.nuno,    //7
-        R.drawable.nuno,    //8
-        R.drawable.hide,    //bianco 9
+        R.drawable.nquattro,//4
+        R.drawable.ncinque, //5
+        R.drawable.nsei,    //6
+        R.drawable.nsette,  //7
+        R.drawable.notto,   //8
+        R.drawable.vuoto,   //bianco 9
         R.drawable.bomba,   //bomba 10
         R.drawable.flag     //flag
     )

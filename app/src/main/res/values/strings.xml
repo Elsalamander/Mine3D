@@ -5,22 +5,14 @@
     <string name="settings_title">Impostazioni</string>
     <string name="settings_name">Nome</string>
     <string name="settings_name_default">User</string>
-
     <string name="settings_theme_dark">Tema Scuro</string>
     <string name="settings_theme_light">Tema Chiaro</string>
-
     <string name="settings_timer">Mostra il timer</string>
-
     <string name="settings_bomb">Mostra le bombe rimanenti</string>
-
     <string name="settings_Music_title">Livello musica</string>
-
     <string name="settings_Effect_title">Livello effetti</string>
-
     <string name="settings_Vibbrazione">Vibbrazione GameOver</string>
-
     <string name="settings_Controll">Controlli</string>
-
     <string name="checkedMark">\u2713</string>
 
     //controlli
@@ -37,7 +29,7 @@
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="menu_settings">Impostazioni</string>
+    <string name="menu_settings">Opzioni</string>
     <string name="menu_game_base">Standard</string>
     <string name="settings_contro_reveal_title">Rivela</string>
     <string name="settings_contro_flag_title">Metti bandiera</string>

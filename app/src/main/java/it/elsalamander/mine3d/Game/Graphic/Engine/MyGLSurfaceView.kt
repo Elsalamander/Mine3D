@@ -4,13 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.opengl.GLSurfaceView
 import android.util.AttributeSet
-import android.util.Log
-import android.util.Xml
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Game.Game
-import it.elsalamander.mine3d.R
 import kotlin.math.PI
 import kotlin.math.atan
 
@@ -45,7 +42,7 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
 
         scale = ScaleDetector(this)
         mScaleDetector = ScaleGestureDetector(context, scale)
-        touchDetector = GLCubeDetectClick(game)
+        touchDetector = GLCubeDetectClick(game,mRenderer)
     }
 
     @SuppressLint("ClickableViewAccessibility") //chiamata fatta aldifuori del mio codice
