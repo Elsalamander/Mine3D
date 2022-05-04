@@ -1,6 +1,8 @@
 package it.elsalamander.mine3d.Game.Game.Data
 
-import android.os.Bundle
+import android.content.Context
+import android.os.*
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import it.elsalamander.mine3d.Game.Event.Set.GameStart
@@ -81,8 +83,18 @@ class GameInstance(var context: Game, load : Boolean = false) {
      * @param win TRUE se si ha vinto, FALSE altrimenti
      */
     fun Finish(win : Boolean){
-        val bundle = Bundle()
+        //fai vibbrare il telefono se abilitato
+        if(context.settings.baseSett.vibbrazione.getVal()){
+            val v = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                (context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager).defaultVibrator
+            }else{
+                context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            }
 
+            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+        }
+
+        val bundle = Bundle()
         bundle.putBoolean("End", win)
 
         val navHost = context.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_game) as NavHostFragment

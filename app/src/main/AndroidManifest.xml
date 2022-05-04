@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="it.elsalamander.mine3d">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:debuggable="true"
         android:allowBackup="true"
@@ -25,5 +27,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
