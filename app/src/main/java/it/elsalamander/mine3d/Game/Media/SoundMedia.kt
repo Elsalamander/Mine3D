@@ -1,6 +1,7 @@
 package it.elsalamander.mine3d.Game.Media
 
 import android.media.MediaPlayer
+import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Game
 import it.elsalamander.mine3d.Game.Media.Event.Listener.MediaListener
 import it.elsalamander.mine3d.Game.Media.Event.Set.EndSongEvent
@@ -79,6 +80,7 @@ class SoundMedia(var game : Game) {
      * Riprendi la musica messa in pausa
      */
     fun reasume(){
+        Log.d("Song", "Ricomincia la musica $state" )
         if(state != -1 && state < songs.size){
             if(!songs[state].isPlaying){
                 songs[state].start()

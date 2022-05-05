@@ -103,10 +103,17 @@ class Game() : AppCompatActivity(){
     override fun onResume() {
         super.onResume()
         media.reasume()
+
+        //c'è una istanza di gioco da recuperare?
+        gameInstance?.Reasume()
     }
 
     override fun onStop() {
         super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         media.stop()
         eventManager.unRegisterAll()
     }

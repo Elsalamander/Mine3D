@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
@@ -23,6 +25,23 @@ import it.elsalamander.mine3d.R
  * @version: v1.0
  ****************************************************************/
 class GamePauseFragment : Fragment() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = this.activity as Game
+
+        //crea una intercetta dell'evento di quando si preme il tasto "Back" per navigare la
+        //schermata nel fragment PAUSA
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    //intercetto il pulsante Back
+                    view.findNavController().navigate(R.id.action_game_pause_to_game)
+                    activity.gameInstance?.Reasume()
+                }
+            })
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
         val view = inflater.inflate(R.layout.fragment_game_pause, container, false)

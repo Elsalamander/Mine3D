@@ -67,12 +67,21 @@ class GameInstance(var context: Game, load : Boolean = false) {
     fun Pause(){
         //salva lo stato corrente
         this.saveState()
+
+        //de alloca la griglia che non mi serve
+        this.grid.resetGrid()
     }
 
     /**
      * Funzione chiamata quando deve essere eseguito il recupero dello stato del game
      */
     fun Reasume(){
+        //controlla se il file esiste prima
+        val file = File(context.filesDir, pathSettings)
+        if(!file.exists()){
+            //termina questo Reasum
+            return
+        }
         this.grid = Griglia(0)
         this.loadState()
         this.grid.N = context.gameSett?.n ?: 5
@@ -119,7 +128,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
     /**
      * Salva il GameCorrente
      */
-    private fun saveState(){
+    fun saveState(){
         val json = this.getJSON()
         context.gameSett?.save(json)
         this.grid.save(json)
