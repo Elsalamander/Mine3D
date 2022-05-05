@@ -104,13 +104,6 @@ class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceV
             mPreviousY = y
         }
 
-        //Log.d("Touch", "coordiante x: $x , y: $y")
-        val w = mRenderer.width
-        val h = mRenderer.height
-        val ndcX = 2.0 * x/w - 1.0
-        val ndcY = 1.0 - 2.0 * y/h
-        //Log.d("Touch", "coordiante x_ndc: $ndcX , y_ndc: $ndcY")
-
         //ritorna true perchè ho gestito l'evento
         return true
     }

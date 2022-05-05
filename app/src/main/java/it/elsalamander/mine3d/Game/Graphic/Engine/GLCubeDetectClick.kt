@@ -1,6 +1,7 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
 import android.annotation.SuppressLint
+import android.opengl.Matrix
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -113,6 +114,7 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
                 //il timer è andato oltre, voglio metterci una bandiera nel cubo in cui mi trovo
                 //prendi il cubo
                 //val pair = getCube(firstX, firstY)
+                //val pair = getCubeV2(firstX, firstY)
                 val pair = getCube(0f, 0f)
                 if(pair != null){
                     val cube = pair.second
@@ -140,6 +142,7 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
             //prima di resettare esegui il reveal o flag
             if(System.currentTimeMillis() - timer < holdTimer && valid){
                 //val pair = getCube(firstX, firstY)
+                //val pair = getCubeV2(firstX, firstY)
                 val pair = getCube(0f, 0f)
                 if(pair != null){
                     val cube = pair.second
@@ -260,6 +263,29 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
 
         Log.d("TouchEvent", "Cubo trovato $last")
         //ritorna il risultato finale
+        return last
+    }
+
+    private fun getCubeV2(x : Float, y : Float) : Pair<IntArray, MineCube>?{
+        var last : Pair<IntArray, MineCube>? = null
+        val ndcX = 2f * x/mRenderer.width - 1f
+        val ndcY = 1f - 2f * y/mRenderer.height
+
+        val rView = FloatArray(4)
+        rView[0] = ndcX
+        rView[1] = ndcY
+        rView[2] = 0f
+        rView[3] = 1f
+
+        var tmpMatrix = FloatArray(16)
+        Matrix.invertM(tmpMatrix,0,mRenderer.mMVPMatrix,0)
+        val r0 = FloatArray(4)
+        Matrix.multiplyMV(r0,0,tmpMatrix,0,rView,0)
+
+        Log.d("Touch R0", "${r0[0]}  ${r0[1]}  ${r0[2]}  ${r0[3]}")
+        Log.d("Touch R0_1", "x: $x  y:$y")
+        Log.d("Touch R0_1_ndc", "ndcx: $ndcX  ndcy:$ndcY")
+
         return last
     }
 }

@@ -8,7 +8,6 @@ import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
-import kotlin.math.sqrt
 
 /****************************************************************
  * Classe per realizzare il renderer del gioco
@@ -41,7 +40,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     var mTotalDeltaX = 0f
     var mTotalDeltaY = 0f
     var mTotalDeltaZ = 0f
-    var zoom = 0.25f
+    var zoom = 1.5f/((game.context.gameSett?.n ?: 5) + 1)
 
     @Volatile
     var mDeltaX = 0f
@@ -53,7 +52,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     var mDeltaZ = 0f
 
     // mMVPMatrix è una abbreviazione di "Model View Projection Matrix"
-    private val mMVPMatrix = FloatArray(16)
+    val mMVPMatrix = FloatArray(16)
     private val mProjectionMatrix = FloatArray(16)
     private val mViewMatrix = FloatArray(16)
 
@@ -123,7 +122,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         System.arraycopy(mTemporaryMatrix, 0, mRotationMatrix, 0, 16)
 
         //Imposta la posizione della camera
-        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 8f, 0f, 0f, 0f, 0f, 1f, 0f)
+        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 5f, 0f, 0f, 0f, 0f, 1f, 0f)
 
         //Calcola la proiezione della camera
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0)
@@ -137,8 +136,9 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         val n = game.grid.N
 
         //Visita tutti i nodi e fai il render di ognuno
-        //Log.d("Renderer", "Rotazione X: $mTotalDeltaX")
-        //Log.d("Renderer", "Rotazione Y: $mTotalDeltaY")
+        val zm = zoom
+        val const = (n - 1f) / 2f
+        val mult = 2.5f * zm
 
         game.grid.visitLeaf {
             if (it != null) {
@@ -153,31 +153,19 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 val z = coord.getAxisValue(2).toFloat()
 
                 //trasla la matrice alle coordinate date
-                val x_ = (x - (n - 1f) / 2f) * 2.5f * zoom
-                val y_ = (y - (n - 1f) / 2f) * 2.5f * zoom
-                val z_ = (z - (n - 1f) / 2f) * 2.5f * zoom
+                val x_ = (x - const) * mult
+                val y_ = (y - const) * mult
+                val z_ = (z - const) * mult
                 Matrix.translateM(tmpM, 0, x_, y_, z_)
 
                 //Esegui lo scalamneto dello zoom
-                Matrix.scaleM(tmpM, 0, zoom, zoom, zoom)
+                Matrix.scaleM(tmpM, 0, zm, zm, zm)
 
                 myCube?.larghezza = tmpM[11]
                 myCube?.xRend = tmpM[12]
                 myCube?.yRend = tmpM[13]
                 myCube?.zRend = tmpM[14]
                 myCube?.dist  = tmpM[15]
-
-                //var str = ""
-                //var norm = 0f
-                //for(i in 0 until 16){
-                    //norm += tmpM[i] * tmpM[i]
-                //}
-                //norm = sqrt(norm)
-                //norm = 1f
-                //for(i in 11 until 16){
-                    //str += "${tmpM[i]/norm}  "
-                //}
-                //Log.d("Cubo", "coords: $str")
 
                 //disegna il cubo
                 GLCube.draw(tmpM, myCube?.getTextureID() ?: 9)
