@@ -1,6 +1,5 @@
 package it.elsalamander.mine3d.Game.Game
 
-import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,10 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.findNavController
 import it.elsalamander.mine3d.Game.Event.Set.PausedGameEvent
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
@@ -82,9 +85,11 @@ class GameFragment : Fragment() {
             view.findNavController().navigate(R.id.action_game_to_pause)
         }
 
-        chrono.onChronometerTickListener = CountUpTimer(timer)
-        chrono.base = Long.MAX_VALUE
-        chrono.start()
+        val myViewModel: CountUpTimer = ViewModelProviders.of(this).get(CountUpTimer::class.java)
+        val liveDataObserver: Observer<Int> = Observer<Int> {
+                integer -> timer.text = String.format("%02d:%02d", integer/60, integer%60)
+        }
+        myViewModel.getLiveData().observe(viewLifecycleOwner, liveDataObserver)
 
         return view
     }

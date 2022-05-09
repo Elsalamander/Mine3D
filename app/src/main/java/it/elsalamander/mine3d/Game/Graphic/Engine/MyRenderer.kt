@@ -53,8 +53,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
 
     // mMVPMatrix è una abbreviazione di "Model View Projection Matrix"
     val mMVPMatrix = FloatArray(16)
-    private val mProjectionMatrix = FloatArray(16)
-    private val mViewMatrix = FloatArray(16)
+    val mProjectionMatrix = FloatArray(16)
+    val mViewMatrix = FloatArray(16)
 
     //crea un'altra matrice di rotazione
     private val mRotationMatrix = FloatArray(16)
@@ -166,6 +166,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.yRend = tmpM[13]
                 myCube?.zRend = tmpM[14]
                 myCube?.dist  = tmpM[15]
+
+                Log.d("RENDERER", "x:${tmpM[12]}  y:${tmpM[13]}  z:${tmpM[14]}")
 
                 //disegna il cubo
                 GLCube.draw(tmpM, myCube?.getTextureID() ?: 9)

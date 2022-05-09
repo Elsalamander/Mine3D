@@ -3,21 +3,37 @@ package it.elsalamander.mine3d.Game.Graphic.OtherView
 import android.util.Log
 import android.widget.Chronometer
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import java.util.*
 
 
-class CountUpTimer(var text : TextView) : Chronometer.OnChronometerTickListener {
+class CountUpTimer: ViewModel() {
 
-    private var countUpTimer : Long = 0
+    private val mutableLiveData = MutableLiveData<Int>()
 
-    init {
-        countUpTimer = System.currentTimeMillis()
+    private val BEGIN_AFTER = 1000L
+    private var INTERVAL = 1000L
+    private var counter = 0
+
+    init{
+        startTimer()
     }
-    /**
-     * Notification that the chronometer has changed.
-     */
-    override fun onChronometerTick(chronometer: Chronometer) {
-        val countUp = (System.currentTimeMillis() - countUpTimer) / 1000
-        val asText: String = String.format("%02d:%02d", countUp / 60, countUp % 60)
-        text.text = asText
+
+    private fun startTimer() {
+        val timer = Timer()
+        //Schedule the specified task for repeated fixed-rate execution,
+        // beginning after the specified delay. Subsequent executions
+        // take place at approximately regular intervals, separated by
+        // the specified period.
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                mutableLiveData.postValue(counter++)
+            }
+        }, BEGIN_AFTER, INTERVAL)
+    }
+
+    fun getLiveData(): MutableLiveData<Int> {
+        return mutableLiveData
     }
 }

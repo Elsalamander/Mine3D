@@ -34,6 +34,7 @@ android {
 
 dependencies {
 
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.20'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
