@@ -58,5 +58,9 @@
     <string name="standard_7_hard">7-Hard</string>
     <string name="standard_7_medium">7-Medium</string>
     <string name="standard_7_easy">7-Easy</string>
+    <string name="win">Vittoria!!!</string>
+    <string name="gameover">GameOver!!!</string>
+    <string name="build_game_sett_bomb">%1$d/%2$d</string>
+    <string name="build_game_sett_bombBar">%1$d%%</string>
 
 </resources>

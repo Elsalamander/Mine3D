@@ -42,14 +42,6 @@
         app:srcCompat="@drawable/pause_black"
         android:background="@android:color/transparent" />
 
-    <Chronometer
-        android:id="@+id/fragment_game_timer_chrono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:countDown="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"/>
-
     <TextView
         android:id="@+id/centre_pointer"
         android:layout_width="wrap_content"

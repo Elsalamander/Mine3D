@@ -59,12 +59,12 @@ class BaseSettings(var context : Activity) : GenericSettings {
             line = bufferedReader.readLine()
         }
         bufferedReader.close()
-        try{
-            return JSONObject(stringBuilder.toString())
+        return try{
+            JSONObject(stringBuilder.toString())
         }catch (e : JSONException){
             val json = JSONObject()
             this.save(json)
-            return json
+            json
         }
     }
 

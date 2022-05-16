@@ -41,7 +41,7 @@ class RevealSetting(context : Activity) :  Setting<TypeTouch>(TypeTouch.Hold, co
                 TypeTouch.ND -> TypeTouch.Tap
             }
         }
-        var tx : TextView = this.context.findViewById(R.id.settings_control_selecter_reveal_text)
+        val tx : TextView = this.context.findViewById(R.id.settings_control_selecter_reveal_text)
         tx.text = this.value.name
     }
 }

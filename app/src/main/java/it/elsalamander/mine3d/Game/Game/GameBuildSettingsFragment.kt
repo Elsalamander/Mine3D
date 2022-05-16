@@ -1,6 +1,5 @@
 package it.elsalamander.mine3d.Game.Game
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -75,7 +74,6 @@ class GameBuildSettingsFragment : Fragment() {
     /**
      * Aggiorna il testo
      */
-    @SuppressLint("SetTextI18n")    //soppresione poichè devo editare il contenuto di una textView
     fun upDateLayout(builder : GameSettBuilder){
         val size = this.inputCell.text.toString().toInt()
         if(size <= 2){
@@ -86,11 +84,11 @@ class GameBuildSettingsFragment : Fragment() {
         val n = builder.size
         val nC = (n*n*2 + n*(n-2)*2 + (n-2)*(n-2)*2)
         val bombe = (nC * builder.difficulty).toInt()
-        viewCellSuBomb.text = "$bombe/$nC"
+        viewCellSuBomb.text = getString(R.string.build_game_sett_bomb, bombe, nC)
 
         //aggiorna la posizione della seekbar
         this.bombBar.progress = (builder.difficulty*100).toInt()
-        this.bombText.text = "${this.bombBar.progress}%"
+        this.bombText.text = getString(R.string.build_game_sett_bombBar, this.bombBar.progress)
 
         //aggiorna la checkBox
         if(this.increment.isChecked){

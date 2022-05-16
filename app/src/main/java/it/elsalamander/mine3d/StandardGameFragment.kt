@@ -26,18 +26,18 @@ class StandardGameFragment : Fragment() {
         val sevenHard : Button = view.findViewById(R.id.game_standard_7_hard)
 
 
-        fiveEasy.setOnClickListener(clickButton(StandardGameSett.GAME_NORMAL_5_EASY))
-        fiveMedium.setOnClickListener(clickButton(StandardGameSett.GAME_NORMAL_5_MEDIUM))
-        fiveHard.setOnClickListener(clickButton(StandardGameSett.GAME_NORMAL_5_HARD))
+        fiveEasy.setOnClickListener(ClickButton(StandardGameSett.GAME_NORMAL_5_EASY))
+        fiveMedium.setOnClickListener(ClickButton(StandardGameSett.GAME_NORMAL_5_MEDIUM))
+        fiveHard.setOnClickListener(ClickButton(StandardGameSett.GAME_NORMAL_5_HARD))
 
-        sevenEasy.setOnClickListener(clickButton(StandardGameSett.GAME_NORMAL_7_EASY))
-        sevenMedium.setOnClickListener(clickButton(StandardGameSett.GAME_NORMAL_7_MEDIUM))
-        sevenHard.setOnClickListener(clickButton(StandardGameSett.GAME_NORMAL_7_HARD))
+        sevenEasy.setOnClickListener(ClickButton(StandardGameSett.GAME_NORMAL_7_EASY))
+        sevenMedium.setOnClickListener(ClickButton(StandardGameSett.GAME_NORMAL_7_MEDIUM))
+        sevenHard.setOnClickListener(ClickButton(StandardGameSett.GAME_NORMAL_7_HARD))
 
         return view
     }
 
-    private class clickButton(val type : StandardGameSett) : View.OnClickListener{
+    private class ClickButton(val type : StandardGameSett) : View.OnClickListener{
         override fun onClick(v: View?) {
             val myIntent = Intent(v?.context, Game::class.java)
             myIntent.putExtra(Game.TAG_INTENT_GAME_TYPE, type.str)

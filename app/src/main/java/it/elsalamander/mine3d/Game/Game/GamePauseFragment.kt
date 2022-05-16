@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
 import it.elsalamander.mine3d.Game.Event.Set.QuitGameEvent
 import it.elsalamander.mine3d.MainActivity
 import it.elsalamander.mine3d.R
@@ -38,7 +37,7 @@ class GamePauseFragment : Fragment() {
                 override fun handleOnBackPressed() {
                     //intercetto il pulsante Back
                     view.findNavController().navigate(R.id.action_game_pause_to_game)
-                    activity.gameInstance?.Reasume()
+                    activity.gameInstance?.reasume()
                 }
             })
     }
@@ -54,7 +53,7 @@ class GamePauseFragment : Fragment() {
         goToGame.setOnClickListener {
             val navHost = game.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_game) as NavHostFragment
             navHost.findNavController().navigate(R.id.action_game_pause_to_game)
-            game.gameInstance?.Reasume()
+            game.gameInstance?.reasume()
         }
 
         //se clicco di andare al menu, lancia l'activity per andare al menu, e uccidi questa

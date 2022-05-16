@@ -50,7 +50,7 @@ class MenuFragment : Fragment() {
         val gameCustomButton = view.findViewById<Button>(R.id.game_custom)
         gameCustomButton.setOnClickListener {
             //crea un Intent
-            val myIntent : Intent = Intent(view.context, Game::class.java)
+            val myIntent = Intent(view.context, Game::class.java)
 
             myIntent.putExtra(Game.TAG_INTENT_GAME_TYPE, StandardGameSett.GAME_CUSTOM.str)
             //invia l'intent
@@ -68,7 +68,7 @@ class MenuFragment : Fragment() {
                 msg.show()
             }else{
                 //c'è un file lancia l'activity
-                val myIntent : Intent = Intent(view.context, Game::class.java)
+                val myIntent = Intent(view.context, Game::class.java)
 
                 myIntent.putExtra(Game.TAG_INTENT_GAME_TYPE, StandardGameSett.GAME_LOAD.str)
                 //invia l'intent

@@ -1,13 +1,10 @@
 package it.elsalamander.mine3d.Game.Event.Listener
 
-import android.annotation.SuppressLint
 import android.util.Log
 import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
 import it.elsalamander.mine3d.Game.Event.Manager.EventPriority
 import it.elsalamander.mine3d.Game.Event.Manager.ListenerGame
 import it.elsalamander.mine3d.Game.Event.Set.*
-import it.elsalamander.mine3d.Game.Game.GameFragment
-import it.elsalamander.mine3d.R
 
 /****************************************************************
  * Classe dove faccio una prima gestione degli eventi prencipali
@@ -32,7 +29,7 @@ class Listener : ListenerGame {
     @EventHandlerGame(EventPriority.NORMAL, true)
     fun onStartGame(event : GameStart){
         //Avvia il game
-        event.instanceGame.StartGame()
+        event.instanceGame.startGame()
     }
 
     /**
@@ -137,12 +134,11 @@ class Listener : ListenerGame {
     /**
      * Gestione dell'evneto per il piazzamento della bandiera
      */
-    @SuppressLint("ResourceType")
     @EventHandlerGame
     fun onPlaceFlag(event : PlaceFlagEvent){
         Log.d("Event PlaceFlag", "Piazzo bandiera")
         //non posso mettere la bandiera in un cubo gia esplorato!
-        if(event.cube.hide == false){
+        if(!event.cube.hide){
             event.instanceGame.context.eventManager.callEvent(CantFlagCubeEvent(event))
             return
         }
@@ -171,7 +167,7 @@ class Listener : ListenerGame {
     @EventHandlerGame
     fun onWinEvent(event : WinEvent){
         //chiama la funzione di game finito dicendo che si ha vinto
-        event.instanceGame.Finish(true)
+        event.instanceGame.finish(true)
     }
 
     /**
@@ -179,7 +175,7 @@ class Listener : ListenerGame {
      */
     @EventHandlerGame
     fun onGameOver(event : GameOverEvent){
-        event.instanceGame.Finish(false)
+        event.instanceGame.finish(false)
     }
 
     /**
@@ -193,6 +189,6 @@ class Listener : ListenerGame {
 
     @EventHandlerGame
     fun onPausedGame(event : PausedGameEvent){
-        event.instanceGame.Pause()
+        event.instanceGame.pause()
     }
 }

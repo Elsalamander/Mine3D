@@ -44,7 +44,7 @@ class Area<T>(private val piano: Piano<T>) {
         if (tmp != null) {
             //è un nodo della stessa area?
             //se si significa che la cache rimante la stessa
-            return if (tmp.first.equals(this)) {
+            return if (tmp.first == this) {
                 //la cache rimante ferma dov'è ora
 
                 //ritorna l'oggetto che contiene

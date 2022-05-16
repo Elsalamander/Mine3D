@@ -42,6 +42,4 @@ import it.elsalamander.mine3d.Game.Settings.ControlSettings.ControlSettings
 class JSONManager(val context : Activity) {
     var baseSett : BaseSettings = BaseSettings(context)
     var controlSett : ControlSettings = ControlSettings(context)
-
-
 }

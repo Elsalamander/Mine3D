@@ -3,7 +3,6 @@ package it.elsalamander.mine3d.Game.Media
 import android.media.MediaPlayer
 import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Game
-import it.elsalamander.mine3d.Game.Media.Event.Listener.MediaListener
 import it.elsalamander.mine3d.Game.Media.Event.Set.EndSongEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.StartSongEvent
 import it.elsalamander.mine3d.R

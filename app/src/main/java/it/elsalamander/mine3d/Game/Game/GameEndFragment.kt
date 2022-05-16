@@ -1,6 +1,5 @@
 package it.elsalamander.mine3d.Game.Game
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,8 +35,6 @@ class GameEndFragment : Fragment() {
             })
     }
 
-
-    @SuppressLint("SetTextI18n")    //soppresione poichè devo editare il contenuto di una textView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
         val view = inflater.inflate(R.layout.fragment_game_end, container, false)
 
@@ -78,9 +75,9 @@ class GameEndFragment : Fragment() {
         }
 
         if(arguments?.getBoolean("End") == true){
-            text.text = "Vittoria!!!"
+            text.text = getString(R.string.win)
         }else{
-            text.text = "GameOver!!!"
+            text.text = getString(R.string.gameover)
         }
 
         return view

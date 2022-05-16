@@ -2,7 +2,6 @@ package it.elsalamander.mine3d.Game.Game.Data
 
 import android.content.Context
 import android.os.*
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import it.elsalamander.mine3d.Game.Event.Set.GameStart
@@ -48,7 +47,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
         if(!load){
             this.grid = Griglia(context.gameSett?.n ?: 5)
         }else{
-            this.Reasume()
+            this.reasume()
         }
         this.context.eventManager.callEvent(GameStart(this))
     }
@@ -57,14 +56,14 @@ class GameInstance(var context: Game, load : Boolean = false) {
      * Funzione che esegue l'avvio del game
      * Questa funzione viene chiamata tramite evento di "GameStart"
      */
-    fun StartGame(){
+    fun startGame(){
 
     }
 
     /**
      * Funzione chiamata quando deve essere messo in pausa il gioco
      */
-    fun Pause(){
+    fun pause(){
         //salva lo stato corrente
         this.saveState()
 
@@ -75,7 +74,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
     /**
      * Funzione chiamata quando deve essere eseguito il recupero dello stato del game
      */
-    fun Reasume(){
+    fun reasume(){
         //controlla se il file esiste prima
         val file = File(context.filesDir, pathSettings)
         if(!file.exists()){
@@ -91,7 +90,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
      * Funzione chiamata quando il game incorre a una fine
      * @param win TRUE se si ha vinto, FALSE altrimenti
      */
-    fun Finish(win : Boolean){
+    fun finish(win : Boolean){
         //fai vibbrare il telefono se abilitato
         if(context.settings.baseSett.vibbrazione.getVal()){
             val v = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

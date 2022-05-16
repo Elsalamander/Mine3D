@@ -1,8 +1,5 @@
 package it.elsalamander.mine3d.Game.Graphic.OtherView
 
-import android.util.Log
-import android.widget.Chronometer
-import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.*

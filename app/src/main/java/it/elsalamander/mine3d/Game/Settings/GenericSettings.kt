@@ -15,7 +15,7 @@ interface GenericSettings {
     /**
      * Prendi il file JSON
      */
-    fun getJSON(): JSONObject;
+    fun getJSON(): JSONObject
 
     /**
      * Carica i dati dal file JSON

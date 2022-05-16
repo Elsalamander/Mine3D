@@ -1,7 +1,6 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
 import android.annotation.SuppressLint
-import android.opengl.Matrix
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -11,8 +10,6 @@ import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Graphic.MineCube
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.TypeTouch
 import it.elsalamander.mine3d.util.Pair
-import java.lang.Math.abs
-import java.util.ArrayList
 
 /****************************************************************
  * Classe per capire se sto premendo un cubo o no.
@@ -114,8 +111,8 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
                 //il timer è andato oltre, voglio metterci una bandiera nel cubo in cui mi trovo
                 //prendi il cubo
                 //val pair = getCube(firstX, firstY)
-                val pair = getCubeV2(firstX.toInt(), firstY.toInt())
-                //val pair = getCube(0f, 0f)
+                //val pair = getCubeV2(firstX.toInt(), firstY.toInt())
+                val pair = getCube(0f, 0f)
                 if(pair != null){
                     val cube = pair.second
                     val coords = pair.first
@@ -142,8 +139,8 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
             //prima di resettare esegui il reveal o flag
             if(System.currentTimeMillis() - timer < holdTimer && valid){
                 //val pair = getCube(firstX, firstY)
-                val pair = getCubeV2(firstX.toInt(), firstY.toInt())
-                //val pair = getCube(0f, 0f)
+                //val pair = getCubeV2(firstX.toInt(), firstY.toInt())
+                val pair = getCube(0f, 0f)
                 if(pair != null){
                     val cube = pair.second
                     val coords = pair.first
@@ -218,8 +215,8 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
             return null
         }
 
-        var aM = 0f
-        var bM = 0f
+        var aM: Float
+        var bM: Float
         var last : Pair<IntArray, MineCube>? = null
         //visita tutti i nodi per scoprire quale cubo si trova alle coordinate passate
         game.grid.visitLeaf {
@@ -266,11 +263,13 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
         return last
     }
 
+    /*
     private fun getCubeV2(x : Int, y : Int) : Pair<IntArray, MineCube>?{
         val det = CubeDetectSupport(mRenderer)
         val coords = det.prova(x,y)
         Log.d("GLTEST", "x:${coords[0]}  y:${coords[1]}  z:${coords[2]}")
         return null
     }
+    */
 
 }

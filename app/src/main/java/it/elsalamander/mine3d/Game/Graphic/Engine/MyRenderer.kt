@@ -1,11 +1,10 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
-import android.annotation.SuppressLint
-import android.opengl.GLES20
+import android.opengl.GLES32
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
-import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
+import it.elsalamander.mine3d.Game.Graphic.Engine.MySupport.MyMatrix
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -68,8 +67,6 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     //matrice temporanea per fare il draw
     private val mTemporaryMatrix = FloatArray(16)
 
-
-    @SuppressLint("ResourceType")
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
 
         //Inizializza la matrice della rotazione
@@ -90,7 +87,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     }
 
     override fun onSurfaceChanged(glUnused: GL10, width: Int, height: Int) {
-        GLES20.glViewport(0, 0, width, height)
+        //GLES20.glViewport(0, 0, width, height)
+        GLES32.glViewport(0, 0, width, height)
         val ratio = width.toFloat() / height
         this.width = width
         this.height = height
@@ -99,7 +97,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
     }
 
     override fun onDrawFrame(gl: GL10?) {
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT or GLES20.GL_DEPTH_BUFFER_BIT)
+        //GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT or GLES20.GL_DEPTH_BUFFER_BIT)
+        GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT or GLES32.GL_DEPTH_BUFFER_BIT)
 
         val scratch = FloatArray(16)
         //Fai la rotazione per i cubi
@@ -146,7 +145,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 val myCube = it.getVal()?.second
 
                 //Prendi il Cubo alla posizione x,y,z
-                System.arraycopy(scratch, 0, tmpM, 0, 16)
+                //System.arraycopy(scratch, 0, tmpM, 0, 16)
+                MyMatrix.arraycopy(scratch, tmpM)
 
                 val x = coord.getAxisValue(0).toFloat()
                 val y = coord.getAxisValue(1).toFloat()
@@ -156,10 +156,12 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 val x_ = (x - const) * mult
                 val y_ = (y - const) * mult
                 val z_ = (z - const) * mult
-                Matrix.translateM(tmpM, 0, x_, y_, z_)
+                //Matrix.translateM(tmpM, 0, x_, y_, z_)
+                MyMatrix.translateM(tmpM, x_, y_, z_)
 
                 //Esegui lo scalamneto dello zoom
-                Matrix.scaleM(tmpM, 0, zm, zm, zm)
+                //Matrix.scaleM(tmpM, 0, zm, zm, zm)
+                MyMatrix.scaleM(tmpM, zm)
 
                 myCube?.larghezza = tmpM[11]
                 myCube?.xRend = tmpM[12]
@@ -167,10 +169,11 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.zRend = tmpM[14]
                 myCube?.dist  = tmpM[15]
 
-                Log.d("RENDERER", "x:${tmpM[12]}  y:${tmpM[13]}  z:${tmpM[14]}")
+                //Log.d("RENDERER", "x:${tmpM[12]}  y:${tmpM[13]}  z:${tmpM[14]}")
 
                 //disegna il cubo
                 GLCube.draw(tmpM, myCube?.getTextureID() ?: 9)
+                //GLCube.drawJNIcall(tmpM, myCube?.getTextureID() ?: 9)
             }
         }
     }

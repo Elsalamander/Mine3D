@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Chronometer
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.findNavController
 import it.elsalamander.mine3d.Game.Event.Set.PausedGameEvent
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
@@ -33,8 +30,6 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val activity = this.activity as Game
 
         //crea una intercetta dell'evento di quando si preme il tasto "Back" per navigare la
         //schermata nel fragment PAUSA
@@ -63,7 +58,6 @@ class GameFragment : Fragment() {
         val timer : TextView = view.findViewById(R.id.fragment_game_timer)
             bomb             = view.findViewById(R.id.fragment_game_bomb)
         val pause : ImageButton = view.findViewById(R.id.fragment_game_pause_button)
-        val chrono: Chronometer = view.findViewById(R.id.fragment_game_timer_chrono)
         val mySurface : MyGLSurfaceView = view.findViewById(R.id.glSurfaceViewID)
 
         mySurface.setMyRenderer()

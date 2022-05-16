@@ -1,7 +1,6 @@
 package it.elsalamander.mine3d.Game.Settings.ControlSettings
 
 import android.app.Activity
-import android.util.Log
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.Flag.FlagSetting
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.HoldTimer.HoldTimer
 import it.elsalamander.mine3d.Game.Settings.ControlSettings.Reveal.RevealSetting

@@ -21,7 +21,8 @@ import kotlin.math.atan
  * @data: 16 aprile 2021
  * @version: v2.0
  ****************************************************************/
-class MyGLSurfaceView(var cont : Context, var attrs : AttributeSet) : GLSurfaceView(cont, attrs)  {
+class MyGLSurfaceView(cont : Context, attrs : AttributeSet) : GLSurfaceView(cont, attrs)  {
+
     var mRenderer: MyRenderer
 
     private var game : GameInstance = (cont as Game).gameInstance!!

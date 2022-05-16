@@ -1,6 +1,5 @@
 package it.elsalamander.mine3d.Game.Game.Data.GameSett.Builder
 
-import android.annotation.SuppressLint
 import android.widget.SeekBar
 import it.elsalamander.mine3d.Game.Game.GameBuildSettingsFragment
 
@@ -16,7 +15,6 @@ class BombBarEvent(var builder: GameSettBuilder, var fragment: GameBuildSettings
      * min is 0 and max is 100.)
      * @param fromUser True if the progress change was initiated by the user.
      */
-    @SuppressLint("SetTextI18n")
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         if(!fromUser){
             //se la modifica non è fatta dall'utente ignora, perchè la barra può essere modificata dalla

@@ -24,7 +24,7 @@ enum class StandardGameSett(var gameSettings : GameSett?, var str: String) {
 
     companion object {
         fun getFromString(str : String) : StandardGameSett{
-            val scan : Scanner = Scanner(str)
+            val scan = Scanner(str)
             scan.useDelimiter("-")
 
             //prima lettera

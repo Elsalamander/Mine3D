@@ -1,6 +1,5 @@
 package it.elsalamander.mine3d.Game.Game.Data.GameSett.Builder
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
@@ -20,7 +19,6 @@ class InputCellEvent(var builder: GameSettBuilder, var fragment: GameBuildSettin
      * otherwise, this is null.
      * @return Return true if you have consumed the action, else false.
      */
-    @SuppressLint("SetTextI18n")
     override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
         try{
             builder.size = v.text.toString().toInt()

@@ -1,7 +1,6 @@
 package it.elsalamander.mine3d.Game.Game
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import it.elsalamander.mine3d.Game.Event.Listener.Listener
@@ -105,7 +104,7 @@ class Game() : AppCompatActivity(){
         media.reasume()
 
         //c'è una istanza di gioco da recuperare?
-        gameInstance?.Reasume()
+        gameInstance?.reasume()
     }
 
     override fun onStop() {

@@ -37,7 +37,7 @@ class FlagSetting(context : Activity) :  Setting<TypeTouch>(TypeTouch.Tap, conte
                 TypeTouch.ND -> TypeTouch.Tap
             }
         }
-        var tx : TextView = this.context.findViewById(R.id.settings_control_selecter_flag_text)
+        val tx : TextView = this.context.findViewById(R.id.settings_control_selecter_flag_text)
         tx.text = this.value.name
     }
 }
