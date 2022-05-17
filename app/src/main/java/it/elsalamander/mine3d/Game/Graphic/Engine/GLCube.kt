@@ -22,6 +22,13 @@ import java.nio.FloatBuffer
  *      non sono state effettuate ottimizzazioni o accorgimenti
  *      particolari.
  *
+ * 2.1: E' stata modificata la OpenGL usata da GLES20 si è passati
+ *      alla GLES32.
+ *
+ * 2.2: E' stata realizzata la funzione JNI per il draw, ma non
+ *      funziona, è presente solo la funzione che esegue correttamente
+ *      la chiamata in JNI.
+ *
  *
  *
  *

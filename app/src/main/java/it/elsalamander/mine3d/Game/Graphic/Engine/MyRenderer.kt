@@ -19,6 +19,10 @@ import javax.microedition.khronos.opengles.GL10
  *        NON sono state effettuate ottimizzazioni o accorgimenti
  *        particolari.
  *
+ * V 2.2: Data di modifica 15/05/2022
+ *        E' stata realizzata la classe "MyMatrix" e sono state utilizzate
+ *        le funzioni di essa, al posto di altre.
+ *
  *
  *
  *
@@ -104,8 +108,8 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         //Fai la rotazione per i cubi
         Matrix.setIdentityM(mRotationMatrix, 0)
         Matrix.setIdentityM(mCurrentRotation, 0)
-        Matrix.rotateM(mCurrentRotation, 0, mDeltaX, 0.0f, 1.0f, 0.0f)
-        Matrix.rotateM(mCurrentRotation, 0, mDeltaY, 1.0f, 0.0f, 0.0f)
+        Matrix.rotateM(mCurrentRotation, 0, mDeltaX, 0.0f, 1.0f, 0.0f)  //inverto gli assi X e Y
+        Matrix.rotateM(mCurrentRotation, 0, mDeltaY, 1.0f, 0.0f, 0.0f)  //inverto gli assi X e Y
         Matrix.rotateM(mCurrentRotation, 0, mDeltaZ, 0.0f, 0.0f, 1.0f)
         mDeltaX = 0.0f
         mDeltaY = 0.0f

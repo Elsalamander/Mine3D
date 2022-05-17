@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import it.elsalamander.mine3d.Game.Settings.BaseSettings.BaseSettings
 import it.elsalamander.mine3d.Game.Settings.BaseSettings.Theme.ThemeList
 import it.elsalamander.mine3d.Game.Settings.JSONManager

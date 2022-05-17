@@ -1,7 +1,7 @@
 package it.elsalamander.mine3d
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 /****************************************************************
  * Activity di launch dell'app
