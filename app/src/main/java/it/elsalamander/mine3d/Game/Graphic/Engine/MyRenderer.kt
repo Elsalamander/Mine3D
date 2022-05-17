@@ -24,8 +24,6 @@ import javax.microedition.khronos.opengles.GL10
  *        le funzioni di essa, al posto di altre.
  *
  *
- *
- *
  * **Nota: le versioni precedenti alla 2.1 non eseguivano il texturing
  *         o comunque non realizzava l'obbiettivo, non ho tenuto in
  *         considerazione.
