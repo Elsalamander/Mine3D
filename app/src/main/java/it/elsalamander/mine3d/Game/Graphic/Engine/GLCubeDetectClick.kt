@@ -1,7 +1,6 @@
 package it.elsalamander.mine3d.Game.Graphic.Engine
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import it.elsalamander.mine3d.Game.Event.Set.PlaceFlagEvent
@@ -234,10 +233,6 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
             }
         }
 
-        Log.d("TouchEvent", "Cubo trovato $last , rx= $rx, ry=$ry, rz= $rz")
-        if(last != null){
-            Log.d("TouchEvent", "Coordante z:${lastz}")
-        }
         //ritorna il risultato finale
         return last
     }

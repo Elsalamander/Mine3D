@@ -45,7 +45,7 @@
         android:id="@+id/centre_pointer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="o"
+        android:text="+"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -3,7 +3,6 @@ package it.elsalamander.mine3d.Game.Graphic.Engine
 import android.opengl.GLES32
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
-import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Graphic.Engine.MySupport.MyMatrix
 import javax.microedition.khronos.egl.EGLConfig
@@ -20,7 +19,11 @@ import javax.microedition.khronos.opengles.GL10
  *        NON sono state effettuate ottimizzazioni o accorgimenti
  *        particolari.
  *
- * V 2.2: Data di modifica 15/05/2022
+ * V 2.2  Data do modifica 14/05/2022
+ *        Si è passati dalla GLES20 alla GLES32, modifica effettuata
+ *        anche alla classe GLCube
+ *
+ * V 2.3: Data di modifica 15/05/2022
  *        E' stata realizzata la classe "MyMatrix" e sono state utilizzate
  *        le funzioni di essa, al posto di altre.
  *
@@ -170,9 +173,6 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.xRend = tmpM[12]
                 myCube?.yRend = tmpM[13]
                 myCube?.zRend = tmpM[14]
-                //myCube?.dist  = tmpM[15]
-
-                //Log.d("RENDERER", "x:${tmpM[12]}  y:${tmpM[13]}  z:${tmpM[14]}  l:${tmpM[11]}")
 
                 //disegna il cubo
                 GLCube.draw(tmpM, myCube?.getTextureID() ?: 9)
