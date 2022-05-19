@@ -2,7 +2,7 @@ Progetto per il corso: Programmazione di sistemi embedded.
 
 Realizzazione di un gioco, campo minato 3D.
 
-Come si gioca, è presente una griglia di cubi in una superficie di un cubo,
+Come si gioca: è presente una griglia di cubi in una superficie di un cubo,
 il cu cubetto indicato è quello puntato dal simbolo "+" in mezzo allo schermo.
 
 Si scopre o si piazza la bandiera in base alle impostazioni in uso, di default
