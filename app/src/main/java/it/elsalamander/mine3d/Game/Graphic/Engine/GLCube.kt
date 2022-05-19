@@ -24,10 +24,16 @@ import java.nio.FloatBuffer
  *
  * 2.1: E' stata modificata la OpenGL usata da GLES20 si è passati
  *      alla GLES32.
+ *      Sono state commentate le righe sostituite
  *
  * 2.2: E' stata realizzata la funzione JNI per il draw, ma non
  *      funziona, è presente solo la funzione che esegue correttamente
  *      la chiamata in JNI.
+ *
+ * 2.3: E' stata aggiunta la chiamata "GLES32.glEnable(GLES32.GL_CULL_FACE)"
+ *      nella funzione "createSurfaceView", per migliorare le prestazioni.
+ *      Sono state rimosse le chiamate a funzione "checkGlError" nella
+ *      funzione "draw" per migliorare le prestazioni
  *
  *
  *
@@ -38,7 +44,7 @@ import java.nio.FloatBuffer
  *
  * @author: Elsalamander
  * @data: 16 aprile 2021
- * @version: v2.0
+ * @version: v2.3
  ****************************************************************/
 object GLCube {
 
@@ -253,6 +259,7 @@ object GLCube {
         GLES32.glClear(GLES32.GL_DEPTH_BUFFER_BIT or GLES32.GL_COLOR_BUFFER_BIT)
         GLES32.glEnable(GLES32.GL_DEPTH_TEST)
 
+        //aggiunta di ottimizzazione
         GLES32.glEnable(GLES32.GL_CULL_FACE)
 
         GLES32.glDepthFunc(GLES32.GL_LEQUAL)
@@ -285,7 +292,7 @@ object GLCube {
         }
 
         // Creo le texture.
-        var indice : Int = 0
+        var indice = 0
         for(id in mTexturePNG){
             val textures = IntArray(1)
             //GLES20.glGenTextures(1, textures, 0)
@@ -361,6 +368,7 @@ object GLCube {
         //GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 12, 4)
         //GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 16, 4)
         //GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 20, 4)
+
         GLES32.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, mMVPMatrix, 0)
         GLES32.glDrawArrays(GLES32.GL_TRIANGLE_STRIP, 0, 4)
         GLES32.glDrawArrays(GLES32.GL_TRIANGLE_STRIP, 4, 4)

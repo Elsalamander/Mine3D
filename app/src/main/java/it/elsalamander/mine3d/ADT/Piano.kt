@@ -28,14 +28,14 @@ import it.elsalamander.mine3d.util.Pair
  ******************************************************************************/
 class Piano<T>(dimension: Byte) {
 
-    private val piani: Array<SAH<Pair<Area<T>, T>>?> = arrayOfNulls<SAH<Pair<Area<T>, T>>>(1 shl dimension.toInt())
+    private val piani: Array<SAH<Pair<Area<T>, T>>?> = arrayOfNulls(1 shl dimension.toInt())
     private val dimension: Byte
     private var noZona : Zona<T>
 
 
     init{
         for (i in 0 until (1 shl dimension.toInt())) {
-            piani[i] = SAH<Pair<Area<T>, T>>()
+            piani[i] = SAH()
         }
         this.dimension = dimension
         noZona = Zona(this)

@@ -33,7 +33,7 @@ import java.io.File
  * @data: 15 aprile 2021
  * @version: v1.0
  ****************************************************************/
-class Game() : AppCompatActivity(){
+class Game : AppCompatActivity(){
 
     companion object{
         const val TAG_INTENT_GAME_TYPE = "GameType"
@@ -105,10 +105,6 @@ class Game() : AppCompatActivity(){
 
         //c'è una istanza di gioco da recuperare?
         gameInstance?.reasume()
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
     override fun onDestroy() {

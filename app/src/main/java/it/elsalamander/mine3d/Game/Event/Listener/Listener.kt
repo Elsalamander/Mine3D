@@ -47,6 +47,7 @@ class Listener : ListenerGame {
         //prima controlla se il cubo ha la bandiera
         if(cube.flag){
             //termina l'evento
+            event.setCancellable(true)
             return
         }
 
@@ -58,13 +59,10 @@ class Listener : ListenerGame {
             return
         }
 
-        Log.d("Event RevealCubeEvent", "Valore cubo: ${
-            cube.value
-        }")
-
         if(cube.isBomb()){
             //chiama l'evento di rivelazione bomba
             event.instanceGame.context.eventManager.callEvent(RevealBombEvent(event))
+            event.setCancellable(true)
             return
         }
 
@@ -86,6 +84,7 @@ class Listener : ListenerGame {
         //controlla se ha vinto
         if(event.instanceGame.grid.toFind == event.instanceGame.grid.scovered){
             event.instanceGame.context.eventManager.callEvent(WinEvent(event))
+            event.setCancellable(true)
             return
         }
     }

@@ -65,15 +65,11 @@ class MyGLSurfaceView(cont : Context, attrs : AttributeSet) : GLSurfaceView(cont
         if(x != x2){
 
             //chi è a sinistra?
-            val x_1 = x
-            val y_1 = y
-            val x_2 = x2
-            val y_2 = y2
 
 
-            val newAng = atan(((y_2-y_1)/(x_2-x_1)).toDouble())
+            val newAng = atan(((y2 - y) / (x2 - x)).toDouble())
 
-            if((x_1 == x_2) or ((newAng < -PI/4) and (oldAng > PI/4)) or ((newAng > PI/4) and (oldAng < -PI/4))){
+            if((x == x2) or ((newAng < -PI / 4) and (oldAng > PI / 4)) or ((newAng > PI/4) and (oldAng < -PI/4))){
                 oldAng = -100.0
             }
 

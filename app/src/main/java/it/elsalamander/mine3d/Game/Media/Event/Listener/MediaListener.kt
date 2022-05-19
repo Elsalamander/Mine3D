@@ -4,8 +4,10 @@ import android.util.Log
 import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
 import it.elsalamander.mine3d.Game.Event.Manager.EventPriority
 import it.elsalamander.mine3d.Game.Event.Manager.ListenerGame
+import it.elsalamander.mine3d.Game.Event.Set.GameOverEvent
 import it.elsalamander.mine3d.Game.Event.Set.GameStart
 import it.elsalamander.mine3d.Game.Event.Set.QuitGameEvent
+import it.elsalamander.mine3d.Game.Event.Set.RevealCubeEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.EndSongEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.StartSongEvent
 
@@ -60,5 +62,16 @@ class MediaListener : ListenerGame {
     @EventHandlerGame(EventPriority.LOW, true)
     fun onQuitGame(event : QuitGameEvent){
         event.instanceGame.context.media.stop()
+    }
+
+
+    @EventHandlerGame(EventPriority.LOW)
+    fun onGameOver(event : GameOverEvent){
+        event.instanceGame.context.media.playBombEffect(event.instanceGame)
+    }
+
+    @EventHandlerGame(EventPriority.LOW)
+    fun onGameOver(event : RevealCubeEvent){
+        event.instanceGame.context.media.playRevealEffect(event.instanceGame)
     }
 }

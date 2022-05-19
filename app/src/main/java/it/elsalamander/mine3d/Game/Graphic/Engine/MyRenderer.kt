@@ -22,10 +22,12 @@ import javax.microedition.khronos.opengles.GL10
  * V 2.2  Data do modifica 14/05/2022
  *        Si è passati dalla GLES20 alla GLES32, modifica effettuata
  *        anche alla classe GLCube
+ *        Sono state commentate le righe sostituite
  *
  * V 2.3: Data di modifica 15/05/2022
  *        E' stata realizzata la classe "MyMatrix" e sono state utilizzate
  *        le funzioni di essa, al posto di altre.
+ *        Sono state commentate le righe sostituite
  *
  *
  * **Nota: le versioni precedenti alla 2.1 non eseguivano il texturing
@@ -35,7 +37,7 @@ import javax.microedition.khronos.opengles.GL10
  *
  * @author: Elsalamander
  * @data: 16 aprile 2021
- * @version: v2.1
+ * @version: v2.3
  ****************************************************************/
 class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
 

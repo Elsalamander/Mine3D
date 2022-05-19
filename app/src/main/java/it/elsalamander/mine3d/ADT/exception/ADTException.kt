@@ -9,7 +9,7 @@ open class ADTException : RuntimeException {
         cause: Throwable?,
         enableSuppression: Boolean,
         writableStackTrace: Boolean
-    ) : super() {}
+    ) : super()
 
     /**
      * @param message
@@ -20,12 +20,12 @@ open class ADTException : RuntimeException {
     /**
      * @param message
      */
-    constructor(message: String?) : super(message) {}
+    constructor(message: String?) : super(message)
 
     /**
      * @param cause
      */
-    constructor(cause: Throwable?) : super(cause) {}
+    constructor(cause: Throwable?) : super(cause)
 
     companion object {
         /**

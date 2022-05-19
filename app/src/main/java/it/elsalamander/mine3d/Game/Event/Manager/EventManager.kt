@@ -78,9 +78,12 @@ object EventManager {
                 if(event is Cancellable){
                     //è di tipo Cancellable
                     //controlla se ha l'annotazione per ignorare una eventuale cancellazione, memorizzata nella fnc.
-                    if(!fnc.ignore){
-                        //non deve ignorare la cancellazione quindi si skippa
-                        continue
+                    if(event.isCancelled()){
+                        //è stato cancellato
+                        if(!fnc.ignore){
+                            //non deve ignorare la cancellazione
+                            continue
+                        }
                     }
                 }
                 fnc.fn.call(fnc.cl, event)
@@ -88,6 +91,9 @@ object EventManager {
         }
     }
 
+    /**
+     * elimina tutte le classi listener registrate
+     */
     fun unRegisterAll() {
         map.clear()
     }

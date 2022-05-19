@@ -12,5 +12,4 @@ import it.elsalamander.mine3d.Game.Game.Data.GameInstance
  * @data: 15 aprile 2021
  * @version: v1.0
  ****************************************************************/
-abstract class EventGame(var instanceGame : GameInstance) {
-}
+abstract class EventGame(var instanceGame : GameInstance)

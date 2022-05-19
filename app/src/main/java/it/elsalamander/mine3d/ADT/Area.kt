@@ -404,7 +404,7 @@ class Area<T>(private val piano: Piano<T>) {
         }
 
         //controllo il valore di count
-        if (count == padre.getFigli()?.size ?: 0) {
+        if (count == (padre.getFigli()?.size ?: 0)) {
             //chiamata ricorsiva per eliminare questo nodo
             deleteAllUp(padre)
         }
@@ -457,7 +457,7 @@ class Area<T>(private val piano: Piano<T>) {
         }
 
         //controllo il valore di count
-        return count >= node.getFigli()?.size ?: 0
+        return count >= (node.getFigli()?.size ?: 0)
 
         //il nodo non deve essere eliminato
     }

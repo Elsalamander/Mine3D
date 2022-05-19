@@ -8,5 +8,4 @@ package it.elsalamander.mine3d.Game.Event.Manager
  * @data: 15 aprile 2021
  * @version: v1.0
  ****************************************************************/
-interface ListenerGame {
-}
+interface ListenerGame

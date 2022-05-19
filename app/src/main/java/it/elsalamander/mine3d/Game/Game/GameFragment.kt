@@ -15,6 +15,7 @@ import it.elsalamander.mine3d.Game.Event.Set.PausedGameEvent
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Graphic.Engine.MyGLSurfaceView
 import it.elsalamander.mine3d.Game.Graphic.OtherView.CountUpTimer
+import it.elsalamander.mine3d.Game.Settings.BaseSettings.Theme.ThemeList
 import it.elsalamander.mine3d.R
 
 /****************************************************************
@@ -73,6 +74,21 @@ class GameFragment : Fragment() {
         }else{
             View.INVISIBLE
         }
+
+        if(settings.baseSett.theme.getVal() == ThemeList.DARK){
+            val color = resources.getColor(R.color.white)
+            bomb.setTextColor(color)
+            timer.setTextColor(color)
+            pause.setColorFilter(color)
+        }else{
+            val color = resources.getColor(R.color.black)
+            bomb.setTextColor(color)
+            timer.setTextColor(color)
+            pause.setColorFilter(color)
+        }
+
+        view.findViewById<TextView>(R.id.centre_pointer).setTextColor(resources.getColor(R.color.black, activity.theme))
+
         bomb.text = activity.gameSett?.numberOfBomb().toString()
 
         pause.setOnClickListener{

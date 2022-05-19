@@ -237,7 +237,7 @@ class NodeSAH<T>(private var punto: Point, size: Byte, padre: NodeSAH<T>?, value
         val newsize = ((size and 0x3F) + 1).toByte()
 
         //crea padre
-        padre = NodeSAH<T>(Point(newPoint), newsize, null, null)
+        padre = NodeSAH(Point(newPoint), newsize, null, null)
 
         //imposta il figlio nel padre appena creato
         padre!!.setFiglio(index.toInt(), this)

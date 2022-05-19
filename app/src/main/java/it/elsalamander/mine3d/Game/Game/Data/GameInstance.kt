@@ -92,7 +92,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
      */
     fun finish(win : Boolean){
         //fai vibbrare il telefono se abilitato
-        if(context.settings.baseSett.vibbrazione.getVal()){
+        if(context.settings.baseSett.vibbrazione.getVal() && !win){
             val v = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 (context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager).defaultVibrator
             }else{

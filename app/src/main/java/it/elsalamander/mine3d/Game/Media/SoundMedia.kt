@@ -2,6 +2,7 @@ package it.elsalamander.mine3d.Game.Media
 
 import android.media.MediaPlayer
 import android.util.Log
+import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Game.Game
 import it.elsalamander.mine3d.Game.Media.Event.Set.EndSongEvent
 import it.elsalamander.mine3d.Game.Media.Event.Set.StartSongEvent
@@ -23,6 +24,11 @@ class SoundMedia(var game : Game) {
     private val songs = arrayOf(
         MediaPlayer.create(game, R.raw.song1),
         MediaPlayer.create(game, R.raw.song2)
+    )
+
+    private val effect = arrayOf(
+        MediaPlayer.create(game, R.raw.bomb),
+        MediaPlayer.create(game, R.raw.scover)
     )
 
     private var state = -1 //stato: -1 non riproduce, 0: riproduce A, 1: riproduce B
@@ -115,4 +121,21 @@ class SoundMedia(var game : Game) {
         return getSong(state)
     }
 
+    /**
+     * Effetto sonoro della bomba
+     */
+    fun playBombEffect(game : GameInstance){
+        val vol = game.context.settings.baseSett.effectLevel.getVal().toFloat()
+        effect[0].setVolume(vol,vol)
+        effect[0].start()
+    }
+
+    /**
+     * Effetto sonoro del reveal
+     */
+    fun playRevealEffect(game : GameInstance){
+        val vol = game.context.settings.baseSett.effectLevel.getVal().toFloat()
+        effect[1].setVolume(vol,vol)
+        effect[1].start()
+    }
 }
