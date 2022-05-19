@@ -3,6 +3,7 @@ package it.elsalamander.mine3d.Game.Graphic.Engine
 import android.opengl.GLES32
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
+import android.util.Log
 import it.elsalamander.mine3d.Game.Game.Data.GameInstance
 import it.elsalamander.mine3d.Game.Graphic.Engine.MySupport.MyMatrix
 import javax.microedition.khronos.egl.EGLConfig
@@ -82,7 +83,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
         GLCube.createSurfaceView(game.context, r, g, b, 1f)
 
         //punto di vista
-        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 8f, 0f, 0f, 0f, 0f, 1f, 0f)
+        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, 10f, 0f, 0f, 0f, 0f, 1f, 0f)
 
         //Inizializza la matrice della rotazione
         Matrix.setIdentityM(mAccumulatedRotation, 0)
@@ -169,9 +170,9 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 myCube?.xRend = tmpM[12]
                 myCube?.yRend = tmpM[13]
                 myCube?.zRend = tmpM[14]
-                myCube?.dist  = tmpM[15]
+                //myCube?.dist  = tmpM[15]
 
-                //Log.d("RENDERER", "x:${tmpM[12]}  y:${tmpM[13]}  z:${tmpM[14]}")
+                //Log.d("RENDERER", "x:${tmpM[12]}  y:${tmpM[13]}  z:${tmpM[14]}  l:${tmpM[11]}")
 
                 //disegna il cubo
                 GLCube.draw(tmpM, myCube?.getTextureID() ?: 9)

@@ -35,7 +35,7 @@ import it.elsalamander.mine3d.util.Pair
  *
  * @author: Elsalamander
  * @data: 27 aprile 2021
- * @version: v1.0
+ * @version: v1.1
  ****************************************************************/
 class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View.OnTouchListener {
 
@@ -181,60 +181,40 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
     private fun getCube(x : Float, y : Float) : Pair<IntArray, MineCube>?{
         var larghezza = 0f
 
-        val rx = mRenderer.mTotalDeltaX
-        val ry = mRenderer.mTotalDeltaY
+        var rx = mRenderer.mTotalDeltaX
+        var ry = mRenderer.mTotalDeltaY
+        var rz = mRenderer.mTotalDeltaZ
 
-        val select = when{
-            ((rx<=45 || rx>=315) &&(ry<=45 || ry>=315)) -> 0 //cerca x=0, y=0 e z più grande
-            ((rx>45  && rx<135)  &&(ry<=45 || ry>=315)) -> 1 //cerca x=0, z=0 e la y più piccola
-            ((rx>135  && rx<225) &&(ry<=45 || ry>=315)) -> 2 //cerca x=0, y=0 e la z più piccola
-            ((rx>225 && rx<315)  &&(ry<=45 || ry>=315)) -> 3 //cerca x=0, z=0 e la y più grande
-
-            //ruoto la y di 90 gradi
-            ((rx<=45 || rx>=315) &&(ry>45  && ry<135)) -> 4 //cerca z=0, y=0 e la x più piccola
-            ((rx>45  && rx<135)  &&(ry>45  && ry<135)) -> 4 //cerca
-            ((rx>135 && rx<225)  &&(ry>45  && ry<135)) -> 4 //cerca
-            ((rx>225 && rx<315)  &&(ry>45  && ry<135)) -> 4 //cerca
-
-            //ruoto la y di altri 90 gradi
-            ((rx<=45 || rx>=315) &&(ry>135  && ry<225)) -> 2 //cerca x=0, y=0 e la z più piccola
-            ((rx>45  && rx<135)  &&(ry>135  && ry<225)) -> 3 //cerca x=0, z=0 e la y più grande
-            ((rx>135 && rx<225)  &&(ry>135  && ry<225)) -> 0 //cerca x=0, y=0 e z più grande
-            ((rx>225 && rx<315)  &&(ry>135  && ry<225)) -> 1 //cerca x=0, z=0 e la y più piccola
-
-            //ruoto la y di altri 90 gradi
-            ((rx<=45 || rx>=315) &&(ry>225  && ry<315)) -> 5 //cerca z=0, y=0 e la x più grande
-            ((rx>45  && rx<135)  &&(ry>225  && ry<315)) -> 5 //cerca
-            ((rx>135 && rx<225)  &&(ry>225  && ry<315)) -> 5 //cerca
-            ((rx>225 && rx<315)  &&(ry>225  && ry<315)) -> 5 //cerca
-
-            else -> -1
+        //normalizza rotazione fra 0 - 360 gradi
+        if(rx < 0){
+            rx += 360f
+        }
+        if(ry < 0){
+            ry += 360f
+        }
+        if(rz < 0){
+            rz += 360f
         }
 
-        if(select == -1){
-            return null
-        }
-
-        var aM: Float
-        var bM: Float
+        var xr : Float
+        var yr : Float
+        var zr : Float
         var last : Pair<IntArray, MineCube>? = null
+        var lastz = 0f
         //visita tutti i nodi per scoprire quale cubo si trova alle coordinate passate
         game.grid.visitLeaf {
+            xr = it?.getVal()?.second?.xRend ?: 0f
+            yr = it?.getVal()?.second?.yRend ?: 0f
+            zr = it?.getVal()?.second?.zRend ?: 0f
+
             if(larghezza == 0f){
-                larghezza = kotlin.math.abs(it?.getVal()?.second?.larghezza ?: 0f) * 1.25f
-            }
-            aM = when(select){
-                in 0..3 -> it?.getVal()?.second?.xRend ?: 0f
-                else -> it?.getVal()?.second?.yRend ?: 0f
-            }
-            bM = when(select){
-                5,4,3,1 -> it?.getVal()?.second?.zRend ?: 0f
-                else -> it?.getVal()?.second?.yRend ?: 0f
+                larghezza = 1.5f * this.mRenderer.zoom
+                lastz = zr
             }
 
             //rientra nelle coordinate passate?
-            if(aM - larghezza <= x && x <= aM + larghezza){
-                if(bM - larghezza <= y && y <= bM + larghezza){
+            if(xr - larghezza <= x && x <= xr + larghezza){
+                if(yr - larghezza <= y && y <= yr + larghezza){
                     //rientra, butta nella lista
                     val arr = IntArray(3)
                     arr[0] = it?.getPoint()?.getAxisValue(0)!!.toInt()
@@ -242,34 +222,24 @@ class GLCubeDetectClick(var game: GameInstance,var mRenderer: MyRenderer) : View
                     arr[2] = it.getPoint().getAxisValue(2).toInt()
 
                     if(last != null){
-                        if(select == 0 || select == 3 || select == 5){
-                            if(last!!.first[2] <= arr[2]){
-                                last = Pair(arr, it.getVal()!!.second)
-                            }
-                        }else{
-                            if(last!!.first[2] > arr[2]){
-                                last = Pair(arr, it.getVal()!!.second)
-                            }
+                        if(lastz > zr){
+                            last = Pair(arr, it.getVal()!!.second)
+                            lastz = zr
                         }
                     }else{
                         last = Pair(arr, it.getVal()!!.second)
+                        lastz = zr
                     }
                 }
             }
         }
 
-        Log.d("TouchEvent", "Cubo trovato $last")
+        Log.d("TouchEvent", "Cubo trovato $last , rx= $rx, ry=$ry, rz= $rz")
+        if(last != null){
+            Log.d("TouchEvent", "Coordante z:${lastz}")
+        }
         //ritorna il risultato finale
         return last
     }
-
-    /*
-    private fun getCubeV2(x : Int, y : Int) : Pair<IntArray, MineCube>?{
-        val det = CubeDetectSupport(mRenderer)
-        val coords = det.prova(x,y)
-        Log.d("GLTEST", "x:${coords[0]}  y:${coords[1]}  z:${coords[2]}")
-        return null
-    }
-    */
 
 }
