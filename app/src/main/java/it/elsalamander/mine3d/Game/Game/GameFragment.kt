@@ -56,13 +56,14 @@ class GameFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
-        val timer : TextView = view.findViewById(R.id.fragment_game_timer)
-            bomb             = view.findViewById(R.id.fragment_game_bomb)
+        val timer : TextView    = view.findViewById(R.id.fragment_game_timer)
+            bomb                = view.findViewById(R.id.fragment_game_bomb)
         val pause : ImageButton = view.findViewById(R.id.fragment_game_pause_button)
         val mySurface : MyGLSurfaceView = view.findViewById(R.id.glSurfaceViewID)
 
         mySurface.setMyRenderer()
 
+        //Rendi visibili o no le textView come impostato nelle impostazioni
         timer.visibility = if(settings.baseSett.showTimer.getVal()){
             View.VISIBLE
         }else{
@@ -75,22 +76,23 @@ class GameFragment : Fragment() {
             View.INVISIBLE
         }
 
+        //Aggiusta il colore delle textView e immageButton
         if(settings.baseSett.theme.getVal() == ThemeList.DARK){
-            val color = resources.getColor(R.color.white)
+            val color = resources.getColor(R.color.black, activity.theme)
             bomb.setTextColor(color)
             timer.setTextColor(color)
             pause.setColorFilter(color)
         }else{
-            val color = resources.getColor(R.color.black)
+            val color = resources.getColor(R.color.black, activity.theme)
             bomb.setTextColor(color)
             timer.setTextColor(color)
             pause.setColorFilter(color)
         }
-
         view.findViewById<TextView>(R.id.centre_pointer).setTextColor(resources.getColor(R.color.black, activity.theme))
 
         bomb.text = activity.gameSett?.numberOfBomb().toString()
 
+        //evento click button pause
         pause.setOnClickListener{
             view.findNavController().navigate(R.id.action_game_to_pause)
         }
@@ -109,7 +111,15 @@ class GameFragment : Fragment() {
         val activity = this.activity as Game
 
         //chiama la funzione pausa della istanza di gioco
-        activity.gameInstance?.let {activity.eventManager.callEvent(PausedGameEvent(it))}
+        activity.gameInstance?.let {
+            //il game è stato concluso?
+            if(it.grid.toFind == it.grid.scovered){
+                //si è stato concluso non salvare
+            }else{
+                //non è concluso salva lo stato
+                activity.eventManager.callEvent(PausedGameEvent(it))
+            }
+        }
     }
 
 }

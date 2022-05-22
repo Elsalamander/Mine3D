@@ -36,7 +36,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
     lateinit var grid : Griglia  //griglia di gioco
 
     companion object{
-        const val pathSettings : String = "LastGame.json"
+        const val pathLastGame : String = "LastGame.json"
     }
 
     /**
@@ -76,7 +76,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
      */
     fun reasume(){
         //controlla se il file esiste prima
-        val file = File(context.filesDir, pathSettings)
+        val file = File(context.filesDir, pathLastGame)
         if(!file.exists()){
             //termina questo Reasum
             return
@@ -109,7 +109,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
         navHost.findNavController().navigate(R.id.action_game_to_end, bundle)
 
         //elimina il salvataggio
-        val file = File(context.filesDir, pathSettings)
+        val file = File(context.filesDir, pathLastGame)
         if(file.exists()){
             //elimina il file se esiste
             file.delete()
@@ -127,13 +127,13 @@ class GameInstance(var context: Game, load : Boolean = false) {
     /**
      * Salva il GameCorrente
      */
-    fun saveState(){
+    private fun saveState(){
         val json = this.getJSON()
         context.gameSett?.save(json)
         this.grid.save(json)
 
         val userString: String = json.toString()
-        val file = File(context.filesDir, pathSettings)
+        val file = File(context.filesDir, pathLastGame)
         val fileWriter = FileWriter(file)
         val bufferedWriter = BufferedWriter(fileWriter)
         bufferedWriter.write(userString)
@@ -154,7 +154,7 @@ class GameInstance(var context: Game, load : Boolean = false) {
      * Se non esiste crea un file vuoto.
      */
     private fun getJSON(): JSONObject {
-        val file = File(context.filesDir, pathSettings)
+        val file = File(context.filesDir, pathLastGame)
         if(!file.exists()){
             //il file non esiste
             file.createNewFile()

@@ -284,7 +284,7 @@ class Griglia(var N : Int) {
             }
         }
 
-        //controllo se sono 7 o 9
+        //controllo se sono 6 o 8
         if(filt.size > 8){
             //devo ulteriormente filtrare un caso
             //per poterlo fare uso l'asse più usato

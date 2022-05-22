@@ -29,7 +29,7 @@ import kotlin.reflect.jvm.jvmErasure
  *
  * @author: Elsalamander
  * @data: 15 aprile 2021
- * @version: v1.0
+ * @version: v1.1
  ****************************************************************/
 object EventManager {
 
@@ -77,9 +77,9 @@ object EventManager {
                 //controlla se implementa Cancellable
                 if(event is Cancellable){
                     //è di tipo Cancellable
-                    //controlla se ha l'annotazione per ignorare una eventuale cancellazione, memorizzata nella fnc.
                     if(event.isCancelled()){
                         //è stato cancellato
+                        //controlla se ha l'annotazione per ignorare una eventuale cancellazione, memorizzata nella fnc.
                         if(!fnc.ignore){
                             //non deve ignorare la cancellazione
                             continue

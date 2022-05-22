@@ -51,6 +51,13 @@ class Listener : ListenerGame {
             return
         }
 
+        //controlla se il cubo è gia stato scoperto
+        if(!cube.hide){
+            //termina l'evento
+            event.setCancellable(true)
+            return
+        }
+
         //c'è il caso che questo è il primo reveal
         //chiama l'evento di FirstReveal
         if(!event.instanceGame.grid.popolated){

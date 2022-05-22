@@ -61,7 +61,7 @@ class MenuFragment : Fragment() {
         val gameReasume = view.findViewById<Button>(R.id.game_reasum)
         gameReasume.setOnClickListener {
             //vedi se esiste il file
-            val file = File(context?.filesDir, GameInstance.pathSettings)
+            val file = File(context?.filesDir, GameInstance.pathLastGame)
             if(!file.exists()){
                 //il file non esiste, manda un messaggio che non c'è un game da recuperare
                 val msg = Toast.makeText(this.activity, sendError, Toast.LENGTH_SHORT)

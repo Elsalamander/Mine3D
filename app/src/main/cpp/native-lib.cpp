@@ -62,15 +62,19 @@ float cubeTexCoordsStrip[] = {
         1.0f,  0.0f
 };
 
+/**
+ * La funzione viene segnalata con un probabile bug, ma non è vero.
+ * Non viene neanche invocata è un tentativo
+ */
 extern "C"
 JNIEXPORT void JNICALL
 Java_it_elsalamander_mine3d_Game_Graphic_Engine_GLCube_drawJNI(JNIEnv *env,
-                                                               jobject thiz,
-                                                               jfloatArray m_mvpmatrix,
-                                                               jint id_texture,
-                                                               jint program,
-                                                               jintArray textures,
-                                                               jint muMVPMatrixHandle) {
+                                   jobject thiz,
+                                   jfloatArray m_mvpmatrix,
+                                   jint id_texture,
+                                   jint program,
+                                   jintArray textures,
+                                   jint muMVPMatrixHandle) {
 
 
     glUseProgram(program);

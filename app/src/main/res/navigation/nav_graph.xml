@@ -23,7 +23,7 @@
         android:id="@+id/settings"
         android:name="it.elsalamander.mine3d.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_control_settings" >
+        tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settings_to_control"
             app:destination="@id/control" />

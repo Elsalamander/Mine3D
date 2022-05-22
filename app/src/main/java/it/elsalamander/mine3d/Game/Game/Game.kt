@@ -66,7 +66,7 @@ class Game : AppCompatActivity(){
             gameInstance = GameInstance(this, true)
         }else{
             //elimina il file corrente
-            val file = File(this.filesDir, GameInstance.pathSettings)
+            val file = File(this.filesDir, GameInstance.pathLastGame)
             if(file.exists()){
                 file.delete()
             }

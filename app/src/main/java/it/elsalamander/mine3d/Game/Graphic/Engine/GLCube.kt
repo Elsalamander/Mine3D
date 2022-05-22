@@ -155,10 +155,12 @@ object GLCube {
     private fun createProgram(): Int {
         mTriangleTexcoords = ByteBuffer.allocateDirect(cubeTexCoordsStrip.size * FLOAT_SIZE_BYTES)
             .order(ByteOrder.nativeOrder()).asFloatBuffer()
+
         mTriangleTexcoords.put(cubeTexCoordsStrip).position(0)
 
         mTriangleVertices = ByteBuffer.allocateDirect(cubeVerticesStrip.size * FLOAT_SIZE_BYTES)
             .order(ByteOrder.nativeOrder()).asFloatBuffer()
+
         mTriangleVertices.put(cubeVerticesStrip).position(0)
 
 
@@ -245,7 +247,7 @@ object GLCube {
 
     /**
      * Funzione da chiamare quando viene creata la SurfaceView
-     * Tale funzione serve per inizializzare il GLES20, creare il programmaGL
+     * Tale funzione serve per inizializzare il GLES, creare il programmaGL
      * caricare le texture da usare in game.
      */
     fun createSurfaceView(context : Context, red : Float, green : Float, blue : Float, alpha : Float){

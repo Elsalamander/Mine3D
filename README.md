@@ -18,3 +18,10 @@ Ci sono vari preset di gioco + la possibilità di custommizzare il game che si
 vuole fare.
 
 La grafica è realizzata con la OpenGL.
+
+Per capire come funziona l'applicazione, bisogna prima capire come funzionano gli eventi,
+dato che se si cerca che chiama cosa dovuto da un evento ci si imbatte in una funzione
+apparentemente mai usata, non è vera la cosa, le funzioni dentro le classi "Listener", vengono
+tutte chiamate, ma non in modo "diretto" ma attraverso la Reflection di Java/Kotlin.
+Capire come funziona il contenuto del packege "it.elsalamander.mine3d.Game.Event.Manager" è
+necessario se si vuole sapere come si evolvono alcuni eventi.
