@@ -6,15 +6,24 @@ import kotlin.reflect.jvm.jvmErasure
 
 /****************************************************************
  * Oggetto per la gestione degli eventi.
+ * Gestire la chiamata ad evento degli oggetti che estendono la classe
+ * "EventGame", esecuzione di tutte le funzioni che accettano come
+ * paramento l'oggetto lanciato come evento in un ordine definito.
+ *
+ * Le funzioni da chiamare devono essere registrate.
+ * Per essere registrate queste ultime devono essere contenute
+ * in una classe che implemente "ListenerGame".
+ *
+ * La registrazione viene effettuata come segue:
  * Quando si registra una classe che contiene l'esecuzione di un
  * evento, si fa:
  * - Si prendono tutte le funzione in essa contenuta, filtrare
- *   queste se hanno l'annotazione @EventHandlerGame.
+ *   queste se hanno l'annotazione "@EventHandlerGame".
  * - Ulteriore filtro devono avere solo 1 parametro.
  * - Se il paramentro non è mappato questo viene inserito come
- *   chiave di una mappa del tipo ClassType -> Lista<ListenerGame>
- * - Ogni classe che viene registrata deve implementare l'interfaccia ListenerGame
- * - Ogni Oggetto evento deve Estendere la classe astratta EventGame
+ *   chiave di una mappa del tipo "ClassType -> Lista<ListenerGame>"
+ * - Ogni classe che viene registrata deve implementare l'interfaccia "ListenerGame"
+ * - Ogni Oggetto evento deve Estendere la classe astratta "EventGame"
  * - Gli eventi concreti possono implementare l'interfaccia Cancellable
  * - Gli eventi hanno una priorità di chiamata, questa viene generata
  *   mettendo in ordine gli oggetti dentro la lista mappata citata sopra

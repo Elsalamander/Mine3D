@@ -15,7 +15,23 @@ import kotlin.math.atan
  * Classe che contiene il renderer e gestisce il tocco quando
  * esso è attivo, per ruotare e zommare.
  *
- * Manca da fare: -Determinare il cubo premuto.
+ * Per realizzare e poi usare in modo comodo la View è stata
+ * fatta con una firma del costruttore apposta per poi essere
+ * usata ne file "fragment_game.xml"
+ *
+ * La classe realizza anche l'evento del tocco che poi diventa:
+ * - Possibile rotazione asse:
+ *      - X
+ *      - Y
+ *      - Z
+ * - Zoom
+ * - Scopri cubo
+ * - Piazza bandiera
+ *
+ * Gli ultimi 2 sono fatti tramite la classe di supporto
+ * "GLCubeDetectClick"
+ *
+ * Anche per il Zoom c'è una classe di supporto "ScaleDetector"
  *
  * @author: Elsalamander
  * @data: 16 aprile 2021

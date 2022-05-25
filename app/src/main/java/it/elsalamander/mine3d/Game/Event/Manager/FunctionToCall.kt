@@ -5,6 +5,8 @@ import kotlin.reflect.KFunction
 /****************************************************************
  * Data Class come supporto all'EventManager
  *
+ * Realizzazione della comparazione di priorità
+ *
  * @author: Elsalamander
  * @data: 15 aprile 2021
  * @version: v1.0

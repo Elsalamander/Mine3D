@@ -4,7 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.*
 
-
+/****************************************************************
+ * Classe per la realizzazione del Timer durante il Game
+ *
+ * @author: Elsalamander
+ * @data: 13 maggio 2021
+ * @version: v1.1
+ ****************************************************************/
 class CountUpTimer: ViewModel() {
 
     private val mutableLiveData = MutableLiveData<Int>()

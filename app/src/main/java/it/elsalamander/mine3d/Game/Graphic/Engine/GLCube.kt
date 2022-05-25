@@ -103,7 +103,7 @@ object GLCube {
 
     private var mProgram = 0
     private var mTextureID : IntArray = IntArray(12)
-    private val mTexturePNG = arrayOf(  //le 11 skin che dovrò mettere
+    private val mTexturePNG = arrayOf(  //le 12 skin che dovrò mettere
         R.drawable.nzero,   //nero 0
         R.drawable.nuno,    //1
         R.drawable.ndue,    //2

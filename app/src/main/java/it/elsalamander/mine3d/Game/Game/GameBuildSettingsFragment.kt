@@ -12,7 +12,7 @@ import it.elsalamander.mine3d.Game.Game.Data.GameSett.Difficulty
 import it.elsalamander.mine3d.R
 
 /****************************************************************
- * Fragment della schermata del build della partita Custom
+ * Fragment della schermata del build della partita Custom.
  *
  * @author: Elsalamander
  * @data: 15 aprile 2021

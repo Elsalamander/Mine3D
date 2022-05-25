@@ -10,6 +10,13 @@ import androidx.fragment.app.Fragment
 import it.elsalamander.mine3d.Game.Game.Data.GameSett.StandardGameSett
 import it.elsalamander.mine3d.Game.Game.Game
 
+/****************************************************************
+ * Selezione dei game Standard.
+ *
+ * @author: Elsalamander
+ * @data: 18 maggio 2021
+ * @version: v1.0
+ ****************************************************************/
 class StandardGameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +44,13 @@ class StandardGameFragment : Fragment() {
         return view
     }
 
+    /****************************************************************
+     * Classe privata di supporto per gestire l'evento di click.
+     *
+     * @author: Elsalamander
+     * @data: 18 maggio 2021
+     * @version: v1.0
+     ****************************************************************/
     private class ClickButton(val type : StandardGameSett) : View.OnClickListener{
         override fun onClick(v: View?) {
             val myIntent = Intent(v?.context, Game::class.java)

@@ -18,7 +18,7 @@ class MineCube(var value : Int = 0, var hide : Boolean = true) {
     var yRend : Float = 0f
     var zRend : Float = 0f
     //var dist: Float = 0f
-    var larghezza : Float = 0f
+    //var larghezza : Float = 0f
 
     fun isBomb() : Boolean {
         return this.value == -1

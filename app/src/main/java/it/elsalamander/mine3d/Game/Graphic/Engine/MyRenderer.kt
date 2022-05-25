@@ -34,6 +34,11 @@ import javax.microedition.khronos.opengles.GL10
  *         o comunque non realizzava l'obbiettivo, non ho tenuto in
  *         considerazione.
  *
+ *         Altra Nota. E tutto dannatamente sincrono non sono stati
+ *         creati Thread asincroni. Se si imposta un cubo eccessivamente
+ *         grande il rendering può durare più di 10 sec, allertando
+ *         Android che l'applicazione si è probabilemente bloccata.
+ *
  *
  * @author: Elsalamander
  * @data: 16 aprile 2021
@@ -171,7 +176,7 @@ class MyRenderer(var game : GameInstance) : GLSurfaceView.Renderer{
                 //Matrix.scaleM(tmpM, 0, zm, zm, zm)
                 MyMatrix.scaleM(tmpM, zm)
 
-                myCube?.larghezza = tmpM[11]
+                //myCube?.larghezza = tmpM[11]
                 myCube?.xRend = tmpM[12]
                 myCube?.yRend = tmpM[13]
                 myCube?.zRend = tmpM[14]

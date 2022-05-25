@@ -34,8 +34,9 @@ import java.security.SecureRandom
  *
  * Realizzazione:
  *      - Uso una mia vecchia libreria per mappare gli oggetti in un
- *        volume, libreria ElsaLib
+ *        volume, libreria ElsaLib.
  *      - Non è stata importata ma parzialmente ri-realizzata in kotlin
+ *        nel package "it.elsalamander.mine3d.ADT"
  *
  * @author: Elsalamander
  * @data: 15 aprile 2021
@@ -110,6 +111,9 @@ class Griglia(var N : Int) {
         this.popolated = true
     }
 
+    /**
+     * Durante la popolazione il primo step è generare casualemnte N bombe nella griglia.
+     */
     private fun populateBomb(x: Int, y: Int, z:Int, random : SecureRandom, gameSett : GameSett, countBomb : Int){
         var nBomb = countBomb
         this.grid.visitLeaf {
@@ -131,10 +135,16 @@ class Griglia(var N : Int) {
         }
     }
 
+    /**
+     * Ritorna il MineCube alle coordinate date
+     */
     private fun getCubeIn(x: Long, y: Long, z: Long) : MineCube?{
         return grid[Point(longArrayOf(x, y, z))]
     }
 
+    /**
+     * Fai la visita di ogni Cubo e esegui la lambda passata
+     */
     fun visitLeaf(function: (NodeSAH<Pair<Area<MineCube>, MineCube>?>?) -> Unit) {
         grid.visitLeaf(function)
     }
@@ -193,6 +203,10 @@ class Griglia(var N : Int) {
 
     }
 
+    /**
+     * Scopre tutti i Cubi in modo riccorsivo finche non trova cubi con
+     * valore diverso da 0.
+     */
     fun multiRevealFrom(x: Long, y: Long, z: Long) {
         //devo prendere i cubi vicini
         // - se sono scoperti
@@ -330,6 +344,9 @@ class Griglia(var N : Int) {
         return filt
     }
 
+    /**
+     * Ritorna tutti i cubi difiniti come vicini secondo le regole del gioco.
+     */
     private fun getNear(x : Long, y : Long, z : Long) : ArrayList<MineCube> {
         val pairNear = this.getNearPair(x,y,z)
         val filtered = ArrayList<MineCube>()

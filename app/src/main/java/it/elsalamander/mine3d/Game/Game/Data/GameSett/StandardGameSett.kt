@@ -4,20 +4,19 @@ import java.util.*
 
 /****************************************************************
  * GameSettings standard presenti
- * - Type:Normal, lato: 5, difficoltà: EASY
  *
  * @author: Elsalamander
  * @data: 15 aprile 2021
- * @version: v1.0
+ * @version: v1.1
  ****************************************************************/
 enum class StandardGameSett(var gameSettings : GameSett?, var str: String) {
     GAME_NORMAL_5_EASY(GameSett(5, Difficulty.EASY.difficulty, false, 0), "N-5-E"),
-    GAME_NORMAL_5_MEDIUM(GameSett(5, Difficulty.EASY.difficulty, false, 0), "N-5-M"),
-    GAME_NORMAL_5_HARD(GameSett(5, Difficulty.EASY.difficulty, false, 0), "N-5-H"),
+    GAME_NORMAL_5_MEDIUM(GameSett(5, Difficulty.MEDIUM.difficulty, false, 0), "N-5-M"),
+    GAME_NORMAL_5_HARD(GameSett(5, Difficulty.HARD.difficulty, false, 0), "N-5-H"),
 
     GAME_NORMAL_7_EASY(GameSett(7, Difficulty.EASY.difficulty, false, 0), "N-7-E"),
-    GAME_NORMAL_7_MEDIUM(GameSett(7, Difficulty.EASY.difficulty, false, 0), "N-7-M"),
-    GAME_NORMAL_7_HARD(GameSett(7, Difficulty.EASY.difficulty, false, 0), "N-7-H"),
+    GAME_NORMAL_7_MEDIUM(GameSett(7, Difficulty.MEDIUM.difficulty, false, 0), "N-7-M"),
+    GAME_NORMAL_7_HARD(GameSett(7, Difficulty.HARD.difficulty, false, 0), "N-7-H"),
 
     GAME_CUSTOM(null, "C"),
     GAME_LOAD(null, "L");

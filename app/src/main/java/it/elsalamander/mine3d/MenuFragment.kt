@@ -19,6 +19,12 @@ import java.io.File
  * Fragment del menu, il primo fragment visualizzato all'apertura
  * dell'app.
  *
+ * Menu dove sono presenti 4 pulsanti:
+ * - 1: Navigare nel fragment per la selezione del gameStandard.
+ * - 2: Passare all'activity 2 per creare il custom Game
+ * - 3: Recuperare il game precedente e avviarlo se c'è
+ * - 4: Navigare nel fragment delle Impostazioni.
+ *
  * @author: Elsalamander
  * @data: 15 aprile 2021
  * @version: v1.0
@@ -26,6 +32,7 @@ import java.io.File
 class MenuFragment : Fragment() {
 
     companion object{
+        //Messaggio del Toast se non c'è un game incompleto
         const val sendError = "Non c'è un game incompleto da caricare!"
     }
 

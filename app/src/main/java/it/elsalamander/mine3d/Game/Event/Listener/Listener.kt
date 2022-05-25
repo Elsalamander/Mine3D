@@ -1,6 +1,7 @@
 package it.elsalamander.mine3d.Game.Event.Listener
 
 import android.util.Log
+import android.widget.Toast
 import it.elsalamander.mine3d.Game.Event.Manager.EventHandlerGame
 import it.elsalamander.mine3d.Game.Event.Manager.EventPriority
 import it.elsalamander.mine3d.Game.Event.Manager.ListenerGame
@@ -8,11 +9,13 @@ import it.elsalamander.mine3d.Game.Event.Set.*
 
 /****************************************************************
  * Classe dove faccio una prima gestione degli eventi prencipali
- * del gioco
+ * del gioco.
  *
  * C'è la soppressione del Lint per quanto riguarda funzioni "unused"
  * poichè queste funzioni sono chiamate in un modo non dichiarato
- * risultando così apparentemente non utilizzate
+ * risultando così apparentemente non utilizzate.
+ *
+ * La firma delle funzioni è come descritto nella classe "EventManager"
  *
  * @author: Elsalamander
  * @data: 15 aprile 2021
@@ -34,8 +37,9 @@ class Listener : ListenerGame {
 
     /**
      * Gestione Evento di quando voglio rivelare un cubo dato
+     * Ignora la cancellazione poichè questo evento può essere cancellato.
      */
-    @EventHandlerGame
+    @EventHandlerGame(EventPriority.NORMAL, true)
     fun onRevealCubeEvent(event : RevealCubeEvent){
         Log.d("Event RevealCubeEvent", "Scopro il cubo")
         //voglio rilevare questo cubo
@@ -163,7 +167,9 @@ class Listener : ListenerGame {
 
     @EventHandlerGame
     fun onCantFlagCube(event : CantFlagCubeEvent){
-        Log.d("Event CantPlaceFlagCube", "non metto la bandiera")
+        Toast.makeText(event.instanceGame.context,
+                       "Non puoi piazzare la bandiera!",
+                       Toast.LENGTH_SHORT).show()
     }
 
 
@@ -193,6 +199,9 @@ class Listener : ListenerGame {
         event.instanceGame.context.media.stop()
     }
 
+    /**
+     * Gestisco la chiamata ad evento di messa in pausa
+     */
     @EventHandlerGame
     fun onPausedGame(event : PausedGameEvent){
         event.instanceGame.pause()
