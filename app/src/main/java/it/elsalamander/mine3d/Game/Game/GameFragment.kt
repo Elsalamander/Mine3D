@@ -91,7 +91,7 @@ class GameFragment : Fragment() {
 
         //Aggiusta il colore delle textView e immageButton
         if(settings.baseSett.theme.getVal() == ThemeList.DARK){
-            val color = resources.getColor(R.color.black, activity.theme)
+            val color = resources.getColor(R.color.white, activity.theme)
             bomb.setTextColor(color)
             timer.setTextColor(color)
             pause.setColorFilter(color)

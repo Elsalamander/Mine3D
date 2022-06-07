@@ -6,7 +6,7 @@ import it.elsalamander.mine3d.util.Pair
  *
  * Classe per definire l'area di un mondo specificato.
  *
- * Per migliorare il get nell'area data ci sono 4 nodi di cache
+ * Per migliorare il get nell'area data ci sono N nodi di cache
  * uno per albero del piano, questi nodi sono tali che raggruppano
  * tutti i nodi appartenenti a questa AREA, la sua posizione e anche
  * tale che i suoi figli che portano ad una foglia di questa area sono

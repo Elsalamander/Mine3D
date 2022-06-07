@@ -12,7 +12,7 @@ import kotlin.reflect.jvm.jvmErasure
  *
  * Le funzioni da chiamare devono essere registrate.
  * Per essere registrate queste ultime devono essere contenute
- * in una classe che implemente "ListenerGame".
+ * in una classe che implementa "ListenerGame".
  *
  * La registrazione viene effettuata come segue:
  * Quando si registra una classe che contiene l'esecuzione di un

@@ -54,7 +54,7 @@ class Game : AppCompatActivity(){
         settings = JSONManager(this)
         media = SoundMedia(this)
 
-        //registra eventi
+        //registra le classi evento
         eventManager.registerEvent(Listener())
         eventManager.registerEvent(MediaListener())
 
@@ -73,8 +73,10 @@ class Game : AppCompatActivity(){
             gameSett = typeGame?.gameSettings
         }
 
+        //Imposta la view
         this.setContentView(R.layout.activity_game)
 
+        //Prendi l'oggetto Navigator per poi deviare lo start eventualmente
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_game) as NavHostFragment?
         val navController = navHost!!.navController
 
@@ -88,6 +90,7 @@ class Game : AppCompatActivity(){
             graph.setStartDestination(R.id.gamefragment)
         }
 
+        //Applica la modifica
         navController.graph = graph
     }
 

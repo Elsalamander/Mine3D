@@ -46,7 +46,7 @@ import androidx.appcompat.app.AppCompatActivity
  * Ogni activity è costituita da fragment.
  *
  * Durante l'activity 2, più precisamente quando si avvia il game,
- * si fa uso particolare del contenuto del packege:
+ * si fa uso particolare del contenuto del package:
  * "it.elsalamander.mine3d.Game.Event" la classe più "importante"
  * che gestisce gli eventi è: "it.elsalamander.mine3d.Game.Event.Manager.EventManager"
  *
